@@ -136,6 +136,8 @@ return [
     'entering'                => 'Entering...',
     'registered'              => 'User Registered!',
     'users'                   => 'Users',
+    'daily_check'             => 'Daily Check',
+    'new_control'             => 'Nuevo Control Diario',
     'new_user'                => 'User',
     'perfil_user'             => 'User Profile',
     'update_profile'          => 'Update Profile Image',

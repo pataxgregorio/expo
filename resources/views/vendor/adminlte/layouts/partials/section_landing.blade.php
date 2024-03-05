@@ -1,21 +1,21 @@
 <section id="intro" class="clearfix">
   <div class="container">    
     <div style="text-align:center">
-        <img src="{{ url('/images/icons/icon-96x96.png') }}" alt="" class="img-fluid" style="width: 96px; height: 96px;">
+        <img src="{{ url('/images/icons/unnamed.png') }}" alt="" class="img-fluid" style="width: 100%; max-width:1720px;">
     </div>    
-    <div style="text-align:center;"><h1>{{ trans('message.home.sistema') }}</h1></div>
-    <div style="text-align:center;"><h3>{{ trans('message.home.titulo_01') }}</h3></div>
-    <div style="text-align:center;"><h3>{{ trans('message.home.titulo_02') }}</h3></div>
-    <div style="text-align:center;"><a href="{{ url('Proyecto_HORUS.pdf')}}" target="_blank"><img  border="0" src="{{ url('pdf.jpeg') }}" alt="" class="img-fluid" style="width: 32px; height: 32px;"><h3>Documento | Document</h3></a></div>    
-    <div class="intro-img" style="text-align:center;">
-      <img src="{{ url('intro-img.svg') }}" alt="" class="img-fluid" style="width: 100%; max-width:350px;">
-    </div>
     <div style="text-align:center;">
-      <h3>{{ trans('message.home.realizado') }}<b>Tarsicio Carrizales</b></h3>
-    </div>
-    <div style="text-align:center;">
-      <h5>{{ trans('message.home.mail') }}<b>telecom.com.ve@gmail.com</b></h5>
+    <h2>Sistema Integral de Atención SIA</h2>
+      <h3>Proyecto contemplado en el Plan de Gobierno del Alcalde Rafael Torrealba. <br> En Periodo 2021-2025
+        La Transformación Digital del Municipio
+      </h3>
     </div>        
+    <div class="intro-img" style="text-align:center;">
+      <img src="{{ url('/images/icons/footer.png') }}" alt="" class="img-fluid" style="width: 100%; max-width:1720px;">
+    </div>
+    <div style="text-align:center;">
+      
+    </div>
+    
   </div>
   <!-- <div style="text-align:center">                                                
       <img style="width: 20%; height: 20%;" src="{ url('/storage/img/49_99.png') }" class="img-fluid" alt="price"/>

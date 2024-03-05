@@ -1489,12 +1489,24 @@
   border: 1px solid #d2d6de;
   margin: 10px 10px;
 }
+.content-wrapper{
+  background-color: #ffffff;
+}
 .skin-yellow-light .sidebar-form input[type="text"],
 .skin-yellow-light .sidebar-form .btn {
   box-shadow: none;
   background-color: #fff;
   border: 1px solid transparent;
   height: 35px;
+}
+.btn-primary {
+  width: 100px;
+}
+
+.login-page{
+  
+  background-color: #ffffff;
+
 }
 .skin-yellow-light .sidebar-form input[type="text"] {
   color: #666;

@@ -133,6 +133,9 @@ return [
     'entering'                => 'Entrando...',
     'registered'              => 'Usuario registrado!',
     'users'                   => 'Usuarios',
+    'daily_check'             => 'Control Diario',
+    'new_control'             => 'Control',
+    'request'                 => 'Solicitud',
     'new_user'                => 'Usuario',
     'perfil_user'             => 'Perfil Usuarios', 
     'update_profile'          => 'Actualizar perfil usuario',
@@ -141,6 +144,7 @@ return [
     'menu_seguridad'          => 'Seguridad',
     'menu_rol'                => 'Roles',
     'menu_modulo'             => 'Módulos',
+    'menu_control'            => 'Control',
     'menu_permiso'            => 'Permisos',
     'menu_notificaciones'     => 'Notificaciones',
     'menu_color'              => 'Cambiar Color',
@@ -177,6 +181,13 @@ return [
         'confirmo'            => 'Confirmado',
         'fecha'               => 'Fecha',
         'leido'             => 'Marcar leido'
+    ],
+    'datadatable_control'        => [
+        'name'                => 'Nombre',
+        'date'                => 'Fecha',
+        'cedula'              => 'Cedula',
+        'asunto'              => 'Asunto'
+     
     ],
     'mensajes_alert'          => [
         'denegado'            => 'Acceso Denegado',
@@ -233,6 +244,8 @@ return [
     ],
     'tooltip'                 => [
         'new_user'            => 'Permite crear un nuevo usuario',
+        'new_control'         => 'Permite crear un nuevo Registro',
+        'new_solicitud'       => 'Permite crear un nuevo Registro de Solicitud',
         'new_rol'             => 'Permite crear un nuevo rol',
         'new_module'          => 'Permite crear un nuevo módulo',
         'procesa_rol'         => 'Permite procesar el rol, y crea los permisos si estos no existen',
@@ -268,6 +281,14 @@ return [
         'show_rols'           => 'VISUALIZAR ROL',        
         'nombre'              => 'NOMBRE ROL',
         'description'         => 'DESCRIPCIÓN ROLS',
+    ],
+    'control_action'             => [
+        'new_control'            => 'CREAR CONTROL',
+        'edit_control'           => 'EDITAR CONTROL',
+        'update_control'         => 'ACTUALIZAR CONTROL',
+        'show_control'           => 'VISUALIZAR CONTROL',        
+        'nombre'              => 'NOMBRE CONTROL',
+        'description'         => 'DESCRIPCIÓN CONTROL',
     ],
     'modulo_action'           => [
         'new_modulo'          => 'CREAR MÓDULO',
