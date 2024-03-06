@@ -1,28 +1,13 @@
 <?php
-/**
-* Realizado por @author Tarsicio Carrizales Agosto 2021
-* Correo: telecom.com.ve@gmail.com
-*/
 
 namespace App\Models\Solicitud;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\DB;
-use Auth;
+use Illuminate\Database\Eloquent\Model;
 
-class Solicitud extends Authenticatable
+class Solicitud extends Model
 {
-    use HasFactory, Notifiable;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $table = 'solicitud';
+    use HasFactory;
     protected $fillable = [
         'users_id',
         'direccion_id',        
@@ -35,11 +20,11 @@ class Solicitud extends Authenticatable
         'comuna_id',
         'comunidad_id',
         'comuna_id',
+        'codigo_control',
         'Nombre',
         'Cedula',
         'Sexo',
         'email',
-        'Organizacion',
         'Fecha',
         'Telefono',
         'organismo',
@@ -50,20 +35,23 @@ class Solicitud extends Authenticatable
         'beneficiario',
         'quejas',
         'reclamo',
+        'sugerecia',
+        'asesoria',
+        'denuncia',
         'denunciado',
-
+        'status'
     ];
-
-    public function getSolicitudList_DataTable(){        
-        return DB::table('solicitud')->select('id','users_id','direccion_id','coordinacion_id','tipo_solicitud_id','enter_descentralizados_id',
-               'estado_id','municipio_id','parroquia_id','comuna_id','comunidad_id','comuna_id','Nombre',
-               'Cedula','Sexo','email','Organizacion','Fecha','Telefono','organismo','edocivil','fechaNacimiento','profesion',
-               'recaudos','beneficiario','quejas','reclamo','denunciado')->get();
+    public function getSolicitudList_DataTable(){
+        try {
+            $solicitud = DB::table('solicitud')
+            ->join('tipo_solicitud', 'solicitud.tipo_solicitud_id', '=', 'tipo_solicitud.id')
+            ->join('direccion', 'solicitud.direccion_id', '=', 'direccion.id')
+            ->select('solicitud.id','solicitud.Nombre AS Solicitante','tipo_solicitud.Nombre AS Nombretipo','direccion.Nombre AS direccionNombre','solicitud.status')->get();
+            return $solicitud;
+        }catch(Throwable $e){
+            $solicitud = [];
+            return $solicitud;
+        }
+        
     }
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
 }

@@ -20,9 +20,7 @@ use App\Http\Controllers\User\Colores;
 
 class SolicitudController extends Controller
 {
-    //
-
- /**
+    /**
      * Display a listing of the resource.
      * @author Tarsicio Carrizales telecom.com.ve@gmail.com
      * @return \Illuminate\Http\Response
@@ -42,10 +40,11 @@ class SolicitudController extends Controller
         return view('Solicitud.solicitud',compact('count_notification','tipo_alert','array_color'));
     }
 
-    public function getControlDiario(Request $request){
+    public function getSolicitud(Request $request){
         try{
+           
             if ($request->ajax()) {                
-                $data =  (new User)->getControlDiarioList_DataTable();                
+                $data =  (new Solicitud)-> getSolicitudList_DataTable();                
                 return datatables()->of($data)
                 ->editColumn('activo', function($data){
                     if($data->activo == 'DENY'){
@@ -404,4 +403,4 @@ class SolicitudController extends Controller
         return redirect('/dashboard');    
     }
 
-} // Fin de la clase UserController.
+}

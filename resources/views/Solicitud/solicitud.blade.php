@@ -40,7 +40,7 @@ Componentes para los Módulos del Sistema, (New,Print,Download and Upload)
 <div class="container-fluid">
     <div class="card">
         <div class="card-body">            
-                <table class="table table-bordered users_all">
+                <table class="table table-bordered solicitud_all">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -71,16 +71,18 @@ Componentes para los Módulos del Sistema, (New,Print,Download and Upload)
 <script type="text/javascript">
   $(function () {
     
-    var table = $('.users_all').DataTable({
+    var table = $('.solicitud_all').DataTable({
         processing: true,
         serverSide: true,
         responsive: true,
         autoWidth : false,        
-        ajax: "{{ route('users.list') }}",        
-        columns: [             
+        ajax: "{{ route('solicitud.list') }}",    
+        
+        columns: [          
             {
                 data: 'id', name: 'id',
-                "render": function ( data, type, row ) {                    
+                "render": function ( data, type, row ) { 
+
                     return '<div style="text-align:center;"><b>'+data+'</b></div>';
                 }
             },
