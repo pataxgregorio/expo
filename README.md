@@ -7,6 +7,42 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## Command Line
+
+Use PHP 7.4 Version
+
+Clone Laravel08BaseApp
+
+$ composer install
+
+run .env.example with .env
+configure your access database (MySQl || PostgreSQL | more...)
+
+$ php artisan key:generate
+
+configure your smtp gmail, mail and password
+
+$ php artisan storage:link
+
+create new folder name "avatars" in /storage/app/public/
+
+$ php artisan migrate
+
+change into /database/seeders/usersSeeders.php your true or real information
+
+$ php artisan db:seed
+
+ $ php artisan serve
+
+the server run in port=8000 default.
+
+In new terminal run this command #-->
+
+$ nohup php artisan queue:work database &
+
+and then read the file pdf in folder public the file Proyecto_HORUS.pdf
+
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
