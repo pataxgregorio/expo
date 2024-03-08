@@ -44,13 +44,12 @@ Componentes para los Módulos del Sistema, (New,Print,Download and Upload)
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>{{ trans('message.datadatable_control.name') }}</th>
-                                <th>{{ trans('message.datadatable_control.date') }}</th>
-                                <th style="text-align:center;">{{ trans('message.datadatable_control.cedula') }}</th>
-                                <th>{{ trans('message.datadatable_control.asunto') }}</th>
+                                <th>Nombre</th>
+                                <th  style="text-align:center;">Tipo Solicitud</th>
+                                <th style="text-align:center;">Direccion</th>
+                                <th style="text-align:center;">Status</th>
                                 <th style="text-align:center;">{{ trans('message.botones.edit') }}</th>
                                 <th style="text-align:center;">{{ trans('message.botones.view') }}</th>
-                                <th style="text-align:center;">{{ trans('message.botones.delete') }}</th>
                             </tr>
                         </thead>
                     <tbody>
@@ -86,15 +85,11 @@ Componentes para los Módulos del Sistema, (New,Print,Download and Upload)
                     return '<div style="text-align:center;"><b>'+data+'</b></div>';
                 }
             },
-            {data: 'name', name: 'name'},
-            {data: 'rol', name: 'rol'},
-            {
-                data: 'avatar',name: 'avatar',
-                "render": function ( data, type, row ) {                    
-                    return '<div style="text-align:center;"><img src="{{ url('storage/avatars/') }}/'+data+'" class="img-circle" alt="User Image" style="width:30px; height:30px;"></div>';
-                }
-            },
-            {data: 'email', name: 'email'},
+            {data: 'solicitante', name: 'solicitante'}, 
+            {data: 'nombretipo', name: 'nombretipo'}, 
+            {data: 'direccionnombre', name: 'direccionnombre'}, 
+            {data: 'nombrestatus', name: 'nombrestatus'}, 
+          
           
           
             {

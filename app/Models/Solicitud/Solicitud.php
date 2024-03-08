@@ -4,7 +4,7 @@ namespace App\Models\Solicitud;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Support\Facades\DB;
 class Solicitud extends Model
 {
     use HasFactory;
@@ -21,12 +21,13 @@ class Solicitud extends Model
         'comunidad_id',
         'comuna_id',
         'codigo_control',
-        'Nombre',
-        'Cedula',
-        'Sexo',
+        'status_id',
+        'nombre',
+        'cedula',
+        'sexo',
         'email',
-        'Fecha',
-        'Telefono',
+        'fecha',
+        'telefono',
         'organismo',
         'edocivil',
         'fechaNacimiento',
@@ -39,14 +40,15 @@ class Solicitud extends Model
         'asesoria',
         'denuncia',
         'denunciado',
-        'status'
+        
     ];
     public function getSolicitudList_DataTable(){
         try {
             $solicitud = DB::table('solicitud')
             ->join('tipo_solicitud', 'solicitud.tipo_solicitud_id', '=', 'tipo_solicitud.id')
             ->join('direccion', 'solicitud.direccion_id', '=', 'direccion.id')
-            ->select('solicitud.id','solicitud.Nombre AS Solicitante','tipo_solicitud.Nombre AS Nombretipo','direccion.Nombre AS direccionNombre','solicitud.status')->get();
+            ->join('status', 'solicitud.status_id', '=', 'status.id')
+            ->select('solicitud.id','solicitud.nombre AS solicitante','tipo_solicitud.nombre AS nombretipo','direccion.nombre AS direccionnombre','status.nombre AS nombrestatus')->get();
             return $solicitud;
         }catch(Throwable $e){
             $solicitud = [];
