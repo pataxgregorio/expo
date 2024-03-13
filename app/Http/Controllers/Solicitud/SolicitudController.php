@@ -9,6 +9,13 @@ use App\Models\Solicitud\Solicitud;
 use App\Http\Requests\User\StoreUser;
 use App\Http\Requests\User\UpdateUser;
 use App\Models\Security\Rol;
+use App\Models\Estados\Estados;
+use App\Models\Municipio\Municipio;
+use App\Models\Parroquia\Parroquia;
+use App\Models\Comuna\Comuna;
+use App\Models\Comunidad\Comunidad;
+use App\Models\Direccion\Direccion;
+use App\Models\Tipo_Solicitud\Tipo_Solicitud;
 use Auth;
 use Dompdf\Dompdf;
 use App\Notifications\WelcomeUser;
@@ -117,8 +124,16 @@ class SolicitudController extends Controller
         $titulo_modulo = trans('message.users_action.new_user');
         $count_notification = (new User)->count_noficaciones_user();
         $roles = (new Rol)->datos_roles();
-        $array_color = (new Colores)->getColores();       
-        return view('Solicitud.solicitud_create',compact('count_notification','titulo_modulo','roles','array_color'));        
+        $estado = (new Estados)->datos_estados();
+        $municipio = (new Municipio)->datos_municipio();
+        $parroquia = (new Parroquia)->datos_parroquia();
+        $array_color = (new Colores)->getColores();
+        $tipo_solicitud =(new Tipo_Solicitud)->datos_tipo_solicitud();   
+        $direcciones =(new Direccion)->datos_tipo_direccion();   
+        $comuna = [];
+     //   $direcciones = [];
+        $comunidad = [];
+        return view('Solicitud.solicitud_create',compact('count_notification','titulo_modulo','roles','municipio','comuna','comunidad','direcciones','parroquia','estado','tipo_solicitud','array_color'));        
     }
 
     /**
@@ -234,6 +249,20 @@ class SolicitudController extends Controller
         $array_color = (new Colores)->getColores();
         return view('User.user_edit',compact('count_notification','titulo_modulo','roles','user_edit','array_color','rols_id'));
     }
+public function getComunas(Request $request){
+  
+    $comuna = (new Comuna)->datos_comuna( $request['parroquia']);
+         
+    return $comuna;
+
+}
+public function getComunidad(Request $request){
+  
+    $comunidad = (new Comunidad)->datos_comunidad( $request['comuna']);
+         
+    return $comunidad;
+
+}
 
     /**
      * Update the specified resource in storage.

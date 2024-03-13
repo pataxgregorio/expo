@@ -26,6 +26,7 @@ class CreateSolicitudTable extends Migration
             $table->unsignedBigInteger('comuna_id')->nullable();
             $table->unsignedBigInteger('comunidad_id')->nullable();
             $table->unsignedBigInteger('codigo_control')->nullable();
+            $table->unsignedBigInteger('status_id')->nullable();
             $table->string('nombre');
             $table->string('cedula');
             $table->string('sexo');
@@ -47,6 +48,7 @@ class CreateSolicitudTable extends Migration
             $table->json('denunciado')->nullable();
             $table->boolean('status');
             $table->foreign('users_id')->references('id')->on('users');
+            $table->foreign('status_id')->references('id')->on('status');
             $table->foreign('direccion_id')->references('id')->on('direccion');
             $table->foreign('coordinacion_id')->references('id')->on('coordinacion');
             $table->foreign('tipo_solicitud_id')->references('id')->on('tipo_solicitud');
