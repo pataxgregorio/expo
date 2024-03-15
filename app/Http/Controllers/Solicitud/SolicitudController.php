@@ -15,6 +15,8 @@ use App\Models\Parroquia\Parroquia;
 use App\Models\Comuna\Comuna;
 use App\Models\Comunidad\Comunidad;
 use App\Models\Direccion\Direccion;
+use App\Models\Enter\Enter;
+use App\Models\Coordinacion\Coordinacion;
 use App\Models\Tipo_Solicitud\Tipo_Solicitud;
 use Auth;
 use Dompdf\Dompdf;
@@ -129,11 +131,12 @@ class SolicitudController extends Controller
         $parroquia = (new Parroquia)->datos_parroquia();
         $array_color = (new Colores)->getColores();
         $tipo_solicitud =(new Tipo_Solicitud)->datos_tipo_solicitud();   
-        $direcciones =(new Direccion)->datos_tipo_direccion();   
+        $direcciones =(new Direccion)->datos_direccion();   
+        $enter =(new Enter)->datos_enter(); 
         $comuna = [];
-     //   $direcciones = [];
+        $coordinacion = [];
         $comunidad = [];
-        return view('Solicitud.solicitud_create',compact('count_notification','titulo_modulo','roles','municipio','comuna','comunidad','direcciones','parroquia','estado','tipo_solicitud','array_color'));        
+        return view('Solicitud.solicitud_create',compact('count_notification','titulo_modulo','roles','municipio','comuna','comunidad','direcciones','parroquia','estado','coordinacion','enter','tipo_solicitud','array_color'));        
     }
 
     /**
@@ -158,6 +161,11 @@ class SolicitudController extends Controller
          * https://laravel.com/docs/8.x/queues#supervisor-configuration
          */
         // Target URL
+
+
+
+        var_dump ($request);
+        exit();
         $array_color = (new Colores)->getColores();        
         $count_notification = (new User)->count_noficaciones_user();            
         $avatar = '';
@@ -261,6 +269,13 @@ public function getComunidad(Request $request){
     $comunidad = (new Comunidad)->datos_comunidad( $request['comuna']);
          
     return $comunidad;
+
+}
+public function getCoodinacion(Request $request){
+  
+    $coordinacion = (new Coordinacion)->datos_coordinacion( $request['direccion']);
+         
+    return $coordinacion;
 
 }
 

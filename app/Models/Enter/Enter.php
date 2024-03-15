@@ -1,20 +1,20 @@
 <?php
 
-namespace App\Models\Direccion;
+namespace App\Models\Enter;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-class Direccion extends Model
+class Enter extends Model
 {
     use HasFactory;
     protected $fillable = [     
         'nombre',
         
     ];
-    public function datos_direccion(){
+    public function datos_enter(){
         try {
-            $direccion = DB::table('direccion')->select('id','nombre')->orderBy('id')->pluck('nombre', 'id')->toArray();
+            $direccion = DB::table('enter_descentralizados')->select('id','nombre')->orderBy('id')->pluck('nombre', 'id')->toArray();
             return $direccion;
         }catch(Throwable $e){
             $direccion = [];

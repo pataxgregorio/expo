@@ -310,13 +310,33 @@
                              
 
                 </div>
-                           
-                             <div style="text-align:left;">
-                                {!! Form::label('direcciones_id',trans('message.solicitud_action.direcciones'), ['class' => 'control-label']) !!}<span class="required" style="color:red;">*</span>
-                                {!! Form::select('direcciones_id', $direcciones, old('municipio_id'), ['placeholder' => trans('message.solicitud_action.direcciones'),'class' => 'form-control','id' => 'direcciones_id']) !!}
-                             </div>         
+                <div style="text-align:left;">
+                    <label>ASIGNACION*</label>
+                     <select required name="asignacion"  id="asignacion" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins">
+                        <option value="SELECCIONE UNA OPCION">SELECCIONE UNA OPCION</option>
+                        <option value="DIRECCION">DIRECCION</option>
+                        <option value="ENTER">ENTER</option>
+                    </select>
+                </div>   
+                <div id="direccion">
+                    <div style="text-align:left;">
+                      {!! Form::label('direcciones_id',trans('message.solicitud_action.direcciones'), ['class' => 'control-label']) !!}<span class="required" style="color:red;">*</span>
+                      {!! Form::select('direcciones_id', $direcciones, old('direcciones_id'), ['placeholder' => trans('message.solicitud_action.direcciones'),'class' => 'form-control','id' => 'direcciones_id']) !!}
+                    </div> 
+                    <div style="text-align:left;">
+                      {!! Form::label('coordinacion_id',trans('message.solicitud_action.coordinacion'), ['class' => 'control-label']) !!}<span class="required" style="color:red;">*</span>
+                      {!! Form::select('coordinacion_id', $coordinacion, old('coordinacion_id'), ['placeholder' => trans('message.solicitud_action.coordinacion'),'class' => 'form-control','id' => 'coordinacion_id']) !!}
+                    </div> 
+                </div>
+                <div id="enter">
+                    <div style="text-align:left;">
+                      {!! Form::label('enter_id',trans('message.solicitud_action.enter'), ['class' => 'control-label']) !!}<span class="required" style="color:red;">*</span>
+                      {!! Form::select('enter_id', $enter, old('enter_id'), ['placeholder' => trans('message.solicitud_action.enter'),'class' => 'form-control','id' => 'enter_id']) !!}
+                    </div> 
+
+                </div>              
      
-     
+     <br>
                         {!! Form::submit(trans('message.solicitud_action.new_solicitud'),['class'=> 'form-control btn btn-primary','title' => trans('message.solicitud_action.new_solicitud'),'data-toggle' => 'tooltip','style' => 'background-color:'.$array_color['group_button_color'].';']) !!}                     
                 </div>      
                 {!!  Form::close() !!}
@@ -341,7 +361,8 @@
    $("#denunciado").hide();
    $("#sugerencia").hide();
    $("#beneficiario").hide();
-   
+   $("#enter").hide();
+   $("#direccion").hide();
    $('#municipio_id').change(function(){
     $("#parroquia_id").prop('disabled', false);
    
@@ -377,6 +398,22 @@
         })   
    
     });
+    $('#asignacion').change(function(){
+
+        var asignacion = $("#asignacion").val();
+        if (asignacion =="DIRECCION"){
+            $("#enter").hide();
+            $("#direccion").show();
+
+        }
+        if (asignacion =="ENTER"){
+            $("#enter").show();
+            $("#direccion").hide();
+
+        }
+      }) 
+
+
     $('#comuna_id').change(function(){
         var comuna= $('#comuna_id').val();
         $("#comunidad_id").prop('disabled', false);
@@ -402,6 +439,34 @@
         })   
    
     });
+
+    $('#direcciones_id').change(function(){
+        var direccion= $('#direcciones_id').val();
+      
+        $.ajax({
+
+            url:"{{ route('getCoodinacion') }}",
+            type:"GET",
+            data:{direccion:direccion}
+
+            }).done(function(data){
+                // alert(JSON.stringify(data));
+                
+                $("#coordinacion_id").empty();
+                $("#coordinacion_id").html('<option value="">COORDINACION<option/>');
+            for (let c in data){
+               
+                $("#coordinacion_id").append(`<option value="${c}">${data[c]}<option/>`);
+            
+            }
+          //  $("#comuna_id").find("option[value='']").remove();
+           // $("#comuna_id").change();
+            
+        })   
+   
+    });
+
+
     $('#tipo_solicitud_id').change(function(){ 
 
         var tipo = $('#tipo_solicitud_id').val();

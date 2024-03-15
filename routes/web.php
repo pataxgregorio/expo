@@ -183,6 +183,7 @@ Route::post('/solicitud/{solicitud}', 'Solicitud\SolicitudController@update')->n
 Route::get('/solicitud/{solicitud}/delete', 'Solicitud\SolicitudController@destroy')->name('solicitud.destroy')->middleware('permiso:solicitud,delete');
 Route::get('/solicitud/getComunas', 'Solicitud\SolicitudController@getComunas')->name('getComunas')->middleware('permiso:solicitud,view');
 Route::get('/solicitud/getComunidad', 'Solicitud\SolicitudController@getComunidad')->name('getComunidad')->middleware('permiso:solicitud,view');
+Route::get('/solicitud/getCoodinacion', 'Solicitud\SolicitudController@getCoodinacion')->name('getCoodinacion')->middleware('permiso:solicitud,view');
 Route::get('/solicitud/list', 'Solicitud\SolicitudController@getSolicitud')->name('solicitud.list')->middleware('permiso:solicitud,view');
 Route::get('/solicitud/print', 'Solicitud\SolicitudController@solicitudPrint')->name('solicitud.solicitudPrint')->middleware('permiso:solicitud,print');
 // *********************************************************************************************************
