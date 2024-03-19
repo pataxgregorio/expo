@@ -80,6 +80,10 @@
                           <option value="DIVORCIADO">DIVORCIADO</option>
                         </select>
                         </div>
+                        <div style="text-align:left;">
+                           <label>FECHA NACIMIENTO</label>
+                            <input type="date" id="fechanacimiento" name="fechanacimiento" class="form-control">
+                         </div>
                     <div style="text-align:left;">
                          <label>NIVEL EDUCATIVO*</label>
                              <select required name="niveleducativo"  id="niveleducativo" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins">
@@ -230,32 +234,32 @@
                             <h3>Recuados de la Solicitud</h3>
                             <br>
                             <div class ="col">
-                                 <div class="form-check">
-                                     <input class="form-check-input" type="checkbox" id="checkcedula">
+                            <div style="text-align:left;">
+                                     <input  type="checkbox" id="checkcedula" name ="checkcedula" >
                                      <label class="form-check-label" for="defaultCheck1">Copia Cedula</label>
                                  </div>
-                                 <div class="form-check">
-                                     <input class="form-check-input" type="checkbox" id="checkmotivo">
+                                 <div style="text-align:left;">
+                                     <input  type="checkbox" id="checkmotivo" name ="checkmotivo">
                                      <label class="form-check-label" for="defaultCheck1">Exposicion de Motivo</label>
                                  </div>
-                                 <div class="form-check">
-                                     <input class="form-check-input" type="checkbox" id="checkvideo">
+                                 <div style="text-align:left;">
+                                     <input  type="checkbox" id="checkvideo" name ="checkvideo">
                                      <label class="form-check-label" for="defaultCheck1">Video</label>
                                  </div>
-                                 <div class="form-check">
-                                     <input class="form-check-input" type="checkbox" id="checkfoto">
+                                 <div style="text-align:left;">
+                                     <input  type="checkbox" id="checkfoto" name ="checkfoto">
                                      <label class="form-check-label" for="defaultCheck1">Fotos</label>
                                  </div>
-                                 <div class="form-check">
-                                     <input class="form-check-input" type="checkbox" id="checkgrabacion">
+                                 <div style="text-align:left;">
+                                     <input  type="checkbox" id="checkgrabacion" name ="checkgrabacion">
                                      <label class="form-check-label" for="defaultCheck1">Gravacion</label>
                                  </div>
-                                 <div class="form-check">
-                                     <input class="form-check-input" type="checkbox" id="checktestigo">
+                                 <div style="text-align:left;">
+                                     <input  type="checkbox" id="checktestigo" name ="checktestigo">
                                      <label class="form-check-label" for="defaultCheck1">Cedula Testigo</label>
                                  </div>
-                                 <div class="form-check">
-                                     <input class="form-check-input" type="checkbox" id="checkresidencia">
+                                 <div style="text-align:left;">
+                                     <input  type="checkbox" id="checkresidencia" name ="checkresidencia">
                                      <label class="form-check-label" for="defaultCheck1">Carta Residencia</label>
                                  </div>
                             </div>
@@ -268,8 +272,8 @@
                                  </div> 
                              <h3>Recuados de la Solicitud</h3>
                              <br>
-                                <div class="form-check">
-                                     <input class="form-check-input" type="checkbox" id="checkmotivo2">
+                             <div style="text-align:left;">
+                                     <input  type="checkbox" id="checkmotivo2" name ="checkcedula">
                                      <label class="form-check-label" for="defaultCheck1">Exposicion de Motivo</label>
                                  </div>
                              </div>
@@ -290,20 +294,20 @@
                                      </div> 
                                     <h3>Recuados de la Peticion</h3>
                                     <br>
-                                    <div class="form-check">
-                                         <input class="form-check-input" type="checkbox" id="checkcedula2">
+                                    <div style="text-align:left;">
+                                         <input  type="checkbox" id="checkcedula2" name ="checkcedula">
                                          <label class="form-check-label" for="defaultCheck1">Copia Cedula</label>
                                     </div>
-                                    <div class="form-check">
-                                     <input class="form-check-input" type="checkbox" id="checkcedula">
+                                    <div style="text-align:left;">
+                                     <input  type="checkbox" id="checkmotivo3" name ="checkcedula">
                                      <label class="form-check-label" for="defaultCheck1">Exposicion de Motivo</label>
                                  </div>
-                                 <div class="form-check">
-                                     <input class="form-check-input" type="checkbox" id="checkinforme">
+                                 <div style="text-align:left;">
+                                     <input  type="checkbox" id="checkinforme" name ="checkcedula">
                                      <label class="form-check-label" for="defaultCheck1">Informe Medico</label>
                                  </div>
-                                 <div class="form-check">
-                                     <input class="form-check-input" type="checkbox" id="checkcedulabeneficiario">
+                                 <div style="text-align:left;">
+                                     <input  type="checkbox" id="checkcedulabeneficiario" name ="checkcedula">
                                      <label class="form-check-label" for="defaultCheck1">Cedula Beneficiario</label>
                                  </div>
                              </div>

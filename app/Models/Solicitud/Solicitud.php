@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 class Solicitud extends Model
 {
     use HasFactory;
+    protected $table = 'solicitud';
     protected $fillable = [
         'users_id',
         'direccion_id',        
@@ -19,18 +20,20 @@ class Solicitud extends Model
         'parroquia_id',
         'comuna_id',
         'comunidad_id',
-        'comuna_id',
         'codigo_control',
         'status_id',
         'nombre',
         'cedula',
         'sexo',
         'email',
+        'direccion',
         'fecha',
+        'telefono',
         'telefono',
         'organismo',
         'edocivil',
         'fechaNacimiento',
+        'nivelestudio',
         'profesion',
         'recaudos',
         'beneficiario',
