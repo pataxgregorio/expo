@@ -14,6 +14,7 @@ class Comuna extends Model
     ];
     public function datos_comuna($parroquia){
         try {
+            
             $comuna = DB::table('comuna')->select('id','codigo')->where('parroquia_id',$parroquia)->orderBy('id')->pluck('codigo', 'id')->toArray();
             return $comuna;
         }catch(Throwable $e){
@@ -22,4 +23,6 @@ class Comuna extends Model
         }
         
     }
+  
 }
+

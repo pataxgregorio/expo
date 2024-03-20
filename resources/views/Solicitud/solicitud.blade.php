@@ -104,12 +104,7 @@ Componentes para los Módulos del Sistema, (New,Print,Download and Upload)
                     return '<div style="text-align:center;">'+data+'</div>';
                 }
             },
-            {
-                data: 'del', name: 'del', orderable: false, searchable: false,                
-                "render": function ( data, type, row ) {                    
-                    return '<div style="text-align:center;">'+data+'</div>';
-                }
-            },
+            
         ],
         "language": {
             "lengthMenu": "Mostrar _MENU_ registros por página",

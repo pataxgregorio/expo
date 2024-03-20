@@ -59,23 +59,16 @@ class SolicitudController extends Controller
                 ->addColumn('edit', function ($data) {
                     $user = Auth::user();                    
                     if(($user->id != 1)){
-                        $edit ='<a href="'.route('users.edit', $data->id).'" id="edit_'.$data->id.'" class="btn btn-xs btn-primary disabled" style="background-color: #2962ff;"><b><i class="fa fa-pencil"></i>&nbsp;' .trans('message.botones.edit').'</b></a>';
+                        $edit ='<a href="'.route('solicitud.edit', $data->id).'" id="edit_'.$data->id.'" class="btn btn-xs btn-primary disabled" style="background-color: #2962ff;"><b><i class="fa fa-pencil"></i>&nbsp;' .trans('message.botones.edit').'</b></a>';
                     }else{
-                        $edit ='<a href="'.route('users.edit', $data->id).'" id="edit_'.$data->id.'" class="btn btn-xs btn-primary" style="background-color: #2962ff;"><b><i class="fa fa-pencil"></i>&nbsp;' .trans('message.botones.edit').'</b></a>';
+                        $edit ='<a href="'.route('solicitud.edit', $data->id).'" id="edit_'.$data->id.'" class="btn btn-xs btn-primary" style="background-color: #2962ff;"><b><i class="fa fa-pencil"></i>&nbsp;' .trans('message.botones.edit').'</b></a>';
                     }
                     return $edit;
                 })
                 ->addColumn('view', function ($data) {
                     return '<a style="background-color: #5333ed;" href="'.route('users.view', $data->id).'" id="view_'.$data->id.'" class="btn btn-xs btn-primary"><b><i class="fa fa-eye"></i>&nbsp;' .trans('message.botones.view').'</b></a>';
                 })
-                ->addColumn('del', function ($data) {
-                    if($data->id == 1){
-                        $del ='<a href="javascript:void(0)" action=""><button type="submit" class="btn btn-danger btn-xs" data-toggle="tooltip" data-title="Eliminar" data-container="body" style="background-color: #900C3F;" disabled><b><i class="fa fa-trash"></i>&nbsp;' .trans('message.botones.delete').'</b>';
-                    }else{
-                        $del ='<a href="javascript:void(0)" action="'.route('users.destroy', $data->id).'" onclick="deleteData(this)"><button type="submit" class="btn btn-danger btn-xs" data-toggle="tooltip" data-title="Eliminar" data-container="body" style="background-color: #900C3F;"><b><i class="fa fa-trash"></i>&nbsp;' .trans('message.botones.delete').'</b>';
-                    }
-                    return $del;
-                })                
+                
                 ->rawColumns(['edit','view','del'])->toJson();  
             }
         }catch(Throwable $e){
@@ -196,13 +189,13 @@ class SolicitudController extends Controller
         ];
         $recaudos = [
             [
-                "cedula" =>  $input['checkcedula']?: NULL,
-                "motivo" =>  $input['checkmotivo']?: NULL,
-                "video" =>  $input['checkvideo']?: NULL,
-                "foto" =>  isset($input['checkfoto']) ? NULL : $input['checkfoto'],
-                "grabacion" =>  $input['checkgrabacion']?: NULL,
-                "testigo" =>  $input['checktestigo']?: NULL,
-                "residencia" =>  $input['checkresidencia']?: NULL
+                "cedula" =>  isset($input['checkcedula'])? $input['checkcedula']:NULL ,
+                "motivo" =>  isset($input['checkmotivo'])? $input['checkmotivo']:NULL ,
+                "video" =>  isset($input['checkvideo'])? $input['checkvideo']:NULL ,
+                "foto" =>  isset($input['checkfoto']) ? $input['checkfoto']:NULL ,
+                "grabacion" =>  isset($input['checkgrabacion'])? $input['checkgrabacion']:NULL ,
+                "testigo" =>  isset($input['checktestigo'])? $input['checktestigo']:NULL ,
+                "residencia" =>  isset($input['checkresidencia'])? $input['checkresidencia']:NULL 
             ]
         ];
 
@@ -228,13 +221,13 @@ class SolicitudController extends Controller
         ];
         $recaudos = [
             [
-                "cedula" =>  $input['checkcedula']?: NULL,
-                "motivo" =>  $input['checkmotivo']?: NULL,
-                "video" =>  $input['checkvideo']?: NULL,
-                "foto" =>  isset($input['checkfoto']) ? NULL : $input['checkfoto'],
-                "grabacion" =>  $input['checkgrabacion']?: NULL,
-                "testigo" =>  $input['checktestigo']?: NULL,
-                "residencia" =>  $input['checkresidencia']?: NULL
+                "cedula" =>  isset($input['checkcedula'])? $input['checkcedula']:NULL ,
+                "motivo" =>  isset($input['checkmotivo'])? $input['checkmotivo']:NULL ,
+                "video" =>  isset($input['checkvideo'])? $input['checkvideo']:NULL ,
+                "foto" =>  isset($input['checkfoto']) ? $input['checkfoto']:NULL ,
+                "grabacion" =>  isset($input['checkgrabacion'])? $input['checkgrabacion']:NULL ,
+                "testigo" =>  isset($input['checktestigo'])? $input['checktestigo']:NULL ,
+                "residencia" =>  isset($input['checkresidencia'])? $input['checkresidencia']:NULL 
             ]
         ];
 
@@ -259,13 +252,13 @@ class SolicitudController extends Controller
         ];
         $recaudos = [
             [
-                "cedula" =>  $input['checkcedula']?: NULL,
-                "motivo" =>  $input['checkmotivo']?: NULL,
-                "video" =>  $input['checkvideo']?: NULL,
-                "foto" =>  isset($input['checkfoto']) ? NULL : $input['checkfoto'],
-                "grabacion" =>  $input['checkgrabacion']?: NULL,
-                "testigo" =>  $input['checktestigo']?: NULL,
-                "residencia" =>  $input['checkresidencia']?: NULL
+                "cedula" =>  isset($input['checkcedula'])? $input['checkcedula']:NULL ,
+                "motivo" =>  isset($input['checkmotivo'])? $input['checkmotivo']:NULL ,
+                "video" =>  isset($input['checkvideo'])? $input['checkvideo']:NULL ,
+                "foto" =>  isset($input['checkfoto']) ? $input['checkfoto']:NULL ,
+                "grabacion" =>  isset($input['checkgrabacion'])? $input['checkgrabacion']:NULL ,
+                "testigo" =>  isset($input['checktestigo'])? $input['checktestigo']:NULL ,
+                "residencia" =>  isset($input['checkresidencia'])? $input['checkresidencia']:NULL 
             ]
         ];
 
@@ -281,7 +274,7 @@ class SolicitudController extends Controller
         ];  
         $recaudos = [
             [
-                "motivo" =>  $input['checkmotivo']?: NULL
+                "motivo" => isset($input['checkmotivo']) ?$input['checkmotivo']: NULL
             ]
         ];
 
@@ -296,7 +289,7 @@ class SolicitudController extends Controller
         ];  
         $recaudos = [
             [
-                "motivo" =>  $input['checkmotivo']?: NULL
+                "motivo" => isset($input['checkmotivo']) ?$input['checkmotivo']: NULL
             ]
         ];
 
@@ -306,9 +299,9 @@ class SolicitudController extends Controller
      if ($input['tipo_solicitud_id']== 6){
       $beneficiario = [
             [
-                "cedula" =>  $input['cedulabeneficiario']?: NULL,
-                "nombre" =>  $input['nombrebeneficiario']?: NULL,
-                "direccion" =>  $input['direccionbeneficiario']?: NULL
+                "cedula" =>  iset($input['cedulabeneficiario'])?$input['cedulabeneficiario']: NULL,
+                "nombre" =>  isset($input['nombrebeneficiario'])?input['nombrebeneficiario']: NULL,
+                "direccion" =>  isset($input['direccionbeneficiario'])?$input['direccionbeneficiario']: NULL
             ]
         ];
 
@@ -330,12 +323,13 @@ class SolicitudController extends Controller
             'nombre' => $input['nombre'],
             'cedula' => $input['cedula'],
             'sexo' => $input['sexo'],
-            'email' => $input['cedula'],
+            'email' => $input['email'],
             'direccion' => $input['direccion'],
             'fecha'  => \Carbon\Carbon::now(),
             'telefono' => $input['telefono'],
             'telefono2' => $input['telefono2'],
             'organismo' => NULL,
+            'asignacion'  => $input['asignacion'],
             'edocivil' => $input['edocivil'],
             'fechaNacimiento' => $input['fechanacimiento'],
             'nivelestudio' => $input['niveleducativo'],
@@ -386,19 +380,49 @@ class SolicitudController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id){
-        $user_edit = User::find($id);
-        $rols_id = auth()->user()->rols_id;        
-        if($user_edit->id != 1){
-            $init_day = Carbon::parse($user_edit->init_day)->format('Y-m-d');
-            $end_day = Carbon::parse($user_edit->end_day)->format('Y-m-d');
-            $user_edit->init_day = $init_day;
-            $user_edit->end_day = $end_day;        
-        }        
+
+        $solicitud_edit = Solicitud::find($id);
+        $valores = $solicitud_edit->all();
+     //  var_dump($valores);
+     //  exit();
+        if (!(is_null( $solicitud_edit->denuncia))){
+            $denuncia= $solicitud_edit->denuncia;
+            $denuncia = json_decode($denuncia, true);
+            var_dump($denuncia[0]["relato"]);
+            exit();
+          
+        }
+        if (!(is_null( $solicitud_edit->quejas))){
+            $quejas= $solicitud_edit->quejas;
+           
+        }
+        if (!(is_null( $solicitud_edit->reclamo))){
+            $reclamo= $solicitud_edit->reclamo;
+           
+        }
         $titulo_modulo = trans('message.users_action.edit_user');
         $count_notification = (new User)->count_noficaciones_user();
-        $roles = (new Rol)->datos_roles();
         $array_color = (new Colores)->getColores();
-        return view('User.user_edit',compact('count_notification','titulo_modulo','roles','user_edit','array_color','rols_id'));
+        $estado = (new Estados)->datos_estados();
+        $municipio = (new Municipio)->datos_municipio();
+        $parroquia = (new Parroquia)->datos_parroquia();
+        $array_color = (new Colores)->getColores();
+        $tipo_solicitud =(new Tipo_Solicitud)->datos_tipo_solicitud();   
+        $direcciones =(new Direccion)->datos_direccion();   
+        $enter =(new Enter)->datos_enter(); 
+        $coordinacion = [];
+        $comunidad = [];
+        $sexo =  array('MASCULINO'=>'MASCULINO','FEMENINO'=>'FEMENINO'); 
+        $edocivil =  array('SOLTERO'=>'SOLTERO','CASADO'=>'CASADO','VIUDO'=>'VIUDO','DIVORCIADO'=>'DIVORCIADO');
+        $nivelestudio =  array('PRIMARIA'=>'PRIMARIA','SECUNDARIA'=>'SECUNDARIA','BACHILLERATO'=>'BACHILLERATO','UNIVERSITARIO'=>'UNIVERSITARIO','ESPECIALIZACION'=>'ESPECIALIZACION');
+        $profesion =  array('TECNICO MEDIO'=>'TECNICO MEDIO','TECNICO SUPERIOR'=>'TECNICO SUPERIOR','INGENIERO'=>'INGENIERO','ABOGADO'=>'ABOGADO','MEDICO CIRUJANO'=>'MEDICO CIRUJANO','HISTORIADOR'=>'HISTORIADOR','PALEONTOLOGO'=>'PALEONTOLOGO','GEOGRAFO'=>'GEOGRAFO','BIOLOGO'=>'BIOLOGO','PSICOLOGO'=>'PSICOLOGO','MATEMATICO'=>'MATEMATICO','ARQUITECTO'=>'ARQUITECTO','COMPUTISTA'=>'COMPUTISTA','PROFESOR'=>'PROFESOR','PERIODISTA'=>'PERIODISTA','BOTANICO'=>'BOTANICO','FISICO'=>'FISICO','SOCIOLOGO'=>'SOCIOLOGO','FARMACOLOGO'=>'FARMACOLOGO','QUIMICO'=>'QUIMICO','POLITOLOGO'=>'POLITOLOGO','ENFERMERO'=>'ENFERMERO','ELECTRICISTA'=>'ELECTRICISTA','BIBLIOTECOLOGO'=>'BIBLIOTECOLOGO','PARAMEDICO'=>'PARAMEDICO','TECNICO DE SONIDO'=>'TECNICO DE SONIDO','ARCHIVOLOGO'=>'ARCHIVOLOGO','MUSICO'=>'MUSICO','FILOSOFO'=>'FILOSOFO','SECRETARIA'=>'SECRETARIA','TRADUCTOR'=>'TRADUCTOR','ANTROPOLOGO'=>'ANTROPOLOGO','TECNICO TURISMO'=>'TECNICO TURISMO','ECONOMISTA'=>'ECONOMISTA','ADMINISTRADOR'=>'ADMINISTRADOR','CARPITERO'=>'CARPITERO','RADIOLOGO'=>'RADIOLOGO','COMERCIANTE'=>'COMERCIANTE','CERRAJERO'=>'CERRAJERO','COCINERO'=>'COCINERO','ALBAÑIL'=>'ALBAÑIL','PLOMERO'=>'PLOMERO','TORNERO'=>'TORNERO','EDITOR'=>'EDITOR','ESCULTOR'=>'ESCULTOR','ESCRITOR'=>'ESCRITOR','BARBERO'=>'BARBERO');
+     
+         $comuna =  (new Comuna)->datos_comuna( $solicitud_edit->parroquia_id);
+        
+         $comunidad = (new Comunidad)->datos_comunidad( $solicitud_edit->comuna_id);
+        
+
+        return view('Solicitud.solicitud_edit',compact('count_notification','titulo_modulo','solicitud_edit','estado','municipio','parroquia','comuna','comunidad','tipo_solicitud','direcciones','enter','sexo','edocivil','nivelestudio','coordinacion','profesion','array_color'));
     }
 public function getComunas(Request $request){
   
@@ -407,6 +431,7 @@ public function getComunas(Request $request){
     return $comuna;
 
 }
+
 public function getComunidad(Request $request){
   
     $comunidad = (new Comunidad)->datos_comunidad( $request['comuna']);

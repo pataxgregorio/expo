@@ -48,6 +48,7 @@ class CreateSolicitudTable extends Migration
             $table->json('asesoria')->nullable();
             $table->string('denuncia')->nullable();
             $table->json('denunciado')->nullable();
+            $table->string('asignacion')->nullable();
             $table->boolean('status');
             $table->foreign('users_id')->references('id')->on('users');
             $table->foreign('status_id')->references('id')->on('status');

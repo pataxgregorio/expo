@@ -29,7 +29,7 @@ class Solicitud extends Model
         'direccion',
         'fecha',
         'telefono',
-        'telefono',
+        'telefono2',
         'organismo',
         'edocivil',
         'fechaNacimiento',
