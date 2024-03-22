@@ -303,11 +303,11 @@
                                      <label class="form-check-label" for="defaultCheck1">Exposicion de Motivo</label>
                                  </div>
                                  <div style="text-align:left;">
-                                     <input  type="checkbox" id="checkinforme" name ="checkcedula">
+                                     <input  type="checkbox" id="checkinforme" name ="checkinforme">
                                      <label class="form-check-label" for="defaultCheck1">Informe Medico</label>
                                  </div>
                                  <div style="text-align:left;">
-                                     <input  type="checkbox" id="checkcedulabeneficiario" name ="checkcedula">
+                                     <input  type="checkbox" id="checkcedulabeneficiario" name ="checkcedulabeneficiario">
                                      <label class="form-check-label" for="defaultCheck1">Cedula Beneficiario</label>
                                  </div>
                              </div>

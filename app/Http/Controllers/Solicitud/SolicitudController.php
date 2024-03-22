@@ -274,7 +274,7 @@ class SolicitudController extends Controller
         ];  
         $recaudos = [
             [
-                "motivo" => isset($input['checkmotivo']) ?$input['checkmotivo']: NULL
+                "motivo" => isset($input['checkmotivo2']) ?$input['checkmotivo2']: NULL
             ]
         ];
 
@@ -284,12 +284,12 @@ class SolicitudController extends Controller
      if ($input['tipo_solicitud_id']== 5){
         $asesoria = [
             [
-                "observacion" => $input['observacion2'],
+                "observacion" =>  isset($input['observacion2']) ?$input['observacion2']: NULL
             ]
         ];  
         $recaudos = [
             [
-                "motivo" => isset($input['checkmotivo']) ?$input['checkmotivo']: NULL
+                "motivo" => isset($input['checkmotivo2']) ?$input['checkmotivo2']: NULL
             ]
         ];
 
@@ -299,13 +299,22 @@ class SolicitudController extends Controller
      if ($input['tipo_solicitud_id']== 6){
       $beneficiario = [
             [
-                "cedula" =>  iset($input['cedulabeneficiario'])?$input['cedulabeneficiario']: NULL,
-                "nombre" =>  isset($input['nombrebeneficiario'])?input['nombrebeneficiario']: NULL,
+                "cedula" =>  isset($input['cedulabeneficiario'])?$input['cedulabeneficiario']: NULL,
+                "nombre" =>  isset($input['nombrebeneficiario'])?$input['nombrebeneficiario']: NULL,
                 "direccion" =>  isset($input['direccionbeneficiario'])?$input['direccionbeneficiario']: NULL
+            ]
+        ];
+        $recaudos = [
+            [
+                "cedula" =>  isset($input['checkcedula2'])? $input['checkcedula2']:NULL ,
+                "motivo" =>  isset($input['checkmotivo3'])? $input['checkmotivo3']:NULL ,
+                "informe" =>  isset($input['checkinforme'])? $input['checkinforme']:NULL ,
+                "beneficiario" =>  isset($input['checkcedulabeneficiario']) ? $input['checkcedulabeneficiario']:NULL 
             ]
         ];
 
          $input['beneficiario'] = json_encode($beneficiario);
+         $input['recaudos'] = json_encode($recaudos);
      }
         $solicitud = new Solicitud([
             'users_id' =>$input['users_id'],
@@ -383,23 +392,52 @@ class SolicitudController extends Controller
 
         $solicitud_edit = Solicitud::find($id);
         $valores = $solicitud_edit->all();
-     //  var_dump($valores);
-     //  exit();
+
+        $denuncia = NULL;
+        $quejas = NULL;
+        $reclamo = NULL;
+        $asesoria = NULL;
+        $sugerecia = NULL;
         if (!(is_null( $solicitud_edit->denuncia))){
             $denuncia= $solicitud_edit->denuncia;
             $denuncia = json_decode($denuncia, true);
-            var_dump($denuncia[0]["relato"]);
-            exit();
+         //   var_dump($denuncia[0]["relato"]);
+         //   exit();
           
         }
+
         if (!(is_null( $solicitud_edit->quejas))){
             $quejas= $solicitud_edit->quejas;
+            $quejas = json_decode($quejas, true);
            
         }
         if (!(is_null( $solicitud_edit->reclamo))){
             $reclamo= $solicitud_edit->reclamo;
-           
+            $reclamo = json_decode($reclamo, true);
+            
         }
+        if (!(is_null( $solicitud_edit->sugerecia))){
+            $sugerecia= $solicitud_edit->sugerecia;
+            $sugerecia = json_decode($sugerecia, true);
+            
+        }
+        if (!(is_null( $solicitud_edit->asesoria))){
+            $asesoria= $solicitud_edit->asesoria;
+            $asesoria = json_decode($asesoria, true);
+            
+        }
+        if (!(is_null( $solicitud_edit->beneficiario))){
+            $beneficiario= $solicitud_edit->beneficiario;
+            $beneficiario = json_decode($beneficiario, true);
+            
+        }
+        $denunciado= $solicitud_edit->denunciado;
+        $denunciado = json_decode($denunciado, true);
+       
+        $recaudos= $solicitud_edit->recaudos;
+        $recaudos = json_decode($recaudos, true);
+
+        
         $titulo_modulo = trans('message.users_action.edit_user');
         $count_notification = (new User)->count_noficaciones_user();
         $array_color = (new Colores)->getColores();
@@ -412,6 +450,7 @@ class SolicitudController extends Controller
         $enter =(new Enter)->datos_enter(); 
         $coordinacion = [];
         $comunidad = [];
+        $asignacion =  array('DIRECCION'=>'DIRECCION','ENTER'=>'ENTER'); 
         $sexo =  array('MASCULINO'=>'MASCULINO','FEMENINO'=>'FEMENINO'); 
         $edocivil =  array('SOLTERO'=>'SOLTERO','CASADO'=>'CASADO','VIUDO'=>'VIUDO','DIVORCIADO'=>'DIVORCIADO');
         $nivelestudio =  array('PRIMARIA'=>'PRIMARIA','SECUNDARIA'=>'SECUNDARIA','BACHILLERATO'=>'BACHILLERATO','UNIVERSITARIO'=>'UNIVERSITARIO','ESPECIALIZACION'=>'ESPECIALIZACION');
@@ -422,7 +461,7 @@ class SolicitudController extends Controller
          $comunidad = (new Comunidad)->datos_comunidad( $solicitud_edit->comuna_id);
         
 
-        return view('Solicitud.solicitud_edit',compact('count_notification','titulo_modulo','solicitud_edit','estado','municipio','parroquia','comuna','comunidad','tipo_solicitud','direcciones','enter','sexo','edocivil','nivelestudio','coordinacion','profesion','array_color'));
+        return view('Solicitud.solicitud_edit',compact('count_notification','titulo_modulo','solicitud_edit','estado','municipio','parroquia','asignacion','comuna','comunidad','tipo_solicitud','direcciones','enter','sexo','edocivil','nivelestudio','coordinacion','denuncia','beneficiario','quejas','sugerecia','asesoria','reclamo','profesion','recaudos','denunciado','array_color'));
     }
 public function getComunas(Request $request){
   
@@ -454,7 +493,11 @@ public function getCoodinacion(Request $request){
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateUser $request, $id){        
+    public function update(Request $request, $id){     
+
+        $input = $request->all();
+        var_dump($input);
+        exit();
         $count_notification = (new User)->count_noficaciones_user();
         $user = Auth::user();        
         $user_Update = User::find( $id);

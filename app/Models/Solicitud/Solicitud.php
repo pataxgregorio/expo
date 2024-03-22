@@ -32,6 +32,7 @@ class Solicitud extends Model
         'telefono2',
         'organismo',
         'edocivil',
+        'asignacion',
         'fechaNacimiento',
         'nivelestudio',
         'profesion',
