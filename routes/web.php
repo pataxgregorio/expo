@@ -177,7 +177,7 @@ Route::get('register/confirm/{confirmation_code}', 'Auth\RegisterController@conf
 Route::get('/solicitud', 'Solicitud\SolicitudController@index')->name('solicitud.index')->middleware('permiso:solicitud,view');
 Route::get('/solicitud/create', 'Solicitud\SolicitudController@create')->name('solicitud.create')->middleware('permiso:solicitud,add');
 Route::post('/solicitud', 'Solicitud\SolicitudController@store')->name('solicitud.store')->middleware('permiso:solicitud,add');
-Route::get('/solicitud/{solicitud}/view', 'Solicitud\SolicitudController@@view')->name('solicitud.view')->middleware('permiso:solicitud,view');
+Route::get('/solicitud/{solicitud}/view', 'Solicitud\SolicitudController@view')->name('solicitud.view')->middleware('permiso:solicitud,view');
 Route::get('/solicitud/{solicitud}/edit', 'Solicitud\SolicitudController@edit')->name('solicitud.edit')->middleware('permiso:solicitud,edit');
 Route::post('/solicitud/{solicitud}', 'Solicitud\SolicitudController@update')->name('solicitud.update')->middleware('permiso:solicitud,update');
 Route::get('/solicitud/{solicitud}/delete', 'Solicitud\SolicitudController@destroy')->name('solicitud.destroy')->middleware('permiso:solicitud,delete');

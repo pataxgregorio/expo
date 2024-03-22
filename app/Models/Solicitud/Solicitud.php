@@ -52,7 +52,8 @@ class Solicitud extends Model
             ->join('tipo_solicitud', 'solicitud.tipo_solicitud_id', '=', 'tipo_solicitud.id')
             ->join('direccion', 'solicitud.direccion_id', '=', 'direccion.id')
             ->join('status', 'solicitud.status_id', '=', 'status.id')
-            ->select('solicitud.id','solicitud.nombre AS solicitante','tipo_solicitud.nombre AS nombretipo','direccion.nombre AS direccionnombre','status.nombre AS nombrestatus')->get();
+            ->select('solicitud.id','solicitud.nombre AS solicitante','tipo_solicitud.nombre AS nombretipo','direccion.nombre AS direccionnombre','status.nombre AS nombrestatus')
+            ->where ('status_id',1)->get();
             return $solicitud;
         }catch(Throwable $e){
             $solicitud = [];
