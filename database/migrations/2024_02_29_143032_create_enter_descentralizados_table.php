@@ -15,8 +15,10 @@ class CreateEnterDescentralizadosTable extends Migration
     {
         Schema::create('enter_descentralizados', function (Blueprint $table) {
             $table->id();
-            $table->string('Nombre');
+            $table->unsignedBigInteger('despacho_id');
+            $table->string('nombre');
             $table->timestamps();
+            $table->foreign('despacho_id')->references('id')->on('despacho');
         });
     }
 

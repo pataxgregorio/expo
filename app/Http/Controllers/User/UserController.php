@@ -13,6 +13,7 @@ use App\Http\Requests\User\UpdateUser;
 use App\Models\Security\Rol;
 use Auth;
 use Dompdf\Dompdf;
+use App\Models\Direccion\Direccion;
 use App\Notifications\WelcomeUser;
 use App\Notifications\RegisterConfirm;
 use App\Notifications\NotificarEventos;
@@ -28,6 +29,7 @@ class UserController extends Controller
      */
     public function index(){        
         $count_notification = (new User)->count_noficaciones_user();
+       
         $tipo_alert = "";
         if(session('delete') == true){
             $tipo_alert = "Delete";
@@ -97,12 +99,14 @@ class UserController extends Controller
     }
     
     public function usersPrint(){
+        $valores ='prueba de cuestion';
         //generate some PDFs!
         $html = '<div style="text-align:center"><h1>(PROYECT / PROYECTO) HORUS-1221</h1></div>
         <div style="text-align:center">(Create By / Creado Por) - Tarsicio Carrizales</div>
         <div style="text-align:center">(Mail / Correo) -  telecom.com.ve@gmail.com</div>
         <div style="text-align:center">(Contact Cell Phone / Número Movil Contacto) - +58+412-054.53.69</div>
-        <div style="text-align:center">LARAVEL 8 and PWA, PHP 7.4 DATE: NOV / 2021</div>';
+        <div style="text-align:center">LARAVEL 8 and PWA, PHP 7.4 DATE: NOV / 2021</div>
+        <p>este es un ejemplo {{$valores}}</p>';
         $dompdf = new DOMPDF();  //if you use namespaces you may use new \DOMPDF()
         $dompdf->loadHtml($html);
         $dompdf->setPaper('latter', 'portrait');
@@ -131,9 +135,10 @@ class UserController extends Controller
     public function create(){
         $titulo_modulo = trans('message.users_action.new_user');
         $count_notification = (new User)->count_noficaciones_user();
+        $direccion =(new Direccion)->datos_direccion();  
         $roles = (new Rol)->datos_roles();
         $array_color = (new Colores)->getColores();       
-        return view('User.user_create',compact('count_notification','titulo_modulo','roles','array_color'));        
+        return view('User.user_create',compact('count_notification','titulo_modulo','roles','array_color','direccion'));        
     }
 
     /**
@@ -177,6 +182,7 @@ class UserController extends Controller
             'email' => $request->email,                        
             'password' => \Hash::make($request->password),
             'activo' => $request->activo,
+            'direccion_id' => $request->direccion_id,
             'rols_id' => $request->rols_id,
             'init_day' => $request->init_day,
             'end_day' => $request->end_day,                            
@@ -236,6 +242,7 @@ class UserController extends Controller
      */
     public function edit($id){
         $user_edit = User::find($id);
+        $direccion =(new Direccion)->datos_direccion();  
         $rols_id = auth()->user()->rols_id;        
         if($user_edit->id != 1){
             $init_day = Carbon::parse($user_edit->init_day)->format('Y-m-d');
@@ -247,7 +254,7 @@ class UserController extends Controller
         $count_notification = (new User)->count_noficaciones_user();
         $roles = (new Rol)->datos_roles();
         $array_color = (new Colores)->getColores();
-        return view('User.user_edit',compact('count_notification','titulo_modulo','roles','user_edit','array_color','rols_id'));
+        return view('User.user_edit',compact('count_notification','titulo_modulo','roles','user_edit','array_color','direccion','rols_id'));
     }
 
     /**
@@ -273,6 +280,7 @@ class UserController extends Controller
             $user_Update->password = \Hash::make($request->password);
             if($user->rols_id == 1){
                 $user_Update->activo = $request->activo;
+                $user_Update->direccion_id = $request->direccion_id;
                 $user_Update->rols_id = $request->rols_id;
                 $user_Update->init_day = $request->init_day;
                 $user_Update->end_day = $request->end_day;

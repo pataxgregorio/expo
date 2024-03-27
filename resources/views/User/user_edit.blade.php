@@ -83,6 +83,10 @@
                             @endif    
                         </div>
                         <div style="text-align:left;">
+                            {!! Form::label('direccion_id',trans('message.solicitud_action.direcciones'), ['class' => 'control-label']) !!}<span class="required" style="color:red;">*</span>
+                            {!! Form::select('direccion_id', $direccion, $user_edit->direccion_id, ['placeholder' => trans('message.solicitud_action.direcciones'),'class' => 'form-control','id' => 'direccion_id']) !!}
+                        </div>
+                        <div style="text-align:left;">
                             {!! Form::label('rols_id',trans('message.permisos_rol.roles'), ['class' => 'control-label']) !!}<span class="required" style="color:red;">*</span>
                             @if($user_edit->id == 1)
                                 {!! Form::select('rols_id', $roles, $user_edit->rols_id, ['placeholder' => trans('message.permisos_rol.opcion'),'class' => 'form-control','id' => 'rols_id','disabled' => true]) !!}

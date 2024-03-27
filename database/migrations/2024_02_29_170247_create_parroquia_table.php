@@ -15,7 +15,7 @@ class CreateParroquiaTable extends Migration
     {
         Schema::create('parroquia', function (Blueprint $table) {
             $table->id();
-            $table->string('Nombre');
+            $table->string('nombre');
             $table->unsignedBigInteger('municipio_id');
             $table->timestamps();
             $table->foreign('municipio_id')->references('id')->on('municipio');

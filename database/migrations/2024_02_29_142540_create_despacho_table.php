@@ -15,8 +15,8 @@ class CreateDespachoTable extends Migration
     {
         Schema::create('despacho', function (Blueprint $table) {
             $table->id();
-            $table->string('Nombre');
-            $table->string('Cargo');
+            $table->string('nombre');
+            $table->string('cargo');
             $table->timestamps();
         });
     }

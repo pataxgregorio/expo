@@ -33,7 +33,9 @@ class User extends Authenticatable
         'end_day',
         'confirmation_code',
         'confirmed_at',
-        'colores',  
+        'colores', 
+        'direccion_id', 
+         
     ];
 
     /**

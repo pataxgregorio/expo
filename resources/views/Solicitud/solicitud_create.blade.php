@@ -314,14 +314,21 @@
                              
 
                 </div>
+
                 <div style="text-align:left;">
-                    <label>ASIGNACION*</label>
-                     <select required name="asignacion"  id="asignacion" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins">
-                        <option value="SELECCIONE UNA OPCION">SELECCIONE UNA OPCION</option>
-                        <option value="DIRECCION">DIRECCION</option>
-                        <option value="ENTER">ENTER</option>
-                    </select>
-                </div>   
+
+               
+                     <div id= sinasignar>
+
+                
+                        <label>ASIGNACION*</label>
+                          <select required name="asignacion"  id="asignacion" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins">
+                            <option value="SELECCIONE UNA OPCION">SELECCIONE UNA OPCION</option>
+                           <option value="DIRECCION">DIRECCION</option>
+                           <option value="ENTER">ENTER</option>
+                         </select>
+                    </div>   
+                </div>
                 <div id="direccion">
                     <div style="text-align:left;">
                       {!! Form::label('direcciones_id',trans('message.solicitud_action.direcciones'), ['class' => 'control-label']) !!}<span class="required" style="color:red;">*</span>
@@ -338,7 +345,8 @@
                       {!! Form::select('enter_id', $enter, old('enter_id'), ['placeholder' => trans('message.solicitud_action.enter'),'class' => 'form-control','id' => 'enter_id']) !!}
                     </div> 
 
-                </div>              
+                </div>  
+                            
      
      <br>
                         {!! Form::submit(trans('message.solicitud_action.new_solicitud'),['class'=> 'form-control btn btn-primary','title' => trans('message.solicitud_action.new_solicitud'),'data-toggle' => 'tooltip','style' => 'background-color:'.$array_color['group_button_color'].';']) !!}                     
@@ -367,6 +375,7 @@
    $("#denunciado").hide();
    $("#sugerencia").hide();
    $("#beneficiario").hide();
+   $("#sinasignar").hide();
    $("#enter").hide();
    $("#direccion").hide();
    $('#municipio_id').change(function(){
@@ -479,39 +488,49 @@
         if (tipo == 0){
             $("#denunciado").hide();
             $("#sugerencia").hide();
-            $("#beneficiario").hide();
+            $("#beneficiario").hide(); 
+            $("#sinasignar").hide();
+
         }
 
         if (tipo == 1){
             $("#denunciado").show();
             $("#sugerencia").hide();
             $("#beneficiario").hide();
+            $("#sinasignar").show();
         }
 
         if (tipo == 2){
             $("#denunciado").show();
             $("#sugerencia").hide();
             $("#beneficiario").hide();
+            $("#sinasignar").show();
         }
         if (tipo == 3){
             $("#denunciado").show();
             $("#sugerencia").hide();
             $("#beneficiario").hide();
+            $("#sinasignar").show();
         }
         if (tipo == 4){
             $("#denunciado").hide();
             $("#sugerencia").show();
             $("#beneficiario").hide();
+            $("#sinasignar").hide();
+        
+
         }
         if (tipo == 5){
             $("#denunciado").hide();
             $("#sugerencia").show();
             $("#beneficiario").hide();
+            $("#sinasignar").hide();
         }
         if (tipo == 6){
             $("#denunciado").hide();
             $("#sugerencia").hide();
             $("#beneficiario").show();
+            $("#sinasignar").show();
         }
        
     });

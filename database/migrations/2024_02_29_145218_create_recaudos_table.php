@@ -16,7 +16,7 @@ class CreateRecaudosTable extends Migration
         Schema::create('recaudos', function (Blueprint $table) {
             $table->id(); 
             $table->unsignedBigInteger('tipo_solicitud_id');
-            $table->string('Nombre');
+            $table->string('nombre');
             $table->timestamps();
             $table->foreign('tipo_solicitud_id')->references('id')->on('tipo_solicitud');
         });

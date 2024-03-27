@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCoordinacionTable extends Migration
+class AddDireccionIdToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateCoordinacionTable extends Migration
      */
     public function up()
     {
-        Schema::create('coordinacion', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('direccion_id');
-            $table->string('nombre');
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            //
+            $table->bigInteger('direccion_id')->unsigned()->nullable();
             $table->foreign('direccion_id')->references('id')->on('direccion');
         });
     }
@@ -29,6 +27,9 @@ class CreateCoordinacionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('coordinacion');
+        Schema::table('users', function (Blueprint $table) {
+            //
+            Schema::dropIfExists('direccion_id');
+        });
     }
 }

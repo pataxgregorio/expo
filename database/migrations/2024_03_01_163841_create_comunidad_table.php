@@ -15,7 +15,7 @@ class CreateComunidadTable extends Migration
     {
         Schema::create('comunidad', function (Blueprint $table) {
             $table->id();
-            $table->string('Nombre');
+            $table->string('nombre');
             $table->unsignedBigInteger('comuna_id');
             $table->timestamps();
             $table->foreign('comuna_id')->references('id')->on('comuna');
