@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Solicitud;
+namespace App\Http\Controllers\Seguimiento;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -26,8 +26,7 @@ use App\Notifications\NotificarEventos;
 use Carbon\Carbon;
 use App\Http\Controllers\User\Colores;
 
-
-class SolicitudController extends Controller
+class SeguimientoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -46,7 +45,7 @@ class SolicitudController extends Controller
             session(['update' => false]);
         }        
         $array_color = (new Colores)->getColores();
-        return view('Solicitud.solicitud',compact('count_notification','tipo_alert','array_color'));
+        return view('Seguimiento.seguimiento',compact('count_notification','tipo_alert','array_color'));
     }
 
     public function getSolicitud(Request $request){
@@ -59,9 +58,9 @@ class SolicitudController extends Controller
                 ->addColumn('edit', function ($data) {
                     $user = Auth::user();                    
                     if(($user->id != 1)){
-                        $edit ='<a href="'.route('solicitud.edit', $data->id).'" id="edit_'.$data->id.'" class="btn btn-xs btn-primary disabled" style="background-color: #2962ff;"><b><i class="fa fa-pencil"></i>&nbsp;' .trans('message.botones.edit').'</b></a>';
+                        $edit ='<a href="'.route('solicitud.edit', $data->id).'" id="edit_'.$data->id.'" class="btn btn-xs btn-primary disabled" style="background-color: #2962ff;"><b><i class="fa fa-pencil"></i>&nbsp;' .trans('message.botones.go').'</b></a>';
                     }else{
-                        $edit ='<a href="'.route('solicitud.edit', $data->id).'" id="edit_'.$data->id.'" class="btn btn-xs btn-primary" style="background-color: #2962ff;"><b><i class="fa fa-pencil"></i>&nbsp;' .trans('message.botones.edit').'</b></a>';
+                        $edit ='<a href="'.route('solicitud.edit', $data->id).'" id="edit_'.$data->id.'" class="btn btn-xs btn-primary" style="background-color: #2962ff;"><b><i class="fa fa-pencil"></i>&nbsp;' .trans('message.botones.go').'</b></a>';
                     }
                     return $edit;
                 })

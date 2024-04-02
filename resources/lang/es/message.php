@@ -241,6 +241,8 @@ return [
         'download'            => 'Descargar',
         'upload'              => 'Subir',
         'read'                => 'Leido',
+        'go'                => 'IR',
+        
     ],
     'tooltip'                 => [
         'new_user'            => 'Permite crear un nuevo usuario',

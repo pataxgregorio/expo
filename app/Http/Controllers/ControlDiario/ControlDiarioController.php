@@ -8,6 +8,7 @@ use App\Models\ControlDiario\ControlDiario;
 use App\Http\Requests\User\StoreUser;
 use App\Http\Requests\User\UpdateUser;
 use App\Models\Security\Rol;
+use App\Models\Solicitud\Solicitud;
 use Auth;
 use Dompdf\Dompdf;
 use App\Notifications\WelcomeUser;
@@ -324,7 +325,13 @@ class ControlDiarioController extends Controller
         return response()->json($countUserRol);
       }
     }
-
+    public function solicitudTipo(Request $request){
+        if($request->ajax()){
+          $countSolicitud = (new Solicitud)->count_solictud();     
+          
+          return response()->json($countSolicitud);
+        }
+      }
     public function notificationsUser(Request $request){
       if($request->ajax()){
         $countNotificationsUsers = (new User)->count_User_notifications();        

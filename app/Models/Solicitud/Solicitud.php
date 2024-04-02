@@ -61,4 +61,21 @@ class Solicitud extends Model
         }
         
     }
+
+    public function count_solictud(){        
+        return DB::table('solicitud')
+            ->join('tipo_solicitud', 'solicitud.tipo_solicitud_id', '=', 'tipo_solicitud.id')
+            ->select('tipo_solicitud.nombre AS SOLICITUD_NOMBRE',
+                DB::raw('COUNT(solicitud.tipo_solicitud_id) AS TOTAL_SOLICITUD'))
+            ->groupBy('tipo_solicitud.id')
+            ->orderByDesc('TOTAL_SOLICITUD')->get();
+    }
+    
+    public function count_total_solictud(){        
+        return DB::table('solicitud')
+            ->select(DB::raw('COUNT(solicitud.tipo_solicitud_id) AS TOTAL_SOLICITUD'))
+            ->orderByDesc('TOTAL_SOLICITUD')->get();
+    }
+
+
 }

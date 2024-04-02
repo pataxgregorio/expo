@@ -10,7 +10,7 @@
 
 @section('main-content')
 
-@if(Auth::user()->rols_id == 1)
+ 
 <div class="row">        
     <div class="col-lg-4 col-md-6 col-xs-12">            
 		<x-box titulo="{{ trans('message.dashboard_user.user_allow') }}" cantidad="{{$user_total_activos}}" name="{{ trans('message.dashboard_user.user_allow') }}" color="bg-yellow"></x-box>		
@@ -28,17 +28,17 @@
             <div class="row">
               <div class="col-lg-6">
                 <div class="panel panel-default">
-                  <div class="panel-heading"><b>@lang('message.count_users_rol')</b></div>
+                  <div class="panel-heading"><b>Total de Solicitudes</b></div>
                   <div class="panel-body" id="contenedor_01">
-                    <canvas style="width: 684px; height: 400px;" id="countUserRol"></canvas>
+                    <canvas style="width: 684px; height: 400px;" id="solicitudTotalTipo"></canvas>
                   </div>
                 </div>
               </div>
               <div class="col-lg-6">
                 <div class="panel panel-default">
-                  <div class="panel-heading"><b>@lang('message.countUsersNotifications')</b></div>
+                  <div class="panel-heading"><b>Total por Tipo de Solicitudes</b></div>
                   <div class="panel-body" id="contenedor_02">
-                    <canvas style="width: 684px; height: 400px;" id="notificationsUser"></canvas>
+                    <canvas style="width: 684px; height: 400px;" id="solicitudTipo"></canvas>
                   </div>
                 </div>
               </div>
@@ -46,11 +46,7 @@
           </div>
         </div>
         <hr/>
-@else
- <div style="text-align:center;">
- 	<h3>{{ trans('message.dashboard_user.mensaje_dashboard') }}</h3>
- </div>
-@endif        
+     
 @endsection
 
 @section('script_Chart')
