@@ -48,7 +48,7 @@ class SeguimientoController extends Controller
         return view('Seguimiento.seguimiento',compact('count_notification','tipo_alert','array_color'));
     }
 
-    public function getSolicitud(Request $request){
+    public function getSeguimiento(Request $request){
         try{
            
             if ($request->ajax()) {                
@@ -58,14 +58,14 @@ class SeguimientoController extends Controller
                 ->addColumn('edit', function ($data) {
                     $user = Auth::user();                    
                     if(($user->id != 1)){
-                        $edit ='<a href="'.route('solicitud.edit', $data->id).'" id="edit_'.$data->id.'" class="btn btn-xs btn-primary disabled" style="background-color: #2962ff;"><b><i class="fa fa-pencil"></i>&nbsp;' .trans('message.botones.go').'</b></a>';
+                        $edit ='<a href="'.route('seguimiento.edit', $data->id).'" id="edit_'.$data->id.'" class="btn btn-xs btn-primary disabled" style="background-color: #2962ff;"><b><i class="fa fa-pencil"></i>&nbsp;' .trans('message.botones.go').'</b></a>';
                     }else{
-                        $edit ='<a href="'.route('solicitud.edit', $data->id).'" id="edit_'.$data->id.'" class="btn btn-xs btn-primary" style="background-color: #2962ff;"><b><i class="fa fa-pencil"></i>&nbsp;' .trans('message.botones.go').'</b></a>';
+                        $edit ='<a href="'.route('seguimiento.edit', $data->id).'" id="edit_'.$data->id.'" class="btn btn-xs btn-primary" style="background-color: #2962ff;"><b><i class="fa fa-pencil"></i>&nbsp;' .trans('message.botones.go').'</b></a>';
                     }
                     return $edit;
                 })
                 ->addColumn('view', function ($data) {
-                    return '<a style="background-color: #5333ed;" href="'.route('solicitud.view', $data->id).'" id="view_'.$data->id.'" class="btn btn-xs btn-primary"><b><i class="fa fa-eye"></i>&nbsp;' .trans('message.botones.view').'</b></a>';
+                    return '<a style="background-color: #5333ed;" href="'.route('seguimiento.view', $data->id).'" id="view_'.$data->id.'" class="btn btn-xs btn-primary"><b><i class="fa fa-eye"></i>&nbsp;' .trans('message.botones.view').'</b></a>';
                 })
                 
                 ->rawColumns(['edit','view','del'])->toJson();  
@@ -524,7 +524,7 @@ class SeguimientoController extends Controller
          $coordinacion = (new Coordinacion)->datos_coordinacion( $solicitud_edit->direccion_id);
         
 
-        return view('Solicitud.solicitud_edit',compact('count_notification','titulo_modulo','solicitud_edit','estado','municipio','parroquia','asignacion','comuna','comunidad','tipo_solicitud','direcciones','enter','sexo','edocivil','nivelestudio','coordinacion','denuncia','beneficiario','quejas','sugerecia','asesoria','reclamo','profesion','recaudos','denunciado','array_color'));
+        return view('Seguimiento.seguimiento_edit',compact('count_notification','titulo_modulo','solicitud_edit','estado','municipio','parroquia','asignacion','comuna','comunidad','tipo_solicitud','direcciones','enter','sexo','edocivil','nivelestudio','coordinacion','denuncia','beneficiario','quejas','sugerecia','asesoria','reclamo','profesion','recaudos','denunciado','array_color'));
     }
 public function getComunas(Request $request){
   

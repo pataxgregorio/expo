@@ -65,7 +65,7 @@
         serverSide: true,
         responsive: true,
         autoWidth : false,        
-        ajax: "{{ route('solicitud.list') }}",    
+        ajax: "{{ route('seguimiento.list') }}",    
         
         columns: [          
             {

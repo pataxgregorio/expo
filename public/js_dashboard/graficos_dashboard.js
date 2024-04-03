@@ -205,7 +205,7 @@ jQuery.ajax({
       data: {
         labels: array_NAME_USER,
         datasets: [{
-          label: 'Total de Solicitudes por tipo',
+          label: 'Total de Solicitudes',
           data: array_TOTAL_NOTIFICATIONS,
           backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
