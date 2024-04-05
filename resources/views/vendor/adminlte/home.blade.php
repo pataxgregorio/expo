@@ -13,13 +13,13 @@
  
 <div class="row">        
     <div class="col-lg-4 col-md-6 col-xs-12">            
-		<x-box titulo="{{ trans('message.dashboard_user.user_allow') }}" cantidad="{{$user_total_activos}}" name="{{ trans('message.dashboard_user.user_allow') }}" color="bg-yellow"></x-box>		
+		<x-box titulo="Total Solicitudes Registrada" cantidad="{{$user_total_activos}}" name="Solitudes Registradas"  color="bg-yellow"></x-box>		
 	</div>
 	<div class="col-lg-4 col-md-6 col-xs-12">            		
-		<x-box titulo="{{ trans('message.dashboard_user.rols_allow') }}" cantidad="{{$total_roles}}" name="{{ trans('message.dashboard_user.rols_allow') }}" ></x-box>
+		<x-box titulo="Total Solicitudes Procesadas" cantidad="{{$total_roles}}" name="Solitudes Procesada" ></x-box>
 	</div>
 	<div class="col-lg-4 col-md-6 col-xs-12">            		
-		<x-box titulo="{{ trans('message.dashboard_user.user_deny') }}" cantidad="{{$user_total_Deny}}" name="{{ trans('message.dashboard_user.user_deny') }}" color="bg-red"></x-box>
+		<x-box titulo="Total Solicitudes Terminadas" cantidad="{{$user_total_Deny}}" name="Solitudes Terminadas" color="bg-red"></x-box>
 	</div>
 </div>
 	<!--  CANVAS de las Metricas Para User, Rol y Notificaciones, para View-->

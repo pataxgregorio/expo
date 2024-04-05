@@ -2,7 +2,7 @@
     <div class="small-box {{$color}} card-body">             
     <!--   <div class="small-box bg-blue card-body">  -->
         <div class="inner">                        
-            <h3>{{$titulo}}</h3>
+            <h3 style ="font-size:24px;">{{$titulo}}</h3>
             <div class="form-group form-inline">
                 {{ trans('message.dashboard_user.mensaje_interno_box') }} {{$cantidad}}&nbsp;&nbsp;{{$name}}
             </div>

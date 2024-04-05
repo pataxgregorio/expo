@@ -52,7 +52,7 @@ class SeguimientoController extends Controller
         try{
            
             if ($request->ajax()) {                
-                $data =  (new Solicitud)-> getSolicitudList_DataTable();                
+                $data =  (new Solicitud)-> getSolicitudList_DataTable2();                
                 return datatables()->of($data)
                           
                 ->addColumn('edit', function ($data) {
