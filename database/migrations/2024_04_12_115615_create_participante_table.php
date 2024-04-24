@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateParroquiaTable extends Migration
+class CreateParticipanteTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,16 @@ class CreateParroquiaTable extends Migration
      */
     public function up()
     {
-        Schema::create('parroquia', function (Blueprint $table) {
+        Schema::create('participante', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->unsignedBigInteger('municipio_id');
+            $table->string('letra');
+            $table->string('rif');
+            $table->string('direccion');
+            $table->string('telefono');
+            $table->string('telefono2');
+            $table->string('sector');
             $table->timestamps();
-            $table->foreign('municipio_id')->references('id')->on('municipio');
         });
     }
 
@@ -29,6 +33,6 @@ class CreateParroquiaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('parroquia');
+        Schema::dropIfExists('participante');
     }
 }

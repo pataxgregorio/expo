@@ -36,6 +36,8 @@
                 @endif
                 {!! Form::open(array('route' => array('solicitud.store'),
                 'method'=>'POST','id' => 'form_solicitud_id','enctype' =>'multipart/form-data')) !!}
+
+                {{ csrf_field() }}  
                 <div class="form-group ">
                     <h3>Datos del Solicitante </h3>
                         <br>

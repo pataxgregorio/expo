@@ -27,11 +27,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
  * No eliminar la presente ruta, ya que al hacerlo dejara de funcionar la ruta
  * base de PWA.
  */ 
-Route::group(['prefix' => 'v1'], function () {
+/*Route::group(['prefix' => 'v1'], function () {
     Route::get('/offline', function () {        
         return view('laravelpwa::offline');
     });
-});
+});*/
 
 /**
  * Puede utilizar la presente API, para personalizar otras tareas,

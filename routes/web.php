@@ -39,7 +39,7 @@ Route::get('/', function () {
  * acceder al recurso solicitado si el usuario tiene permiso de ver dicho recurso.
  * Este middleware es parte de la seguridad de la aplicación en conjunto cn los permisos
  * asignados a cada rol. 
- * /
+ * */
  // *********************************************************************************************************
     /*
     * Grupo Middleware para Autenticar y verifcar que tiene Permiso asociado a su Rol
@@ -160,6 +160,11 @@ Route::group(['middleware' => 'auth'], function () {
     // *********************************************************************************************************
 
     Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard.dashboard');
+    Route::get('/dashboard1', 'HomeController@dashboard1')->name('dashboard.dashboard1');
+    Route::get('/dashboard2', 'HomeController@dashboard2')->name('dashboard.dashboard2');
+   Route::get('/dashboard3', 'HomeController@dashboard3')->name('dashboard.dashboard3');
+   Route::get('/dashboard4', 'HomeController@dashboard4')->name('dashboard.dashboard4');
+
 });
 // *********************************************************************************************************
     /*
@@ -174,36 +179,27 @@ Route::get('register/confirm/{confirmation_code}', 'Auth\RegisterController@conf
 
 /* Rutas de Control Diario, para todas las operaciones, con el Middleware (permiso) Integrado, para cada caso.
 */
-Route::get('/solicitud', 'Solicitud\SolicitudController@index')->name('solicitud.index')->middleware('permiso:solicitud,view');
-Route::get('/solicitud/create', 'Solicitud\SolicitudController@create')->name('solicitud.create')->middleware('permiso:solicitud,add');
-Route::post('/solicitud', 'Solicitud\SolicitudController@store')->name('solicitud.store')->middleware('permiso:solicitud,add');
-Route::get('/solicitud/{solicitud}/view', 'Solicitud\SolicitudController@view')->name('solicitud.view')->middleware('permiso:solicitud,view');
-Route::get('/solicitud/{solicitud}/edit', 'Solicitud\SolicitudController@edit')->name('solicitud.edit')->middleware('permiso:solicitud,edit');
-Route::post('/solicitud/{solicitud}', 'Solicitud\SolicitudController@update')->name('solicitud.update')->middleware('permiso:solicitud,update');
-Route::get('/solicitud/{solicitud}/delete', 'Solicitud\SolicitudController@destroy')->name('solicitud.destroy')->middleware('permiso:solicitud,delete');
-Route::get('/solicitud/getComunas', 'Solicitud\SolicitudController@getComunas')->name('getComunas')->middleware('permiso:solicitud,view');
-Route::get('/solicitud/getComunidad', 'Solicitud\SolicitudController@getComunidad')->name('getComunidad')->middleware('permiso:solicitud,view');
-Route::get('/solicitud/getCoodinacion', 'Solicitud\SolicitudController@getCoodinacion')->name('getCoodinacion')->middleware('permiso:solicitud,view');
-Route::get('/solicitud/list', 'Solicitud\SolicitudController@getSolicitud')->name('solicitud.list')->middleware('permiso:solicitud,view');
-Route::get('/solicitud/print', 'Solicitud\SolicitudController@solicitudPrint')->name('solicitud.solicitudPrint')->middleware('permiso:solicitud,print');
-Route::get('/solicitud/solicitudTipo', 'Solicitud\SolicitudController@solicitudTipo')->name('solicitud.solicitudTipo');
-Route::get('/solicitud/solicitudTotalTipo', 'Solicitud\SolicitudController@solicitudTotalTipo')->name('solicitud.solicitudTotalTipo');
+Route::get('/participante', 'Participante\ParticipanteController@index')->name('participante.index');
+Route::get('/participante/create', 'Participante\ParticipanteController@create')->name('participante.create');
+Route::post('/participante', 'Participante\ParticipanteController@store')->name('participante.store');
+Route::get('/participante/{participante}/view', 'Participante\ParticipanteController@view')->name('participante.view');
+Route::get('/participante/{participante}/edit', 'Participante\ParticipanteController@edit')->name('participante.edit');
+Route::post('/participante/{participante}', 'Participante\ParticipanteController@update')->name('participante.update');
+Route::get('/participante/{participante}/delete', 'Participante\ParticipanteController@destroy')->name('participante.destroy');
+Route::get('/participante/getComunas', 'Participante\ParticipanteController@getComunas')->name('getComunas');
+Route::get('/participante/getComunidad', 'Participante\ParticipanteController@getComunidad')->name('getComunidad');
+Route::get('/participante/getCoodinacion', 'Participante\ParticipanteController@getCoodinacion')->name('getCoodinacion');
+Route::get('/participante/list', 'Participante\ParticipanteController@getParticipante')->name('participante.list');
+Route::get('/participante/print', 'Participante\ParticipanteController@solicitudPrint')->name('participante.solicitudPrint');
+Route::get('/participante/solicitudTipo', 'Participante\ParticipanteController@solicitudTipo')->name('participante.solicitudTipo');
+Route::get('/participante/solicitudTotalTipo', 'Participante\ParticipanteController@solicitudTotalTipo')->name('participante.solicitudTotalTipo');
+/* ********************************************************************  */
+Route::get('/venta/pago', 'Venta\VentaController@pago')->name('pago');
+Route::get('/venta/abonado', 'Venta\VentaController@abonado')->name('abonado');
+Route::get('/venta/abonado2', 'Venta\VentaController@abonado2')->name('abonado2');
+Route::get('/venta', 'Venta\VentaController@index')->name('venta.index');
+Route::post('/venta', 'Venta\VentaController@store')->name('venta.store');
+Route::post('/venta2', 'Venta\VentaController@store2')->name('venta.store2');
+Route::get('/ver', 'Venta\VentaController@getVenta')->name('ver');
 
-// ##############################rutas del seguimiento de la solicitud
-
-Route::get('/seguimiento', 'Seguimiento\SeguimientoController@index')->name('seguimiento.index')->middleware('permiso:seguimiento,view');
-Route::get('/seguimiento/create', 'Seguimiento\SeguimientoController@create')->name('seguimiento.create')->middleware('permiso:seguimiento,add');
-Route::post('/seguimiento', 'Seguimiento\SeguimientoController@store')->name('seguimiento.store')->middleware('permiso:seguimiento,add');
-Route::get('/seguimiento/{seguimiento}/view', 'Seguimiento\SeguimientoController@view')->name('seguimiento.view')->middleware('permiso:seguimiento,view');
-Route::get('/seguimiento/{seguimiento}/edit', 'Seguimiento\SeguimientoController@edit')->name('seguimiento.edit')->middleware('permiso:seguimiento,edit');
-Route::post('/seguimiento/{seguimiento}', 'Seguimiento\SeguimientoController@update')->name('seguimiento.update')->middleware('permiso:seguimiento,update');
-Route::get('/seguimiento/{seguimiento}/delete', 'Seguimiento\SeguimientoController@destroy')->name('seguimiento.destroy')->middleware('permiso:seguimiento,delete');
-Route::get('/seguimiento/getComunas', 'Seguimiento\SeguimientoController@getComunas')->name('getComunas')->middleware('permiso:seguimiento,view');
-Route::get('/seguimiento/getComunidad', 'Seguimiento\SeguimientoController@getComunidad')->name('getComunidad')->middleware('permiso:seguimiento,view');
-Route::get('/seguimiento/getCoodinacion', 'Seguimiento\SeguimientoController@getCoodinacion')->name('getCoodinacion')->middleware('permiso:seguimiento,view');
-Route::get('/seguimiento/list', 'Seguimiento\SeguimientoController@getSeguimiento')->name('seguimiento.list')->middleware('permiso:seguimiento,view');
-Route::get('/seguimiento/add', 'Seguimiento\SeguimientoController@addSegimiento')->name('seguimiento.add')->middleware('permiso:seguimiento,view');
-Route::get('/seguimiento/print', 'Seguimiento\SeguimientoController@solicitudPrint')->name('seguimiento.solicitudPrint')->middleware('permiso:seguimiento,print');
-Route::get('/seguimiento/solicitudTipo', 'Seguimiento\SeguimientoController@solicitudTipo')->name('seguimiento.solicitudTipo');
-Route::get('/seguimiento/solicitudTotalTipo', 'Seguimiento\SeguimientoController@solicitudTotalTipo')->name('seguimiento.solicitudTotalTipo');
-// *********************************************************************************************************
+//Route::get('/venta/pago', 'Venta\VentaController@edit')->name('venta.edit');

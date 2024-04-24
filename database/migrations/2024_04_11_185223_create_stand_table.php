@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateComunaTable extends Migration
+class CreateStandTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CreateComunaTable extends Migration
      */
     public function up()
     {
-        Schema::create('comuna', function (Blueprint $table) {
+        Schema::create('stand', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->string('codigo');
-            $table->unsignedBigInteger('parroquia_id');
+            $table->string('ubicacion');
+            $table->double('costo');
+            $table->string('zona');
+            $table->string('status');
             $table->timestamps();
-            $table->foreign('parroquia_id')->references('id')->on('parroquia');
         });
     }
 
@@ -30,6 +31,6 @@ class CreateComunaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comuna');
+        Schema::dropIfExists('stand');
     }
 }

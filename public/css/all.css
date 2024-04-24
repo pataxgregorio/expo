@@ -939,6 +939,9 @@
 .skin-green-light .sidebar-form input[type="text"]:focus + .input-group-btn .btn {
   border-left-color: #fff;
 }
+.small-box:hover {
+ color: black;
+}
 .skin-green-light .sidebar-form .btn {
   color: #999;
   border-top-left-radius: 0;

@@ -11,21 +11,25 @@ class Box extends Component
     public int $cantidad;
 
     public string $name;
-
+    public int $codigo;
+    public string $status;
     public string $color;
+    public string $nombre;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct(string $titulo, int $cantidad = 0,
-                                string $name,string $color = 'bg-blue')
+    public function __construct(string $titulo,string $status,string $nombre,int $cantidad = 0,
+                                string $name,string $color = 'bg-blue',int $codigo = 0)
     {
         $this->titulo = $titulo;
         $this->cantidad = $cantidad;
         $this->name = $name;
         $this->color = $color;
-        
+        $this->codigo = $codigo;
+        $this->status = $status;
+        $this->nombre = $nombre;
     }
     /**
      * Get the view / contents that represent the component.

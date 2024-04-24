@@ -40,12 +40,12 @@ desired effect
     @include('adminlte::layouts.partials.sidebar')
 
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
+    <div class="content-wrapper" >
 
         @include('adminlte::layouts.partials.contentheader')
         
         <!-- Main content -->
-        <section class="content">
+        <section class="content" style="min-height: 800px;">
             <!-- Your Page Content Here -->            
             @yield('main-content')
         </section><!-- /.content -->

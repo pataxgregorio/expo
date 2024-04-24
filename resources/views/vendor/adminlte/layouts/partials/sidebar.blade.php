@@ -25,34 +25,24 @@
 
         <!-- search form (Optional) -->
         <form action="#" method="get" class="sidebar-form">
-            <div class="input-group">
-                <input type="text" name="q" class="form-control" placeholder="{{ trans('message.search') }}..."/>
-              <span class="input-group-btn">
-                <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
-              </span>
-            </div>
+          
         </form>
         <!-- /.search form -->
 
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu" data-widget="tree">
-            <li class="header">{{ trans('message.header') }}</li>
+          
             <!-- Optionally, you can add icons to the links -->
-            <li><a href="{{ url('/dashboard') }}"><i class='fa fa-link'></i> <span>{{ trans('message.dashboard') }}</span></a></li>            
-            <!-- Optionally, you can add icons to the links -->
-            <li><a href="{{ url('/users') }}"><i class='fa fa-link'></i> <span>{{ trans('message.users') }}</span></a></li>
-            <li><a href="{{ url('/solicitud') }}"><i class='fa fa-link'></i> <span>{{ trans('message.request') }}</span></a></li>
-            <li><a href="{{ url('/seguimiento') }}"><i class='fa fa-link'></i> <span>Seguimiento</span></a></li>
-            <li><a href="{{ url('/notificaciones') }}"><i class='fa fa-link'></i> <span>{{ trans('message.menu_notificaciones') }}</span></a></li>
+            <li><a href="{{ url('/dashboard') }}"><i class='fa fa-link'></i> <span>Inicio</span></a></li> 
+            <li><a href="{{ url('/dashboard1') }}"><i class='fa fa-link'></i> <span>Lanceros</span></a></li> 
+            <li><a href="{{ url('/dashboard2') }}"><i class='fa fa-link'></i> <span>Centauro</span></a></li> 
+            <li><a href="{{ url('/dashboard3') }}"><i class='fa fa-link'></i> <span>Coleadores</span></a></li> 
+            <li><a href="{{ url('/dashboard4') }}"><i class='fa fa-link'></i> <span>General</span></a></li> 
+            <li><a href="{{ url('/participante') }}"><i class='fa fa-link'></i> <span>Participante</span></a></li> 
             <li class="treeview">
-                <a href="#"><i class='fa fa-link'></i> <span>{{ trans('message.menu_seguridad') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
-                <ul class="treeview-menu">
-                    <li><a href="{{ url('/rols') }}">{{ trans('message.menu_rol') }}</a></li>
-                    <li><a href="{{ url('/modulos') }}">{{ trans('message.menu_modulo') }}</a></li>
-                    <li><a href="{{ url('/permisos') }}">{{ trans('message.menu_permiso') }}</a></li>
-                </ul>
+             
+               
             </li>
-            <li><a href="{{ url('/users/color_view') }}"><i class='fa fa-link'></i> <span>{{ trans('message.menu_color') }}</span></a></li>
         </ul><!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->

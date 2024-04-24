@@ -13,7 +13,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use App\Http\Controllers\User\Colores;
-
+use App\Models\Stand\Stand;
 /**
  * Class HomeController
  * @package App\Http\Controllers
@@ -59,35 +59,83 @@ class HomeController extends Controller
     * Realizado por @author Tarsicio Carrizales
     */
     public function dashboard(){        
-        $confirmation_code = auth()->user()->confirmation_code;
-        $confirmed_at = auth()->user()->confirmed_at;         
-        $user_deny_allow = auth()->user()->activo;
-        $fecha = false;
-        if(auth()->user()->end_day == null && auth()->user()->init_day == null){
-            $fecha = true;
-        }else{            
-            $fecha_actual = date('Y-m-d');            
-            $fecha_end_day = Carbon::parse(auth()->user()->end_day)->format('Y-m-d');            
-            if($fecha_actual <= $fecha_end_day ){
-                $fecha = true;
-            }
-        }
-        if($user_deny_allow == 'DENY' || !$fecha){
-            auth()->logout();
-            alert()->warning(trans('message.mensajes_alert.denegado'),trans('message.mensajes_alert.mensaje'));
-            return redirect('/deny');            
-        }else if(is_null($confirmation_code) && isset($confirmed_at)){
+     
+        $count_notification = (new User)->count_noficaciones_user();
+        $user_total_activos = (new User)->userTotalActivo();
+        $total_roles = (new User)->totalRoles();
+        $user_total_Deny = (new User)->userTotalDeny();
+        $array_color = (new Colores)->getColores();
+        $total_stand = (new Stand)->total_stand1(); 
+        $cantidad_pagado = (new Stand)->total_pagado5(); 
+        $cantidad_reservado = (new Stand)->total_reservado5(); 
+        $cantidad_disponible = (new Stand)->total_disponible5(); 
+        $raiz =1;
+        return view('adminlte::home',compact('count_notification','user_total_activos','total_stand',
+                                              'total_roles','cantidad_pagado','cantidad_reservado','raiz','cantidad_disponible','array_color'));
+ 
+} 
+    public function dashboard1(){        
+     
             $count_notification = (new User)->count_noficaciones_user();
             $user_total_activos = (new User)->userTotalActivo();
             $total_roles = (new User)->totalRoles();
             $user_total_Deny = (new User)->userTotalDeny();
-            $array_color = (new Colores)->getColores();            
-            return view('adminlte::home',compact('count_notification','user_total_activos',
-                                                  'total_roles','user_total_Deny','array_color'));
-        }else{
-            auth()->logout();
-            alert()->info(trans('message.mensajes_alert.view_mail'),trans('message.mensajes_alert.view_mail_02'));
-            return redirect('/check_your_mail');
-        }
-    }
+            $array_color = (new Colores)->getColores();
+            $total_stand = (new Stand)->total_stand1(); 
+            $cantidad_pagado = (new Stand)->total_pagado(); 
+            $cantidad_reservado = (new Stand)->total_reservado(); 
+            $cantidad_disponible = (new Stand)->total_disponible(); 
+            $raiz =0;
+            return view('adminlte::home',compact('count_notification','user_total_activos','total_stand',
+                                                  'total_roles','cantidad_pagado','raiz','cantidad_reservado','cantidad_disponible','array_color'));
+     
+    } 
+    public function dashboard2(){        
+     
+        $count_notification = (new User)->count_noficaciones_user();
+        $user_total_activos = (new User)->userTotalActivo();
+        $total_roles = (new User)->totalRoles();
+        $user_total_Deny = (new User)->userTotalDeny();
+        $array_color = (new Colores)->getColores();
+        $total_stand = (new Stand)->total_stand2(); 
+        $cantidad_pagado = (new Stand)->total_pagado2(); 
+        $cantidad_reservado = (new Stand)->total_reservado2(); 
+        $cantidad_disponible = (new Stand)->total_disponible2();
+        $raiz =0;
+        return view('adminlte::home',compact('count_notification','cantidad_pagado','raiz','cantidad_reservado','cantidad_disponible','user_total_activos','total_stand',
+        'total_roles','array_color'));
+    
+ 
+    } 
+    public function dashboard3(){        
+     
+        $count_notification = (new User)->count_noficaciones_user();
+        $user_total_activos = (new User)->userTotalActivo();
+        $total_roles = (new User)->totalRoles();
+        $user_total_Deny = (new User)->userTotalDeny();
+        $array_color = (new Colores)->getColores();
+        $total_stand = (new Stand)->total_stand3(); 
+        $cantidad_pagado = (new Stand)->total_pagado3(); 
+        $cantidad_reservado = (new Stand)->total_reservado3(); 
+        $cantidad_disponible = (new Stand)->total_disponible3();
+        $raiz =0;
+        return view('adminlte::home',compact('count_notification','cantidad_pagado','raiz','cantidad_reservado','cantidad_disponible','user_total_activos','total_stand',
+        'total_roles','array_color'));
+ 
+} public function dashboard4(){        
+     
+    $count_notification = (new User)->count_noficaciones_user();
+    $user_total_activos = (new User)->userTotalActivo();
+    $total_roles = (new User)->totalRoles();
+    $user_total_Deny = (new User)->userTotalDeny();
+    $array_color = (new Colores)->getColores();
+    $total_stand = (new Stand)->total_stand4(); 
+    $cantidad_pagado = (new Stand)->total_pagado4(); 
+    $cantidad_reservado = (new Stand)->total_reservado4(); 
+    $cantidad_disponible = (new Stand)->total_disponible4();
+    $raiz =0;
+    return view('adminlte::home',compact('count_notification','cantidad_pagado','raiz','cantidad_reservado','cantidad_disponible','user_total_activos','total_stand',
+    'total_roles','array_color'));
+
+} 
 }

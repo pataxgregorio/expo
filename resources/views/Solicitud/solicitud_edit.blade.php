@@ -10,7 +10,7 @@
 
 @section('contentheader_title')
 <div>
-    <h2 class="mb-4">EDITAR SOLICITUD</h2>
+    <h2 class="mb-4">EDITAR PARTICIPANTE</h2>
     @component('components.boton_back',['ruta' => route('solicitud.index'),'color' => $array_color['back_button_color']])
         Botón de retorno
     @endcomponent   
