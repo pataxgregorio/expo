@@ -34,7 +34,7 @@
         <?php    
           foreach ($resultado as $row2);
         ?>  
-        
+        <div style="text-align:center;"><h3>REPORTE TOTAL DE {{$row2->status}}</h3></div>
         <table  class="table table-bordered">
     <thead>
         <tr>

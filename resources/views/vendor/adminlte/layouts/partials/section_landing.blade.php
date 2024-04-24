@@ -1,10 +1,10 @@
 <section id="intro" class="clearfix">
   <div class="container">    
     <div style="text-align:center">
-        <img src="{{ url('/images/icons/unnamed.png') }}" alt="" class="img-fluid" style="width: 100%; max-width:1720px;">
+        <img src="{{ url('/images/icons/2.png') }}" alt="" class="img-fluid" style="width: 100%; max-width:150px;">
     </div>    
     <div style="text-align:center;">
-    <h2>Sistema Integral de Atención SIA</h2>
+    <h2>Sistema Expoferia 2024 de la Alcadia de Paez</h2>
       <h3>Proyecto contemplado en el Plan de Gobierno del Alcalde Rafael Torrealba. <br> En Periodo 2021-2025
         La Transformación Digital del Municipio
       </h3>

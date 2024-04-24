@@ -1,5 +1,5 @@
 <div class="card">   
-    <div class="small-box {{$color}} card-body" style="width :120px; height:100px " >             
+    <div class="small-box {{$color}} card-body" style="width :120px; height:100px" >             
     <!--   <div class="small-box bg-blue card-body">  -->
         <div class="inner">                         
             <h3 style ="font-size:12px;">{{$titulo}} : {{$nombre}}</h3>

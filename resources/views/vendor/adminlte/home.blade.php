@@ -58,9 +58,10 @@
    <div class="container" style="display:flex; justify-content:center;align-items:center;">
         <div class="container" style="">
             <div class="">
+             
             @if ($raiz==0)
             
-            
+            <div> <h3>Stand A</h3></div>
                @foreach($arreglo1 as $total_stand2)  
                   <?php 
                   
@@ -92,8 +93,9 @@
         
         <div class="container d-flex align-items-center" style="margin-left:px;">
             <div class="">
+          
             @if ($raiz==0)
-            
+            <div> <h3>Stand B</h3></div>
             
                @foreach($arreglo2 as $total_stand2)  
                   <?php 
