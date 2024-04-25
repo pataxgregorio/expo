@@ -51,27 +51,35 @@
                        
                         <div style="text-align:left;">
                             {!! Form::label('ubicacion','UBICACION', ['class' => 'control-label']) !!}<span class="required" style="color:red;">*</span>
-                            {!! Form::text('ubicacion',$stand->ubicacion,['placeholder' => 'UBICACION','class' => 'form-control','id' => 'ubicacion','disabled' => 'true']) !!}
+                            {!! Form::text('ubicacion',$stand->ubicacion,['placeholder' => 'UBICACION','class' => 'form-control','required' => 'required','id' => 'ubicacion','disabled' => 'true']) !!}
                          </div>   
                         <div style="text-align:left;">
                             {!! Form::label('zona','ZONA', ['class' => 'control-label']) !!}<span class="required" style="color:red;">*</span>
-                             {!! Form::text('zona',$stand->zona,['placeholder' => 'ZONA','class' => 'form-control','id' => 'zona','disabled' => 'true']) !!}
+                             {!! Form::text('zona',$stand->zona,['placeholder' => 'ZONA','class' => 'form-control','required' => 'required','id' => 'zona','disabled' => 'true']) !!}
                          </div>    
                          <div style="text-align:left;">
                             {!! Form::label('costo','COSTO $', ['class' => 'control-label']) !!}<span class="required" style="color:red;">*</span>
-                            {!! Form::text('costo',$stand->costo,['placeholder' => 'COSTO','class' => 'form-control','id' => 'costo','disabled' => 'true']) !!}
+                            {!! Form::text('costo',$stand->costo,['placeholder' => 'COSTO','class' => 'form-control','required' => 'required','id' => 'costo','disabled' => 'true']) !!}
                          </div>  
                          <div style="text-align:left;">
                             <h3>Datos del Cliente</h3>
                          </div> 
                          <div style="text-align:left;">
                          {!! Form::label('participante','PARTICIPANTE', ['class' => 'control-label']) !!}<span class="required" style="color:red;">*</span>
-                         {!! Form::select('participante',$participante,  old('participante_id'), ['placeholder' => 'PARTICIPANTE','required' => 'required','class' => 'form-control required','id' => 'participante_id']) !!}
+                         {!! Form::select('participante',$participante,  old('participante_id'), ['placeholder' => 'PARTICIPANTE','required' => 'required','class' => 'form-control required','required' => 'required','id' => 'participante_id']) !!}
                         </div>   
 
                         <div style="text-align:left;">
                             {!! Form::label('montocancelado','MONTO A CANCELAR $', ['class' => 'control-label']) !!}<span class="required" style="color:red;">*</span>
                              {!! Form::number('montocancelado',old('rif'),['placeholder' => 'MONTO A CANCELAR','required' => 'required','class' => 'form-control','id' => 'montocancelado']) !!}
+                        </div>
+                        <div style="text-align:left;">
+                            {!! Form::label('negociacion', 'Negociacion') !!}
+                            {!! Form::checkbox('negociacion', 'on', false) !!}
+                        </div>  
+                        <div style="text-align:left;">
+                            {!! Form::label('observacion','OBSERVACION', ['class' => 'control-label']) !!}<span class="required" style="color:red;">*</span>
+                             {!! Form::textarea('observacion',old('observacion'),['placeholder' => 'OBSERVACION','required' => 'required','class' => 'form-control','id' => 'observacion']) !!}
                         </div>  
                       </div> 
                       <br>

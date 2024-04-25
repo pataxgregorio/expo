@@ -33,7 +33,10 @@
             
         <?php    
           foreach ($resultado as $row2);
-        ?>  
+        ?>
+        <div style="text-align:center">
+            <img src="{{ url('/images/icons/cintillo.png') }}" alt="" class="img-fluid" style="width: 100%; max-width:1200px;">
+        </div> 
         <div style="text-align:center;"><h3>REPORTE TOTAL DE {{$row2->status}}</h3></div>
         <table  class="table table-bordered">
     <thead>

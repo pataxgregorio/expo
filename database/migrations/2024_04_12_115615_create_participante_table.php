@@ -21,6 +21,7 @@ class CreateParticipanteTable extends Migration
             $table->string('direccion');
             $table->string('telefono');
             $table->string('telefono2');
+            $table->string('email');
             $table->string('sector');
             $table->timestamps();
         });

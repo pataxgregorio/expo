@@ -16,6 +16,7 @@ class Participante extends Model
         'direccion',
         'telefono',
         'telefono2',
+        'email',
         'sector',
         'user_id'
     ];

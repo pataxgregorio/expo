@@ -61,7 +61,7 @@
              
             @if ($raiz==0)
             
-            <div> <h3>Stand A</h3></div>
+            <div> <h3>Stand {{$fila1}}</h3></div>
                @foreach($arreglo1 as $total_stand2)  
                   <?php 
                   
@@ -80,7 +80,7 @@
                      
                            <div  style="margin: 0 auto 0 auto">
       
-                              <x-box titulo="Stand" status="{{ $total_stand2->status }}" name="Solitudes Registradas"  color="{{$color}}" codigo="{{ $total_stand2->id }}" nombre="{{ $total_stand2->nombre }}" ></x-box>
+                              <x-box titulo="Stand" status="{{ $total_stand2->status }}" name="Solitudes Registradas" cantidad=0 color="{{$color}}" codigo="{{ $total_stand2->id }}" nombre="{{ $total_stand2->nombre }}" ></x-box>
                            </div>
          
                   
@@ -95,7 +95,7 @@
             <div class="">
           
             @if ($raiz==0)
-            <div> <h3>Stand B</h3></div>
+            <div> <h3>Stand {{$fila2}}</h3></div>
             
                @foreach($arreglo2 as $total_stand2)  
                   <?php 
@@ -115,7 +115,7 @@
                      
                            <div  style="margin: 0 auto 0 auto">
       
-                              <x-box titulo="Stand" status="{{ $total_stand2->status }}" name="Solitudes Registradas"  color="{{$color}}" codigo="{{ $total_stand2->id }}" nombre="{{ $total_stand2->nombre }}" ></x-box>
+                              <x-box titulo="Stand" status="{{ $total_stand2->status }}" name="Solitudes Registradas" cantidad=0 color="{{$color}}" codigo="{{ $total_stand2->id }}" nombre="{{ $total_stand2->nombre }}" ></x-box>
                            </div>
          
                   

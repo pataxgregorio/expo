@@ -41,11 +41,11 @@
                     <div class="form-group ">
                         <div style="text-align:left;">
                             {!! Form::label('nombre',trans('message.users_action.nombre'), ['class' => 'control-label']) !!}<span class="required" style="color:red;">*</span>
-                             {!! Form::text('nombre',old('nombre'),['placeholder' => trans('message.users_action.nombre'),'class' => 'form-control','id' => 'nombre_user']) !!}
+                             {!! Form::text('nombre',old('nombre'),['placeholder' => trans('message.users_action.nombre'),'class' => 'form-control','required' => 'required','id' => 'nombre_user']) !!}
                         </div>   
                         <div style="text-align:left;">
                           <label>RIF*</label>
-                         <select required name="letra"  id="letra" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins">
+                         <select  name="letra"  id="letra" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins">
                          <option value="SELECCIONE UNA OPCION">SELECCIONE UNA OPCION</option>
                          <option value="J">J</option>
                             <option value="V">V</option>
@@ -54,20 +54,24 @@
                         </div>             
                         <div style="text-align:left;">
                             {!! Form::label('rif','RIF', ['class' => 'control-label']) !!}<span class="required" style="color:red;">*</span>
-                             {!! Form::text('rif',old('rif'),['placeholder' => 'RIF O CEDULA','class' => 'form-control','id' => 'cedula_user']) !!}
+                             {!! Form::text('rif',old('rif'),['placeholder' => 'RIF O CEDULA','class' => 'form-control','required' => 'required','id' => 'cedula_user']) !!}
                         </div>  
                        
                         <div style="text-align:left;">
                             {!! Form::label('telefono',trans('message.solicitud_action.telefono'), ['class' => 'control-label']) !!}<span class="required" style="color:red;">*</span>
-                             {!! Form::text('telefono',old('telefono'),['placeholder' => trans('message.solicitud_action.telefono'),'class' => 'form-control','id' => 'telefono_user']) !!}
+                             {!! Form::text('telefono',old('telefono'),['placeholder' => trans('message.solicitud_action.telefono'),'class' => 'form-control','required' => 'required','id' => 'telefono_user']) !!}
                         </div>     
                         <div style="text-align:left;">
                             {!! Form::label('telefono2','TELEFONO2', ['class' => 'control-label']) !!}<span class="required" style="color:red;">*</span>
-                             {!! Form::text('telefono2',old('telefono2'),['placeholder' => 'TELEFONO2','class' => 'form-control','id' => 'telefono2_user']) !!}
+                             {!! Form::text('telefono2',old('telefono2'),['placeholder' => 'TELEFONO2','class' => 'form-control','required' => 'required','id' => 'telefono2_user']) !!}
+                        </div>   
+                        <div style="text-align:left;">
+                            {!! Form::label('email','CORREO', ['class' => 'control-label']) !!}<span class="required" style="color:red;">*</span>
+                             {!! Form::email('email',old('email'),['placeholder' => 'CORREO','class' => 'form-control','required' => 'required','id' => 'email_user']) !!}
                         </div>   
                         <div style="text-align:left;">
                             {!! Form::label('direccion','DIRECCION', ['class' => 'control-label']) !!}<span class="required" style="color:red;">*</span>
-                             {!! Form::text('direccion',old('direccion'),['placeholder' => 'DIRECCION','class' => 'form-control','id' => 'telefono2_user']) !!}
+                             {!! Form::text('direccion',old('direccion'),['placeholder' => 'DIRECCION','class' => 'form-control','required' => 'required','id' => 'telefono2_user']) !!}
                         </div>    
                         <div style="text-align:left;">
                           <label>SECTOR*</label>

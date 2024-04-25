@@ -85,9 +85,11 @@ class HomeController extends Controller
             $cantidad_pagado = (new Stand)->total_pagado(); 
             $cantidad_reservado = (new Stand)->total_reservado(); 
             $cantidad_disponible = (new Stand)->total_disponible(); 
+            $fila1 ="A";
+            $fila2 ="B";
             $raiz =0;
             return view('adminlte::home',compact('count_notification','user_total_activos','total_stand',
-                                                  'total_roles','cantidad_pagado','raiz','cantidad_reservado','cantidad_disponible','array_color'));
+                                                  'total_roles','cantidad_pagado','raiz','cantidad_reservado','cantidad_disponible','fila1','fila2','array_color'));
      
     } 
     public function dashboard2(){        
@@ -102,7 +104,9 @@ class HomeController extends Controller
         $cantidad_reservado = (new Stand)->total_reservado2(); 
         $cantidad_disponible = (new Stand)->total_disponible2();
         $raiz =0;
-        return view('adminlte::home',compact('count_notification','cantidad_pagado','raiz','cantidad_reservado','cantidad_disponible','user_total_activos','total_stand',
+        $fila1 ="C";
+        $fila2 ="D";
+        return view('adminlte::home',compact('count_notification','cantidad_pagado','raiz','cantidad_reservado','fila1','fila2','cantidad_disponible','user_total_activos','total_stand',
         'total_roles','array_color'));
     
  
@@ -119,7 +123,9 @@ class HomeController extends Controller
         $cantidad_reservado = (new Stand)->total_reservado3(); 
         $cantidad_disponible = (new Stand)->total_disponible3();
         $raiz =0;
-        return view('adminlte::home',compact('count_notification','cantidad_pagado','raiz','cantidad_reservado','cantidad_disponible','user_total_activos','total_stand',
+        $fila1 ="E";
+        $fila2 ="F";
+        return view('adminlte::home',compact('count_notification','cantidad_pagado','fila1','fila2','raiz','cantidad_reservado','cantidad_disponible','user_total_activos','total_stand',
         'total_roles','array_color'));
  
 } public function dashboard4(){        
@@ -134,7 +140,9 @@ class HomeController extends Controller
     $cantidad_reservado = (new Stand)->total_reservado4(); 
     $cantidad_disponible = (new Stand)->total_disponible4();
     $raiz =0;
-    return view('adminlte::home',compact('count_notification','cantidad_pagado','raiz','cantidad_reservado','cantidad_disponible','user_total_activos','total_stand',
+    $fila1 ="G";
+    $fila2 ="H";
+    return view('adminlte::home',compact('count_notification','cantidad_pagado','fila1','fila2','raiz','cantidad_reservado','cantidad_disponible','user_total_activos','total_stand',
     'total_roles','array_color'));
 
 } 

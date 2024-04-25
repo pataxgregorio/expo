@@ -62,6 +62,10 @@
                             {!! Form::text('telefono2',$participante_edit->telefono2,['placeholder' => trans('message.solicitud_action.telefono2'),'class' => 'form-control','id' => 'telefono2_user']) !!}
                          </div>  
                          <div style="text-align:left;">
+                            {!! Form::label('email','CORREO', ['class' => 'control-label']) !!}<span class="required" style="color:red;">*</span>
+                            {!! Form::email('email',$participante_edit->email,['placeholder' => 'CORREO','class' => 'form-control','id' => 'email_user']) !!}
+                         </div>  
+                         <div style="text-align:left;">
                             {!! Form::label('direccion','DIRECCION', ['class' => 'control-label']) !!}<span class="required" style="color:red;">*</span>
                             {!! Form::text('direccion',$participante_edit->direccion,['placeholder' => trans('message.users_action.mail_ejemplo'),'class' => 'form-control','id' => 'email_user']) !!}
                              </div>   

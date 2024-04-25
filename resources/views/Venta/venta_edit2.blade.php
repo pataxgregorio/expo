@@ -36,13 +36,17 @@
                       @endif
                     
                         {{ csrf_field() }}  
+                        
+                     {!! Form::open(array('route' => array('venta.imprimir'),
+                     'method'=>'POST','id' => 'form_participante_id','enctype' =>'multipart/form-data')) !!}
+
                     <div class="form-group">
                         <div style="text-align:left;">
                   
                          <h3>Datos de Stand</h3>
                          <input type="hidden" name="stand_id" value="{{$stand->id}}">
                          <input type="hidden" name="costo" value="{{$stand->costo}}">
-                         <input type="hidden" name="id" value="{{ $participante2->id}}">
+                         <input type="hidden" name="id" value="{{ $participante2->id}}"> <!-- id de la venta -->
                          <input type="hidden" name="participante_id" value="{{ $participante2->participante_id}}">
                          
                         <div style="text-align:left;">
@@ -74,7 +78,15 @@
                             {!! Form::label('montocancelado','MONTO A CANCELAR $', ['class' => 'control-label']) !!}<span class="required" style="color:red;">*</span>
                              {!! Form::number('montocancelado',$participante2->montocancelado,['placeholder' => 'MONTO A CANCELAR','required' => 'required','class' => 'form-control','id' => 'montocancelado','disabled'=>'true']) !!}
                         </div>  
-                      </div> 
+                        <div style="text-align:left;">
+                            {!! Form::label('observacion','OBSERVACION', ['class' => 'control-label']) !!}<span class="required" style="color:red;">*</span>
+                             {!! Form::textarea('observacion',$participante2->observacion,['placeholder' => 'OBSERVACION','required' => 'required','class' => 'form-control','id' => 'observacion','disabled'=>'true']) !!}
+                        </div>
+                        <div style="display: flex; justify-content: right; margin-top: 1rem;"; >
+                            {!! Form::submit('IMPRIMIR',['class'=> 'form-control btn btn-primary','IMPRIMIR','data-toggle' => 'tooltip','style' => 'background-color:'.$array_color['group_button_color'].';']) !!}                     
+                            {!!  Form::close() !!}
+                        </div>
+                      </div>
                       <br>
                       <br>
                       <br>

@@ -30,8 +30,8 @@
                     domain="{{ config('auth.defaults.domain','') }}"></login-form>
 
 
-        <a href="{{ url('/password/reset') }}">{{ trans('message.forgotpassword') }}</a><br>
-        <a href="{{ url('/register') }}" class="text-center">{{ trans('message.registermember') }}</a>
+        <!-- <a href="{{ url('/password/reset') }}">{{ trans('message.forgotpassword') }}</a><br>
+        <a href="{{ url('/register') }}" class="text-center">{{ trans('message.registermember') }}</a> -->
 
     </div>
 

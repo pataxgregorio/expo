@@ -16,6 +16,8 @@ class Venta extends Model
         'stand_id',  
         'user_id',      
         'montocancelado',
+        'observacion',
+        'negociacion',
         'fecha',
     ];
     public function total_Venta(){

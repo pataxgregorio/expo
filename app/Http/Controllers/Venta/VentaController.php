@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Venta;
-
+use Barryvdh\DomPDF\Facade as PDF;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User\User;
@@ -96,19 +96,15 @@ class VentaController extends Controller
         return view('User.profile',compact('count_notification','user','array_color'));
     }
     
-    public function usersPrint(){
-        //generate some PDFs!
-        $html = '<div style="text-align:center"><h1>(PROYECT / PROYECTO) HORUS-1221</h1></div>
-        <div style="text-align:center">(Create By / Creado Por) - Tarsicio Carrizales</div>
-        <div style="text-align:center">(Mail / Correo) -  telecom.com.ve@gmail.com</div>
-        <div style="text-align:center">(Contact Cell Phone / Número Movil Contacto) - +58+412-054.53.69</div>
-        <div style="text-align:center">LARAVEL 8 and PWA, PHP 7.4 DATE: NOV / 2021</div>';
-        $dompdf = new DOMPDF();  //if you use namespaces you may use new \DOMPDF()
-        $dompdf->loadHtml($html);
-        $dompdf->setPaper('latter', 'portrait');
-        $dompdf->render();
-        $dompdf->stream("Tarsicio_Carrizales_Proyecto_Horus.pdf", array("Attachment"=>1));        
-        return redirect()->back();
+    public function usersPrint($participante,$venta,$stand){
+        $vista = view('Venta.factura',compact('participante', 'venta','stand'));
+
+        // Generar el PDF utilizando DOMPDF
+        $pdf = PDF::loadHTML($vista);
+    
+        // Descargar el PDF
+        return $pdf->download('factura.pdf');
+       
     }    
 
     public function update_avatar(Request $request, $id){
@@ -144,25 +140,19 @@ class VentaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request){
-        /**
-         * Recuerde de Activar la cola de trabajo con
-         * php artisan queue:work database --tries=3 --backoff=10
-         * o instalar en su servidor linux (Debian ó Ubuntu) el supervisor de la siguiente manera
-         * sudo apt-get install supervisor
-         * Si no realiza ninguna configuración todos los trabajos se iran guardando en la 
-         * tabla jobs, y una vez configure, los trabajos en cola se iran ejecutando
-         * Si se ejecuta algún error estos se guardan en la tabla failed_jobs.
-         * Para ejcutar los trabajos en failed_jobs ejecute:
-         * php artisan queue:retry all
-         * Debe realizar configuraciones adicionales, en caso de requerir
-         * busque información en Internet para culminar la configuracion de requerir.
-         * https://laravel.com/docs/8.x/queues#supervisor-configuration
-         */
-        // Target URL
-
-
+    public function imprimir(Request $request){
         $input = $request->all();
+        $participante = Participante::find( $input['participante_id']);
+        $venta = Venta::find( $input['id']);
+        $stand = Stand::find( $input['stand_id']);
+        // var_dump($participante);
+        // exit();
+
+       $this->usersPrint($participante,$venta,$stand);
+    } 
+    public function store(Request $request){
+        $input = $request->all();
+        $negociacion =isset($input['negociacion']) ?$input['negociacion']:'off';
    $input['users_id'] = Auth::user()->id;
  //var_dump ($input);
 // exit();
@@ -172,6 +162,10 @@ class VentaController extends Controller
   $user_total_activos = (new User)->userTotalActivo();
   $total_roles = (new User)->totalRoles();
   $raiz =1;        
+  $total_stand = (new Stand)->total_stand1(); 
+  $cantidad_pagado = (new Stand)->total_pagado5(); 
+  $cantidad_reservado = (new Stand)->total_reservado5(); 
+  $cantidad_disponible = (new Stand)->total_disponible5();
 
   if ($input['montocancelado']<=$input['costo']){
     // se actualiza el status de la solicitud
@@ -180,31 +174,78 @@ class VentaController extends Controller
         'participante_id' => $input['participante'],
         'stand_id' => $input['stand_id'],                        
         'montocancelado' => $input['montocancelado'],
+        'observacion' => $input['observacion'],
+        'negociacion'=> $negociacion,
         'fecha'  => \Carbon\Carbon::now(),
              ]);
+         if ($negociacion=='off'){
+
+        
              if ($input['montocancelado']<=$input['costo']){
                 $valor ='RESERVADO';
               }  
               if ($input['montocancelado']==$input['costo']){
                 $valor ='PAGADO';
-              }      
+              }  
+            } 
+            if ($negociacion=='on'){
+               
+                   $valor ='PAGADO';
+               }     
     $venta->save(); 
     $stand_Update = Stand::find( $input['stand_id']);
     $stand_Update['status'] = $valor;
     $stand_Update->save();
-    $total_stand = (new Stand)->total_stand1(); 
-        $cantidad_pagado = (new Stand)->total_pagado5(); 
-        $cantidad_reservado = (new Stand)->total_reservado5(); 
-        $cantidad_disponible = (new Stand)->total_disponible5(); 
+   
+       // $this->usersPrint();
         return view('adminlte::home',compact('count_notification','user_total_activos','total_stand',
         'total_roles','cantidad_pagado','cantidad_reservado','raiz','cantidad_disponible','array_color'));
  }
        
- if ($input['montocacelado']>$input['costo']){
-    // se actualiza el status de la solicitud
-   
-    return view('Venta.venta_create',compact('count_notification','tipo_alert','array_color'));
- }    
+ if ($input['montocancelado']>$input['costo']){
+    if ($negociacion=='on'){
+         $venta = new Venta([
+        'user_id' =>$input['users_id'],
+        'participante_id' => $input['participante'],
+        'stand_id' => $input['stand_id'],                        
+        'montocancelado' => $input['montocancelado'],
+        'observacion' => $input['observacion'],
+        'negociacion'=> $negociacion,
+        'fecha'  => \Carbon\Carbon::now(),
+             ]);
+         if ($negociacion=='off'){
+
+        
+             if ($input['montocancelado']<=$input['costo']){
+                $valor ='RESERVADO';
+              }  
+              if ($input['montocancelado']==$input['costo']){
+                $valor ='PAGADO';
+              }  
+            } 
+            if ($negociacion=='on'){
+               
+                   $valor ='PAGADO';
+               }     
+    $venta->save(); 
+
+        $valor ='PAGADO';
+        $stand_Update = Stand::find( $input['stand_id']);
+        $stand_Update['status'] = $valor;
+        $stand_Update->save();
+        $total_stand = (new Stand)->total_stand1(); 
+            $cantidad_pagado = (new Stand)->total_pagado5(); 
+            $cantidad_reservado = (new Stand)->total_reservado5(); 
+            $cantidad_disponible = (new Stand)->total_disponible5(); 
+            return view('adminlte::home',compact('count_notification','user_total_activos','total_stand',
+            'total_roles','cantidad_pagado','cantidad_reservado','raiz','cantidad_disponible','array_color'));
+     }
+     if ($negociacion=='off'){
+        return view('adminlte::home',compact('count_notification','user_total_activos','total_stand',
+            'total_roles','cantidad_pagado','cantidad_reservado','raiz','cantidad_disponible','array_color'));
+       }
+    }     
+     
     }        
     public function store2(Request $request){
         
@@ -212,7 +253,7 @@ class VentaController extends Controller
         $input = $request->all();
    $input['user_id'] = Auth::user()->id;
    $id =$input['id'];
-
+   $negociacion =isset($input['negociacion']) ?$input['negociacion']:'off';
    $input['fecha'] =\Carbon\Carbon::now();
 
 //var_dump ($input);
@@ -229,7 +270,7 @@ class VentaController extends Controller
     $venta_Update = Venta::find( $id);
     $venta_Update->update($input);
     $stand_Update = Stand::find( $input['stand_id']);
-    $stand_Update['status'] = 'RESERVADO';
+    $stand_Update['status'] = $negociacion == 'on'?'PAGADO':'RESERVADO';
     $stand_Update->save();
     $total_stand = (new Stand)->total_stand1(); 
     $cantidad_pagado = (new Stand)->total_pagado5();
@@ -250,15 +291,30 @@ class VentaController extends Controller
     $venta_Update->update($input);
     $total_stand = (new Stand)->total_stand1(); 
     $cantidad_pagado = (new Stand)->total_pagado5();
-    $cantidad_reservado = (new Stand)->total_reservado5(); 
+    $cantidad_reservado = (new Stand)->total_reservado5();
     $cantidad_disponible = (new Stand)->total_disponible5(); 
     return view('adminlte::home',compact('count_notification','user_total_activos','total_stand',
     'total_roles','cantidad_pagado','cantidad_reservado','raiz','cantidad_disponible','array_color'));
  }   
- if ($input['montocacelado']>$input['costo']){
+ if ($input['montocancelado']>$input['costo']){
     // se actualiza el status de la solicitud
-   
-    return view('Venta.venta_create',compact('count_notification','tipo_alert','array_color'));
+    if ($negociacion=='on'){
+        $venta_Update = Venta::find( $id);
+        $venta_Update->update($input);       
+        $valor ='PAGADO';
+        $stand_Update = Stand::find( $input['stand_id']);
+        $stand_Update['status'] = $valor;
+        $stand_Update->save();
+        $total_stand = (new Stand)->total_stand1(); 
+            $cantidad_pagado = (new Stand)->total_pagado5(); 
+            $cantidad_reservado = (new Stand)->total_reservado5(); 
+            $cantidad_disponible = (new Stand)->total_disponible5(); 
+            return view('adminlte::home',compact('count_notification','user_total_activos','total_stand',
+            'total_roles','cantidad_pagado','cantidad_reservado','raiz','cantidad_disponible','array_color'));
+     }
+     if ($negociacion=='off'){
+        return view('adminlte::home',compact('count_notification','tipo_alert','array_color'));
+       }
  }    
     }        
 

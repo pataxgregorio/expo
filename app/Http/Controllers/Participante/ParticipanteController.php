@@ -132,23 +132,6 @@ class ParticipanteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request){
-        /**
-         * Recuerde de Activar la cola de trabajo con
-         * php artisan queue:work database --tries=3 --backoff=10
-         * o instalar en su servidor linux (Debian ó Ubuntu) el supervisor de la siguiente manera
-         * sudo apt-get install supervisor
-         * Si no realiza ninguna configuración todos los trabajos se iran guardando en la 
-         * tabla jobs, y una vez configure, los trabajos en cola se iran ejecutando
-         * Si se ejecuta algún error estos se guardan en la tabla failed_jobs.
-         * Para ejcutar los trabajos en failed_jobs ejecute:
-         * php artisan queue:retry all
-         * Debe realizar configuraciones adicionales, en caso de requerir
-         * busque información en Internet para culminar la configuracion de requerir.
-         * https://laravel.com/docs/8.x/queues#supervisor-configuration
-         */
-        // Target URL
-
-
         $input = $request->all();
      $input['users_id'] = Auth::user()->id;
   //var_dump ($input['nombre']);
@@ -162,6 +145,7 @@ class ParticipanteController extends Controller
             'telefono2'=>$input['telefono2'],
             'direccion'=>$input['direccion'],
             'sector'=>$input['sector'],
+            'email'=>$input['email'],
             'user_id' => $input['users_id'],
         ]);
         $solicitud->save();    

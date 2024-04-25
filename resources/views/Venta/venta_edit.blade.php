@@ -75,6 +75,14 @@
                         <div style="text-align:left;">
                             {!! Form::label('montocancelado','MONTO A CANCELAR $', ['class' => 'control-label']) !!}<span class="required" style="color:red;">*</span>
                              {!! Form::number('montocancelado',$participante2->montocancelado,['placeholder' => 'MONTO A CANCELAR','required' => 'required','class' => 'form-control','id' => 'montocancelado']) !!}
+                        </div>
+                        <div style="text-align:left;">
+                            {!! Form::label('negociacion', 'Negociacion') !!}
+                            {!! Form::checkbox('negociacion', 'on', false) !!}
+                        </div>  
+                        <div style="text-align:left;">
+                            {!! Form::label('observacion','OBSERVACION', ['class' => 'control-label']) !!}<span class="required" style="color:red;">*</span>
+                             {!! Form::textarea('observacion',$participante2->observacion,['placeholder' => 'OBSERVACION','required' => 'required','class' => 'form-control','id' => 'observacion']) !!}
                         </div>  
                       </div> 
                       <br>

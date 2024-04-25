@@ -11,7 +11,7 @@
         </div>
        
     @if ($raiz==1)
-        <a href="{{ route('ver', ['status' => $status]) }}">     <button type="button"  id="boton" name ="comprar" class="{{$color2}} btn comprar" style="border: none; font-weight: bold; border-radius: 81px; width:75px;margin-top:-24px;margin-left: 75px;background: white;
+        <a href="{{ route('ver', ['status' => $status]) }}">     <button type="button"  id="boton" name ="comprar" class="{{$color2}} btn comprar" style="border: none; font-weight: bold; border-radius: 81px; width:75px;margin-top:-24px;margin-left: 75px; background: #e1dede;
   color: black;">LISTAR</button>   </a>    
     @endif  
       

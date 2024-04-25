@@ -18,6 +18,8 @@ class CreateVentaTable extends Migration
             $table->unsignedBigInteger('participante_id');
             $table->unsignedBigInteger('stand_id');
             $table->double('montocancelado')->nullable();
+            $table->string('observacion')->nullable();
+            $table->string('negociacion')->nullable();
             $table->dateTime('fecha')->nullable();
             $table->timestamps();
             $table->foreign('participante_id')->references('id')->on('participante');

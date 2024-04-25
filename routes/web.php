@@ -201,5 +201,6 @@ Route::get('/venta', 'Venta\VentaController@index')->name('venta.index');
 Route::post('/venta', 'Venta\VentaController@store')->name('venta.store');
 Route::post('/venta2', 'Venta\VentaController@store2')->name('venta.store2');
 Route::get('/ver', 'Venta\VentaController@getVenta')->name('ver');
-
+Route::post('/imprimir', 'Venta\VentaController@imprimir')->name('venta.imprimir');
+//Route::get('/factura', 'Venta\VentaController@imprimir')->name('factura');
 //Route::get('/venta/pago', 'Venta\VentaController@edit')->name('venta.edit');
