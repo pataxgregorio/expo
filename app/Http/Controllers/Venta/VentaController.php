@@ -97,13 +97,87 @@ class VentaController extends Controller
     }
     
     public function usersPrint($participante,$venta,$stand){
-        $vista = view('Venta.factura',compact('participante', 'venta','stand'));
+
+
+        $dompdf = new DOMPDF();  //if you use namespaces you may use new \DOMPDF()
+        $cwd = getcwd();
+      //  var_dump($cwd);
+     //   exit();
+        $html = <<<HTML
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <title>Invoice</title>
+            <style>
+                body {
+                    font-family: sans-serif;
+                }
+
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
+                }
+
+                th, td {
+                    border: 1px solid #ddd;
+                    padding: 8px;
+                }
+
+                th {
+                    text-align: left;
+                    background-color: #f0f0f0;
+                }
+            </style>
+        </head>
+        <body>
+        <div style="text-align:center">
+            <img src="https://alcaldiapaez.gob.ve/wp-content/uploads/2021/12/principal.png" alt="" class="img-fluid" style="width: 100%; max-width:1200px;">
+        </div> 
+        <h3 style="text-align:left;">Alcadia Municipal de Paez</h3>
+        <h5 style="text-align:left;">RIF G-200027304</h5>
+        <h5 style="text-align:left;">EMAIL:alpaezinnovaciondigital@gmail.com</h5>
+        <h5 style="text-align:left;">Direccion: Av 31 con calle 32 sector Centro</h5>
+        <table class="table table-bordered" border="0">
+                <tr >
+                    <th class="text-primary" style="text-align:center;" >ID</th>
+                    <th style="text-align:center;">Participante</th>
+                    <th style="text-align:center;">Stand</th>
+                    <th style="text-align:center;">SUB-Total</th>
+                </tr>
+                    <tr>
+                        <td style="text-align:center;">$venta->id</td>
+                        <td style="text-align:center;">$participante->nombre</td>
+                        <td style="text-align:center;">$stand->nombre</td>
+                        <td style="text-align:center;">$venta->montocancelado</td>
+                    </tr>
+                <tr>
+                    <td colspan="3">Subtotal</td>
+                    <td style="text-align:center;">$venta->montocancelado</td>
+                </tr>
+                
+                <tr>
+                    <td colspan="3">Total</td>
+                    <td style="text-align:center;">$venta->montocancelado</td>
+                </tr>
+            </table>
+
+        </body>
+        </html>
+   HTML;
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('latter', 'portrait');
+        $dompdf->render();
+        $dompdf->stream("Tarsicio_Carrizales_Proyecto_Horus.pdf", array("Attachment"=>1));        
+        return redirect()->back();
+     /*  $vista = view('Venta.factura', compact('participante'));
 
         // Generar el PDF utilizando DOMPDF
-        $pdf = PDF::loadHTML($vista);
+        
+        $pdf = PDF::loadView($vista);
     
         // Descargar el PDF
-        return $pdf->download('factura.pdf');
+        return $pdf->download('factura.pdf');*/
        
     }    
 
