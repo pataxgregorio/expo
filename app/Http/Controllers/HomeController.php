@@ -145,5 +145,39 @@ class HomeController extends Controller
     return view('adminlte::home',compact('count_notification','cantidad_pagado','fila1','fila2','raiz','cantidad_reservado','cantidad_disponible','user_total_activos','total_stand',
     'total_roles','array_color'));
 
+} public function dashboard5(Request $request){        
+     
+    $valornumero = $request['numero'];
+    $count_notification = (new User)->count_noficaciones_user();
+    $user_total_activos = (new User)->userTotalActivo();
+    $total_roles = (new User)->totalRoles();
+    $user_total_Deny = (new User)->userTotalDeny();
+    $array_color = (new Colores)->getColores();
+    $total_stand = (new Stand)->total_stand5($valornumero);
+    $cantidad_pagado = (new Stand)->total_pagado6($valornumero); 
+    $cantidad_reservado = (new Stand)->total_reservado6($valornumero); 
+    $cantidad_disponible = (new Stand)->total_disponible6($valornumero);
+    $raiz =3;
+
+    return view('adminlte::home',compact('count_notification','cantidad_pagado','valornumero','raiz','cantidad_reservado','cantidad_disponible','user_total_activos','total_stand',
+    'total_roles','array_color'));
+
+}  public function dashboard6(Request $request){        
+     
+    $valornumero = $request['numero'];
+    $count_notification = (new User)->count_noficaciones_user();
+    $user_total_activos = (new User)->userTotalActivo();
+    $total_roles = (new User)->totalRoles();
+    $user_total_Deny = (new User)->userTotalDeny();
+    $array_color = (new Colores)->getColores();
+    $total_stand = (new Stand)->total_stand6($valornumero);
+    $cantidad_pagado = (new Stand)->total_pagado7($valornumero); 
+    $cantidad_reservado = (new Stand)->total_reservado8($valornumero); 
+    $cantidad_disponible = (new Stand)->total_disponible7($valornumero);
+    $raiz = 4;
+
+    return view('adminlte::home',compact('count_notification','cantidad_pagado','valornumero','raiz','cantidad_reservado','cantidad_disponible','user_total_activos','total_stand',
+    'total_roles','array_color'));
+
 } 
 }

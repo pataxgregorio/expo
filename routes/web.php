@@ -68,7 +68,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/users/create', 'User\UserController@create')->name('users.create')->middleware('permiso:user,add');
     Route::post('/users', 'User\UserController@store')->name('users.store')->middleware('permiso:user,add');
     Route::get('/users/{user}/view', 'User\UserController@view')->name('users.view')->middleware('permiso:user,view');
-    Route::get('/users/{user}/edit', 'User\UserController@edit')->name('users.edit')->middleware('permiso:user,edit');
+    Route::get('/users/{user}/edit', 'User\UserController@edit')->name('users.edit');
     Route::post('/users/{user}', 'User\UserController@update')->name('users.update')->middleware('permiso:user,update');
     Route::get('/users/{user}/delete', 'User\UserController@destroy')->name('users.destroy')->middleware('permiso:user,delete');
     Route::get('/users/list', 'User\UserController@getUsers')->name('users.list')->middleware('permiso:user,view');
@@ -162,9 +162,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard.dashboard');
     Route::get('/dashboard1', 'HomeController@dashboard1')->name('dashboard.dashboard1');
     Route::get('/dashboard2', 'HomeController@dashboard2')->name('dashboard.dashboard2');
-   Route::get('/dashboard3', 'HomeController@dashboard3')->name('dashboard.dashboard3');
-   Route::get('/dashboard4', 'HomeController@dashboard4')->name('dashboard.dashboard4');
-
+    Route::get('/dashboard3', 'HomeController@dashboard3')->name('dashboard.dashboard3');
+    Route::get('/dashboard4', 'HomeController@dashboard4')->name('dashboard.dashboard4');
+    Route::get('/dashboard5', 'HomeController@dashboard5')->name('dashboard.dashboard5');
+    Route::get('/dashboard6', 'HomeController@dashboard6')->name('dashboard.dashboard6');
+   
 });
 // *********************************************************************************************************
     /*

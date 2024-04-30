@@ -1,8 +1,10 @@
 <section id="intro" class="clearfix">
-  <div class="container">    
-    <div style="text-align:center">
-        <img src="{{ url('/images/icons/2.png') }}" alt="" class="img-fluid" style="width: 100%; max-width:150px;">
-    </div>    
+<div class="container" >    
+    <div style="border-radius: 120px; display:flex; justify-content: center;">
+      <div>
+            <video src="/images/icons/logo-mobile.mp4" style="border-radius: 120px; display:flex; justify-content: center;" autoplay loop muted></video>
+      </div>
+  </div>
     <div style="text-align:center;">
     <h2>Sistema Expoferia 2024 de la Alcadia de Paez</h2>
       <h3>Proyecto contemplado en el Plan de Gobierno del Alcalde Rafael Torrealba. <br> En Periodo 2021-2025

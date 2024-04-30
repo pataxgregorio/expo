@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models\Ventas;
-
+use App\Models\User\User;
 use App\Models\Stand\Stand;
 use App\Models\Participante\Participante;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -39,7 +39,8 @@ class Venta extends Model
            
             $resultado = DB::table('venta') ->join('stand', 'venta.stand_id', '=', 'stand.id')
             ->join('participante', 'venta.participante_id', '=', 'participante.id')
-            ->select('participante.nombre AS participante', 'venta.id AS id', 'stand.nombre AS stand', 'stand.zona AS zona','stand.status AS status')
+            ->join('users', 'venta.user_id', '=', 'users.id')
+            ->select('participante.nombre AS participante', 'venta.id AS id', 'stand.nombre AS stand', 'stand.zona AS zona','stand.status AS status','users.name AS vendedor','venta.fecha')
             ->where('status', $status)->get();
 
         }

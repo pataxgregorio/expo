@@ -79,6 +79,7 @@ class VentaController extends Controller
     }
 
     public function getVenta(Request $request){
+            $usuario_id=auth()->user()->id;
             $resultado = (new Venta)->obtenerVenta($request['status']);
             $count_notification = (new User)->count_noficaciones_user();        
             $tipo_alert = "Create";
@@ -131,9 +132,7 @@ class VentaController extends Controller
             </style>
         </head>
         <body>
-        <div style="text-align:center">
-            <img src="https://alcaldiapaez.gob.ve/wp-content/uploads/2021/12/principal.png" alt="" class="img-fluid" style="width: 100%; max-width:1200px;">
-        </div> 
+        
         <h3 style="text-align:left;">Alcadia Municipal de Paez</h3>
         <h5 style="text-align:left;">RIF G-200027304</h5>
         <h5 style="text-align:left;">EMAIL:alpaezinnovaciondigital@gmail.com</h5>

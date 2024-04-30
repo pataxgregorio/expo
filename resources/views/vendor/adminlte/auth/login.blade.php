@@ -9,9 +9,16 @@
     <div id="app" v-cloak>
         <div class="login-box">
             <div class="login-logo">
-                <a href="{{ url('/dashboard') }}"><b>Sistema Integral de Atención</a>
+                <a href="{{ url('/dashboard') }}"><b>Sistema Expoferia 2024</a>
             </div><!-- /.login-logo -->
-                   
+            <div>
+                <div style="border-radius: 120px; display:flex; justify-content: center;">    
+                    <div style="border-radius: 120px; display:flex; justify-content: center;">
+                    <div>
+                            <video src="/images/icons/logo-mobile.mp4" style="border-radius: 120px; display:flex; justify-content: center;" autoplay loop muted></video>
+                    </div>
+                </div>
+            </div>
         @if (count($errors) > 0)
             <div class="alert alert-danger">
                 <strong>Whoops!</strong> {{ trans('message.someproblems') }}<br><br>

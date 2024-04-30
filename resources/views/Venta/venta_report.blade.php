@@ -35,7 +35,7 @@
           foreach ($resultado as $row2);
         ?>
         <div style="text-align:center">
-            <img src="{{ url('/images/icons/cintillo.png') }}" alt="" class="img-fluid" style="width: 100%; max-width:1200px;">
+            <img src="{{ url('/images/icons/cintillo.png') }}" alt="" class="img-fluid" style="width: 100%; max-height:140px; :max-width:1200px;">
         </div> 
         <div style="text-align:center;"><h3>REPORTE TOTAL DE {{$row2->status}}</h3></div>
         <table  class="table table-bordered">
@@ -45,19 +45,30 @@
             @if ($row2->status!=='DISPONIBLE')
             <th style="text-align:center;">Participante</th> 
             @endif
-
+            @if ($row2->status!=='DISPONIBLE')
+            <th style="text-align:center;">fecha</th>
+            @endif
             <th style="text-align:center;">Stand</th>
             <th style="text-align:center;">Zona</th>
+            @if ($row2->status!=='DISPONIBLE')
+            <th style="text-align:center;">Vendedor</th>
+            @endif
         </tr>
     </thead>
     <tbody>
    
         @foreach ($resultado as $row)
-       
+       <?php 
+       //$fecha=$row->fecha;
+      // $fecha2 = $fecha->format('d/m/Y');
+       ?>
             <tr>
                 <td style="text-align:center;">{{ $row->id }}</td>
                 @if ($row->status!=='DISPONIBLE')
                     <td style="text-align:center;">{{ $row->participante }}</td>
+                    @endif
+                    @if ($row->status!=='DISPONIBLE')
+                    <td style="text-align:center;">{{$row->fecha}}</td>
                     @endif
                     @if ($row->status!=='DISPONIBLE')
                 <td style="text-align:center;">{{ $row->stand }}</td>
@@ -66,6 +77,9 @@
                 <td style="text-align:center;">{{ $row->nombre }}</td>
                 @endif
                 <td style="text-align:center;">{{ $row->zona }}</td>
+                @if ($row->status!=='DISPONIBLE')
+                <td style="text-align:center;">{{ $row->vendedor }}</td>
+                @endif
             </tr>
         @endforeach
 
