@@ -166,7 +166,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard4', 'HomeController@dashboard4')->name('dashboard.dashboard4');
     Route::get('/dashboard5', 'HomeController@dashboard5')->name('dashboard.dashboard5');
     Route::get('/dashboard6', 'HomeController@dashboard6')->name('dashboard.dashboard6');
-   
+    Route::get('/dashboard7', 'HomeController@dashboard7')->name('dashboard.dashboard7');
+    
 });
 // *********************************************************************************************************
     /*
@@ -192,7 +193,7 @@ Route::get('/participante/getComunas', 'Participante\ParticipanteController@getC
 Route::get('/participante/getComunidad', 'Participante\ParticipanteController@getComunidad')->name('getComunidad');
 Route::get('/participante/getCoodinacion', 'Participante\ParticipanteController@getCoodinacion')->name('getCoodinacion');
 Route::get('/participante/list', 'Participante\ParticipanteController@getParticipante')->name('participante.list');
-Route::get('/participante/print', 'Participante\ParticipanteController@solicitudPrint')->name('participante.solicitudPrint');
+Route::get('/participante/print', 'Participante\ParticipanteController@participantesPrint')->name('participante.participantesPrint');
 Route::get('/participante/solicitudTipo', 'Participante\ParticipanteController@solicitudTipo')->name('participante.solicitudTipo');
 Route::get('/participante/solicitudTotalTipo', 'Participante\ParticipanteController@solicitudTotalTipo')->name('participante.solicitudTotalTipo');
 /* ********************************************************************  */
@@ -204,5 +205,6 @@ Route::post('/venta', 'Venta\VentaController@store')->name('venta.store');
 Route::post('/venta2', 'Venta\VentaController@store2')->name('venta.store2');
 Route::get('/ver', 'Venta\VentaController@getVenta')->name('ver');
 Route::post('/imprimir', 'Venta\VentaController@imprimir')->name('venta.imprimir');
+// Route::get('/descargarmapa', 'HomeController@descargarmapa' )->name('descargarmapa');
 //Route::get('/factura', 'Venta\VentaController@imprimir')->name('factura');
 //Route::get('/venta/pago', 'Venta\VentaController@edit')->name('venta.edit');

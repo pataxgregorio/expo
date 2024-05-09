@@ -66,6 +66,7 @@
                 <li><a href="{{ route('dashboard.dashboard6', ['numero' => 3]) }}"><i class='fa fa-link'></i> <span>Arco 3</span></a></li> 
                 </ul>
             </li>
+            <li><a href="{{ route('dashboard.dashboard7', ['numero' => 1]) }}"><i class='fa fa-link'></i> <span>Stands de Comida</span></a></li>
           
             <li><a href="{{ url('/participante') }}"><i class='fa fa-link'></i> <span>Participante</span></a></li>
             <li><a href="{{ url('/users') }}"><i class='fa fa-link'></i> <span>Usuarios</span></a></li> 

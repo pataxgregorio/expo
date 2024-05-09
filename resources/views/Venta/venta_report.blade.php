@@ -23,21 +23,22 @@
 
     
 @section('main-content')
-@component('components.alert_msg',['tipo_alert'=>$tipo_alert])
- Componentes para los mensajes de Alert, No Eliminar
-@endcomponent
 
 <div class="container-fluid">
     <div class="card">
         <div class="card-body">      
             
         <?php    
+       
           foreach ($resultado as $row2);
+         
+         // $participante = isset($row->participante) ? $row->id :"";
         ?>
         <div style="text-align:center">
-            <img src="{{ url('/images/icons/cintillo.png') }}" alt="" class="img-fluid" style="width: 100%; max-height:140px; :max-width:1200px;">
+            <img src="{{ url('/images/icons/cintillo.png') }}" alt="" class="img-fluid" style="width: 100%; max-height:140px; :max-width:1000px;">
         </div> 
         <div style="text-align:center;"><h3>REPORTE TOTAL DE {{$row2->status}}</h3></div>
+    <div class="table-responsive">   
         <table  class="table table-bordered">
     <thead>
         <tr>
@@ -61,6 +62,8 @@
        <?php 
        //$fecha=$row->fecha;
       // $fecha2 = $fecha->format('d/m/Y');
+   //  $id =isset($row->id) ? $row->id :"";
+   //  $participante = isset($row->participante) ? $row->id :"";
        ?>
             <tr>
                 <td style="text-align:center;">{{ $row->id }}</td>
@@ -85,6 +88,7 @@
 
     </tbody>
 </table>
+</div> 
         </div>
     </div>
 </div>

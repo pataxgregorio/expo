@@ -148,7 +148,7 @@ class VentaController extends Controller
                         <td style="text-align:center;">$venta->id</td>
                         <td style="text-align:center;">$participante->nombre</td>
                         <td style="text-align:center;">$stand->nombre</td>
-                        <td style="text-align:center;">$venta->montocancelado</td>
+                        <td style="text-align:center;">$venta->montocancelado</td>                        
                     </tr>
                 <tr>
                     <td colspan="3">Subtotal</td>
@@ -160,7 +160,8 @@ class VentaController extends Controller
                     <td style="text-align:center;">$venta->montocancelado</td>
                 </tr>
             </table>
-
+                <h3 style="text-align:center;">Observacion</h3>
+                <textarea name="" id="" cols="30" rows="10">$venta->observacion</textarea>
         </body>
         </html>
    HTML;

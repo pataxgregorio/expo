@@ -15,7 +15,7 @@
                 <div style="border-radius: 120px; display:flex; justify-content: center;">    
                     <div style="border-radius: 120px; display:flex; justify-content: center;">
                     <div>
-                            <video src="/images/icons/logo-mobile.mp4" style="border-radius: 120px; display:flex; justify-content: center;" autoplay loop muted></video>
+                        <img src="/images/icons/avatar.png" alt="logo" srcset="" style="max-width: 240px">
                     </div>
                 </div>
             </div>
