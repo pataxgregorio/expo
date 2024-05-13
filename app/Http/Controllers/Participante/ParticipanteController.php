@@ -55,7 +55,6 @@ class ParticipanteController extends Controller
             if ($request->ajax()) {                
                 $data =  (new Participante)-> total_participante();                
                 return datatables()->of($data)
-                          
                 ->addColumn('edit', function ($data) {
                     $user = Auth::user();                    
                     if(($user->id != 1)){
@@ -83,20 +82,82 @@ class ParticipanteController extends Controller
         return view('User.profile',compact('count_notification','user','array_color'));
     }
     
-    public function usersPrint(){
-        //generate some PDFs!
-        $html = '<div style="text-align:center"><h1>(PROYECT / PROYECTO) HORUS-1221</h1></div>
-        <div style="text-align:center">(Create By / Creado Por) - Tarsicio Carrizales</div>
-        <div style="text-align:center">(Mail / Correo) -  telecom.com.ve@gmail.com</div>
-        <div style="text-align:center">(Contact Cell Phone / Número Movil Contacto) - +58+412-054.53.69</div>
-        <div style="text-align:center">LARAVEL 8 and PWA, PHP 7.4 DATE: NOV / 2021</div>';
-        $dompdf = new DOMPDF();  //if you use namespaces you may use new \DOMPDF()
+    public function participantesPrint() {
+        // Generate some PDFs!
+        $participantes = (new Participante)->total_participante();
+        $participantesTotal = "";
+        foreach ($participantes as $participante) {
+            $participantes =<<<HTML
+                <table>
+                    <tr >
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Direccion</th>
+                        <th>Telefono</th>
+                    </tr>
+                    <tr>
+                        <td>$participante->id</td>                    
+                        <td>$participante->nombre</td>                    
+                        <td>$participante->direccion</td>                    
+                        <td>$participante->telefono</td> 
+                    </tr>
+                </table>
+            HTML;
+            $participantesTotal .= $participantes;
+        }
+        $html = 
+        <<<HTML
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <title>Invoice</title>
+            <style>
+                body {
+                    font-family: sans-serif;
+                }
+
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
+                }
+
+                th, td {
+                    border: 1px solid #ddd;
+                    padding: 8px;
+                    text-align: center;
+                }
+
+                th {
+                    text-align: center;
+                    text-align: left;
+                    background-color: #f0f0f0;
+                }
+            </style>
+        </head>
+        <body>
+        
+        <h3 style="text-align:left;">Alcadia Municipal de Paez</h3>
+        <h5 style="text-align:left;">RIF G-200027304</h5>
+        <h5 style="text-align:left;">EMAIL:alpaezinnovaciondigital@gmail.com</h5>
+        <h5 style="text-align:left;">Direccion: Av 31 con calle 32 sector Centro</h5>
+        
+        <div>
+            $participantesTotal
+        </div>
+
+        </body>
+        </html>
+        HTML;
+        $dompdf = new DOMPDF();
         $dompdf->loadHtml($html);
         $dompdf->setPaper('latter', 'portrait');
         $dompdf->render();
-        $dompdf->stream("Tarsicio_Carrizales_Proyecto_Horus.pdf", array("Attachment"=>1));        
+        $dompdf->stream("Tarsicio_Carrizales_Proyecto_Horus.pdf", array("Attachment"=>1));
+    
         return redirect()->back();
-    }    
+    }
+    
 
     public function update_avatar(Request $request, $id){
         $count_notification = (new User)->count_noficaciones_user();

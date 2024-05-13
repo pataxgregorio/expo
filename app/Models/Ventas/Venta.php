@@ -33,16 +33,13 @@ class Venta extends Model
     public function obtenerVenta($status){
        
         if($status=='DISPONIBLE'){
-            
             $resultado = DB::table('stand')->where('status', $status)->get();
-        }else{
-           
+        }else{           
             $resultado = DB::table('venta') ->join('stand', 'venta.stand_id', '=', 'stand.id')
             ->join('participante', 'venta.participante_id', '=', 'participante.id')
             ->join('users', 'venta.user_id', '=', 'users.id')
-            ->select('participante.nombre AS participante', 'venta.id AS id', 'stand.nombre AS stand', 'stand.zona AS zona','stand.status AS status','users.name AS vendedor','venta.fecha')
+            ->select( 'venta.id AS id', 'participante.nombre AS participante', 'stand.nombre AS stand', 'stand.zona AS zona','stand.status AS status','users.name AS vendedor','venta.fecha AS fecha')
             ->where('status', $status)->get();
-
         }
         return $resultado;
     }

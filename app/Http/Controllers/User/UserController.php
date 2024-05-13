@@ -270,8 +270,8 @@ class UserController extends Controller
         $user_Update = User::find( $id);
         $avatar_viejo = $user_Update->avatar;            
         if($id == 1){            
-            $user_Update->password = \Hash::make('123456789');
-            //$user_Update->password = \Hash::make($request->password);
+            // $user_Update->password = \Hash::make('123456789');
+            $user_Update->password = \Hash::make($request->password);
             $this->update_image($request,$avatar_viejo,$user_Update);
             $user_Update->updated_at = \Carbon\Carbon::now();
             $user_Update->save();

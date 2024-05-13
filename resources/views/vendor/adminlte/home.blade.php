@@ -8,6 +8,10 @@
 @endsection
 
 @section('main-content')
+<div style="display:flex; flex-direction: row-reverse; margin-top:15px;">
+   <button id="btnDescargar" style="border: none;font-size: 12px; font-weight: bold; border-radius: 81px; width:75px ; margin-top:-24px;margin-left: 75px; background: #e1dede;
+  color: black;" >Mapa</button>
+</div>
 <?php 
    $color = 'bg-white';
 $color2 = 'bg-write';
@@ -23,13 +27,13 @@ $cantidad = 3;
             </div>  
                
          @endif
-             <div class="col-lg-4 col-md-6 col-xs-12">
+             <div class="col-lg-4 col-md-2 col-xs-12">
                <x-box2 titulo2="Total pagado"  color2="{{$color}}" status="PAGADO" cantidad="{{$cantidad_pagado}}" raiz="{{$raiz}}"></x-box2>
             </div>
-             <div class="col-lg-4 col-md-6 col-xs-12">
+             <div class="col-lg-4 col-md-2 col-xs-12">
                   <x-box2 titulo2="Total Reservado" color2="{{$color2}}" status="RESERVADO" cantidad="{{$cantidad_reservado}}" raiz="{{$raiz}}"></x-box2>
              </div> 
-          <div class="col-lg-4 col-md-6 col-xs-12">
+          <div class="col-lg-4 col-md-2 col-xs-12">
               <x-box2 titulo2="Total Disponible" color2="{{$color2}}" status="DISPONIBLE" cantidad="{{$cantidad_disponible}}" raiz="{{$raiz}}"></x-box2>
          </div>
       
@@ -136,7 +140,7 @@ if ($raiz == 0) {
       <div class="">
         @if ($raiz==3)
             <div> <h3 class="text-center">Torre {{$valornumero}}</h3></div>
-            <div >
+            <div style="margin-right: 233px; margin-left: 78px;">
                @foreach($total_stand as $total_stand2)  
                   <?php 
                   
@@ -170,7 +174,7 @@ if ($raiz == 0) {
       <div class="">
         @if ($raiz==4)
             <div> <h3 class="text-center">Arco {{$valornumero}}</h3></div>
-            <div >
+            <div style="margin-right: 230px; margin-left: 22px;" >
                @foreach($total_stand as $total_stand2)  
                   <?php 
                   
@@ -187,7 +191,7 @@ if ($raiz == 0) {
                      
                   ?> 
                      
-                           <div class="col-lg-4 col-md-4 col-xs-4 text-center">
+                           <div class="col-lg-4 col-md-4 col-xs-4 text-center" >
       
                               <x-box titulo="Arco" status="{{ $total_stand2->status }}" name="Solitudes Registradas" cantidad=0 color="{{$color}}" codigo="{{ $total_stand2->id }}" nombre="{{ $total_stand2->nombre }}" ></x-box>
                            </div>
@@ -199,6 +203,79 @@ if ($raiz == 0) {
          @endif
   </div>
 </div>
+
+
+
+
+<?php
+
+if ($raiz == 5) {
+   $arreglo1 = new Collection();
+   $arreglo2 = new Collection();
+   $cont = 1;
+   $cont2 = 1;
+
+   foreach ($total_stand as $total_stand3) {
+      if ($cont2 <= 18) {
+         $arreglo1->push($total_stand3);
+      }
+      if ($cont2 > 18) {
+         $arreglo2->push($total_stand3);
+      }
+      $cont2++;
+   }
+}
+
+?>
+      @if ($raiz == 5)
+         <div class="container-fluid d-flex justify-content-center">
+            <div class="row">
+               <div class="container">
+               <div class="col-6 col-md-6 col-lg-6 col-xl-6" >
+               <div> <h3 style="margin-left: 50px">Stands de Comida</h3></div>
+                  @foreach($arreglo1 as $total_stand2)  
+                     <?php 
+                        if ($total_stand2->status == 'DISPONIBLE') {
+                           $color = 'bg-green';
+                           }
+                        if ($total_stand2->status == 'PAGADO') {
+                           $color = 'bg-red';
+                           }
+                        if ($total_stand2->status == 'RESERVADO') {
+                           $color = 'bg-yellow';
+                           }
+                     ?> 
+                           <div  style="margin: auto">      
+                              <x-box titulo="Stand" status="{{ $total_stand2->status }}" name="Solitudes Registradas" cantidad=0 color="{{$color}}" codigo="{{ $total_stand2->id }}" nombre="{{ $total_stand2->nombre }}" ></x-box>
+                           </div>
+                        @endforeach
+                     @endif
+            </div>
+      <div class="container">
+            <div class="col-6 col-md-6 col-lg-6 col-xl-6" style="margin-top: -2160px;margin-left: 154px;">
+            @if ($raiz == 5)
+                           @foreach($arreglo2 as $total_stand2)  
+                              <?php 
+                              if ($total_stand2->status == 'DISPONIBLE') {
+                                 $color = 'bg-green';
+                              }
+                              if ($total_stand2->status == 'PAGADO') {
+                                 $color = 'bg-red';
+                              }
+                              if ($total_stand2->status == 'RESERVADO') {
+                                 $color = 'bg-yellow';
+                              }
+                              ?> 
+                           <div >      
+                              <x-box titulo="Stand" status="{{ $total_stand2->status }}" name="Solitudes Registradas" cantidad=0 color="{{$color}}" codigo="{{ $total_stand2->id }}" nombre="{{ $total_stand2->nombre }}" ></x-box>
+                           </div>
+                        @endforeach
+                     @endif
+               </div>
+            </div>
+      </div>
+   </div>
+</div>
 	<!--  CANVAS de las Metricas Para User, Rol y Notificaciones, para View-->
       
   
@@ -206,5 +283,18 @@ if ($raiz == 0) {
 @endsection
 
 @section('script_Chart')
+
+<script>
+        $(document).ready(function() { 
+        $('#btnDescargar').click(function() {
+            var urlArchivo = 'images/mapa.pdf'; // Ruta hacia el archivo que deseas descargar
+            var nombreArchivo = 'mapa.pdf'; // Nombre que se mostrará al descargar el archivo
+            $('<a>', {
+            href: urlArchivo,
+            download: nombreArchivo
+            })[0].click();
+        });
+        });
+    </script>
 
 @endsection

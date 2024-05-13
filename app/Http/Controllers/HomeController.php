@@ -29,12 +29,6 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return Response
-     * Realizado por @author Tarsicio Carrizales
-     */
     public function index(){
         $confirmation_code = auth()->user()->confirmation_code;
         $confirmed_at = auth()->user()->confirmed_at;        
@@ -179,5 +173,21 @@ class HomeController extends Controller
     return view('adminlte::home',compact('count_notification','cantidad_pagado','valornumero','raiz','cantidad_reservado','cantidad_disponible','user_total_activos','total_stand',
     'total_roles','array_color'));
 
+} public function dashboard7(Request $request){        
+     
+    $count_notification = (new User)->count_noficaciones_user();
+            $user_total_activos = (new User)->userTotalActivo();
+            $total_roles = (new User)->totalRoles();
+            $user_total_Deny = (new User)->userTotalDeny();
+            $array_color = (new Colores)->getColores();
+            $total_stand = (new Stand)->total_stand8(); 
+            $cantidad_pagado = (new Stand)->total_pagado8(); 
+            $cantidad_reservado = (new Stand)->total_reservado9(); 
+            $cantidad_disponible = (new Stand)->total_disponible8();        
+            $raiz =5;
+            return view('adminlte::home',compact('count_notification','user_total_activos','total_stand',
+                                                  'total_roles','cantidad_pagado','raiz','cantidad_reservado','cantidad_disponible', 'array_color'));
+     
+    
 } 
 }

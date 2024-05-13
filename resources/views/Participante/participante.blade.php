@@ -14,9 +14,9 @@
                                 'router_modulo_create' => route('participante.create'),
                                 'id_new_modulo' => 'new_solicitud',
                                 'boton_crear' => 'Particip.',
-                                'route_print' => route('participante.solicitudPrint'),
-                                'route_download' => route('participante.solicitudPrint'),
-                                'route_upload' => route('participante.solicitudPrint'),
+                                'route_print' => route('participante.participantesPrint'),
+                                'route_download' => route('participante.participantesPrint'),
+                                'route_upload' => route('participante.participantesPrint'),
                                 'tooltip' => trans('message.tooltip.new_module'),
                                 'color' => $array_color['group_button_color']])
 Componentes para los Módulos del Sistema, (New,Print,Download and Upload)

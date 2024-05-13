@@ -45,7 +45,7 @@ desired effect
         @include('adminlte::layouts.partials.contentheader')
         
         <!-- Main content -->
-        <section class="content" style="min-height: 800px;">
+        <section class="content" style="min-height: 1000px;">
             <!-- Your Page Content Here -->            
             @yield('main-content')
         </section><!-- /.content -->
