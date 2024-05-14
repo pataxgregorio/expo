@@ -55,21 +55,22 @@ class VentaController extends Controller
         try {
           if ($request->ajax()) {
             $data = (new Venta)->obtenerVenta($request["status"]);
-            $recordTotal = count($data);
-      
-            // Implement pagination logic here if needed
-            // Based on request parameters like 'start' and 'length'
-            // ...
-      
-            $draw = $request->input('draw');
-      
-            return response()->json([
-              'data' => $data, // Assuming no filtering needed
-              'recordfilter' => $request->input('recordfilter'),
-              'recordtotal' => $recordTotal,
-              'draw' => $draw,
-            ]);
-          }
+            return datatables()->of($data)
+                ->addColumn('edit', function ($data) {
+                    $user = Auth::user();                    
+                    if(($user->id != 1)){
+                        $edit ='<a href="'.route('participante.edit', $data->id).'" id="edit_'.$data->id.'" class="btn btn-xs btn-primary disabled" style="background-color: #2962ff;"><b><i class="fa fa-pencil"></i>&nbsp;' .trans('message.botones.edit').'</b></a>';
+                    }else{
+                        $edit ='<a href="'.route('participante.edit', $data->id).'" id="edit_'.$data->id.'" class="btn btn-xs btn-primary" style="background-color: #2962ff;"><b><i class="fa fa-pencil"></i>&nbsp;' .trans('message.botones.edit').'</b></a>';
+                    }
+                    return $edit;
+                })
+                ->addColumn('view', function ($data) {
+                    return '<a style="background-color: #5333ed;" href="'.route('participante.view', $data->id).'" id="view_'.$data->id.'" class="btn btn-xs btn-primary"><b><i class="fa fa-eye"></i>&nbsp;' .trans('message.botones.view').'</b></a>';
+                })
+                
+                ->rawColumns(['edit','view','del'])->toJson();  
+            }
         } catch (Throwable $e) {
           return response()->json(['error' => 'Captured Throwable: ' . $e->getMessage()]);
         }
@@ -79,17 +80,21 @@ class VentaController extends Controller
         try {
             if ($request->ajax()) {
                 $data = (new Venta)->obtenerVenta($request["status"]);
-    
-                // Assuming 'recordfilter' is a boolean value for filtering logic
-                $filteredData = $data; // Replace with your filtering logic based on $request
-    
-                $recordTotal = count($data); // Assuming 'data' is an array of records
-    
-                return response()->json([
-                    'data' => $filteredData,
-                    'recordfilter' => isset($request['recordfilter']) ? $request['recordfilter'] : false,
-                    'recordtotal' => $recordTotal,
-                ]);
+                return datatables()->of($data)
+                ->addColumn('edit', function ($data) {
+                    $user = Auth::user();                    
+                    if(($user->id != 1)){
+                        $edit ='<a href="'.route('participante.edit', $data->id).'" id="edit_'.$data->id.'" class="btn btn-xs btn-primary disabled" style="background-color: #2962ff;"><b><i class="fa fa-pencil"></i>&nbsp;' .trans('message.botones.edit').'</b></a>';
+                    }else{
+                        $edit ='<a href="'.route('participante.edit', $data->id).'" id="edit_'.$data->id.'" class="btn btn-xs btn-primary" style="background-color: #2962ff;"><b><i class="fa fa-pencil"></i>&nbsp;' .trans('message.botones.edit').'</b></a>';
+                    }
+                    return $edit;
+                })
+                ->addColumn('view', function ($data) {
+                    return '<a style="background-color: #5333ed;" href="'.route('participante.view', $data->id).'" id="view_'.$data->id.'" class="btn btn-xs btn-primary"><b><i class="fa fa-eye"></i>&nbsp;' .trans('message.botones.view').'</b></a>';
+                })
+                
+                ->rawColumns(['edit','view','del'])->toJson();  
             }
         } catch (Throwable $e) {
             return response()->json(['error' => 'Captured Throwable: ' . $e->getMessage()]);
