@@ -51,11 +51,9 @@ class ParticipanteController extends Controller
 
     public function getParticipante(Request $request){
         try{
-           
             if ($request->ajax()) {                
                 $data =  (new Participante)-> total_participante();                
                 return datatables()->of($data)
-                          
                 ->addColumn('edit', function ($data) {
                     $user = Auth::user();                    
                     if(($user->id != 1)){
