@@ -25,42 +25,6 @@
 @section('main-content')
 
 
-<!-- @foreach ($resultado as $row)
-        
-        
-        //$fecha=$row->fecha;
-       // $fecha2 = $fecha->format('d/m/Y');
-    //  $id =isset($row->id) ? $row->id :"";
-    //  $participante = isset($row->participante) ? $row->id :"";
-        
-             <tr>
-                 @if($row->status=='DISPONIBLE')
-                     <td style="text-align:center;">{{ $row->id }}</td>
-                     <td style="text-align:center;">{{ $row->nombre }}</td>
-                     <td style="text-align:center;">{{ $row->zona }}</td>
-                 @endif
-                 @if($row->status!=='DISPONIBLE')
-                     <td style="text-align:center;">{{ $row->id }}</td>
-                     @if ($row->status!=='DISPONIBLE')
-                         <td style="text-align:center;">{{ $row->participante }}</td>
-                         @endif
-                         @if ($row->status!=='DISPONIBLE')
-                         <td style="text-align:center;">{{$row->fecha}}</td>
-                         @endif
-                         @if ($row->status!=='DISPONIBLE')
-                     <td style="text-align:center;">{{ $row->stand }}</td>
-                     @endif
-                     @if ($row->status=='DISPONIBLE')
-                     <td style="text-align:center;">{{ $row->nombre }}</td>
-                     @endif
-                     <td style="text-align:center;">{{ $row->zona }}</td>
-                     @if ($row->status!=='DISPONIBLE')
-                     <td style="text-align:center;">{{ $row->vendedor }}</td>
-                     @endif
-                 @endif
-             </tr>
-         @endforeach -->
-
 <div class="container-fluid">
     <div class="card">
         <div class="card-body">      
@@ -76,7 +40,9 @@
         </div> 
         <div style="text-align:center;"><h3>REPORTE TOTAL DE {{$row2->status}}</h3></div>
     <div class="table-responsive">   
-        <table  class="table table-bordered solicitud_all2">
+
+   <table  class="table table-bordered solicitud_all2">
+
     <thead>
         <tr>
             @if($row2->status=='DISPONIBLE')
