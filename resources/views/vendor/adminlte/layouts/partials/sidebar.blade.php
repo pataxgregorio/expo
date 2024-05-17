@@ -56,11 +56,16 @@
                 <li><a href="{{ route('dashboard.dashboard5', ['numero' => 8]) }}"><i class='fa fa-link'></i> <span>T8</span></a></li> 
                 <li><a href="{{ route('dashboard.dashboard5', ['numero' => 9]) }}"><i class='fa fa-link'></i> <span>T9</span></a></li> 
                 <li><a href="{{ route('dashboard.dashboard5', ['numero' => 10]) }}"><i class='fa fa-link'></i> <span>T10</span></a></li> 
+                <li><a href="{{ route('dashboard.dashboard5', ['numero' => 11]) }}"><i class='fa fa-link'></i> <span>P1</span></a></li> 
+                <li><a href="{{ route('dashboard.dashboard5', ['numero' => 12]) }}"><i class='fa fa-link'></i> <span>P2</span></a></li> 
+                <li><a href="{{ route('dashboard.dashboard5', ['numero' => 13]) }}"><i class='fa fa-link'></i> <span>P3</span></a></li> 
+                <li><a href="{{ route('dashboard.dashboard5', ['numero' => 14]) }}"><i class='fa fa-link'></i> <span>P4</span></a></li> 
                 </ul>
             </li>
             <li class="treeview">
                 <a href="#"><i class='fa fa-link'></i> <span>Arco</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
+                <li><a href="{{ route('dashboard.dashboard6', ['numero' => 0]) }}"><i class='fa fa-link'></i> <span>Arco Principal</span></a></li> 
                 <li><a href="{{ route('dashboard.dashboard6', ['numero' => 1]) }}"><i class='fa fa-link'></i> <span>Arco 1</span></a></li> 
                 <li><a href="{{ route('dashboard.dashboard6', ['numero' => 2]) }}"><i class='fa fa-link'></i> <span>Arco 2</span></a></li> 
                 <li><a href="{{ route('dashboard.dashboard6', ['numero' => 3]) }}"><i class='fa fa-link'></i> <span>Arco 3</span></a></li> 

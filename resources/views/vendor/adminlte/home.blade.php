@@ -171,10 +171,16 @@ if ($raiz == 0) {
 </div>
 
 <div class="row">
-      <div class="">
+      <div class="container">
         @if ($raiz==4)
-            <div> <h3 class="text-center">Arco {{$valornumero}}</h3></div>
-            <div style="margin-right: 230px; margin-left: 22px;" >
+        @if($valornumero == 0)
+            <div> <h3 class="text-center">Arco Principal</h3></div>
+            <div style="margin-right: 20px; margin-left: 22px;" >
+         @endif
+        @if($valornumero != 0)
+         <div> <h3 class="text-center">Arco {{$valornumero}}</h3></div>
+         <div style="margin-right: 230px; margin-left: 92px;" >
+         @endif
                @foreach($total_stand as $total_stand2)  
                   <?php 
                   
@@ -190,12 +196,20 @@ if ($raiz == 0) {
                      }
                      
                   ?> 
-                     
-                           <div class="col-lg-4 col-md-4 col-xs-4 text-center" >
+                  @if($valornumero == 0)
+                     <div class="col-lg-6 col-md-6 col-xs-6 text-center" >
+
+                        <x-box titulo="Arco" status="{{ $total_stand2->status }}" name="Solitudes Registradas" cantidad=0 color="{{$color}}" codigo="{{ $total_stand2->id }}" nombre="{{ $total_stand2->nombre }}" ></x-box>
       
-                              <x-box titulo="Arco" status="{{ $total_stand2->status }}" name="Solitudes Registradas" cantidad=0 color="{{$color}}" codigo="{{ $total_stand2->id }}" nombre="{{ $total_stand2->nombre }}" ></x-box>
-                           </div>
-         
+                        </div>
+                     @endif
+                     @if($valornumero != 0)
+                     <div class="col-lg-4 col-md-4 col-xs-4 text-center" >
+
+                        <x-box titulo="Arco" status="{{ $total_stand2->status }}" name="Solitudes Registradas" cantidad=0 color="{{$color}}" codigo="{{ $total_stand2->id }}" nombre="{{ $total_stand2->nombre }}" ></x-box>
+      
+                        </div>
+                     @endif
                   
 
             @endforeach

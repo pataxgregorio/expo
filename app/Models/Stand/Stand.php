@@ -97,6 +97,18 @@ class Stand extends Model
                 case 10:
                     $stand = DB::table('stand')->where('zona', 'T10')->get();
                     break;
+                case 11:
+                    $stand = DB::table('stand')->where('zona', 'P1')->get();
+                    break;
+                case 12:
+                    $stand = DB::table('stand')->where('zona', 'P2')->get();
+                    break;
+                case 13:
+                    $stand = DB::table('stand')->where('zona', 'P3')->get();
+                    break;
+                case 14:
+                    $stand = DB::table('stand')->where('zona', 'P4')->get();
+                    break;
                 default:
                     // Código a ejecutar si $variable no coincide con ningún caso anterior
                     break;
@@ -112,6 +124,9 @@ class Stand extends Model
     {
         try {
             switch ($valornumero) {
+                case 0:
+                    $stand = DB::table('stand')->where('zona', 'ARCO0')->get();
+                    break;
                 case 1:
                     $stand = DB::table('stand')->where('zona', 'ARCO1')->get();
                     break;
@@ -781,6 +796,70 @@ class Stand extends Model
                     }
                 }
                 break;
+            case 11:
+                $reservado = DB::table('stand')->select(DB::raw('COUNT(id) as reservado'))->where('status', 'RESERVADO')->where('zona', 'P1')->get();
+
+                foreach ($reservado as $reservado2) {
+                    $valor = property_exists($reservado2, 'reservado');
+
+                    if ((isset($valor))) {
+
+                        $total = $reservado2->reservado;
+                        return $total;
+                    } else {
+                        $total = 0;
+                        return $total;
+                    }
+                }
+                break;
+            case 12:
+                $reservado = DB::table('stand')->select(DB::raw('COUNT(id) as reservado'))->where('status', 'RESERVADO')->where('zona', 'P2')->get();
+
+                foreach ($reservado as $reservado2) {
+                    $valor = property_exists($reservado2, 'reservado');
+
+                    if ((isset($valor))) {
+
+                        $total = $reservado2->reservado;
+                        return $total;
+                    } else {
+                        $total = 0;
+                        return $total;
+                    }
+                }
+                break;
+            case 13:
+                $reservado = DB::table('stand')->select(DB::raw('COUNT(id) as reservado'))->where('status', 'RESERVADO')->where('zona', 'P3')->get();
+
+                foreach ($reservado as $reservado2) {
+                    $valor = property_exists($reservado2, 'reservado');
+
+                    if ((isset($valor))) {
+
+                        $total = $reservado2->reservado;
+                        return $total;
+                    } else {
+                        $total = 0;
+                        return $total;
+                    }
+                }
+                break;
+            case 14:
+                $reservado = DB::table('stand')->select(DB::raw('COUNT(id) as reservado'))->where('status', 'RESERVADO')->where('zona', 'P4')->get();
+
+                foreach ($reservado as $reservado2) {
+                    $valor = property_exists($reservado2, 'reservado');
+
+                    if ((isset($valor))) {
+
+                        $total = $reservado2->reservado;
+                        return $total;
+                    } else {
+                        $total = 0;
+                        return $total;
+                    }
+                }
+                break;
             default:
                 // Código a ejecutar si $variable no coincide con ningún caso anterior
                 break;
@@ -791,6 +870,23 @@ class Stand extends Model
     public function total_reservado8($valornumero)
     {
         switch ($valornumero) {
+            case 0:
+                $reservado = DB::table('stand')->select(DB::raw('COUNT(id) as reservado'))->where('zona', 'ARCO')->where('status', 'RESERVADO')->get();
+
+                foreach ($reservado as $reservado2) {
+                    $valor = property_exists($reservado2, 'reservado');
+
+                    if ((isset($valor))) {
+
+                        $total = $reservado2->reservado;
+                        return $total;
+                    } else {
+                        $total = 0;
+                        return $total;
+                    }
+
+                }
+                break;
             case 1:
                 $reservado = DB::table('stand')->select(DB::raw('COUNT(id) as reservado'))->where('zona', 'ARCO1')->where('status', 'RESERVADO')->get();
 
@@ -1014,6 +1110,62 @@ class Stand extends Model
                     }
                 }
                 break;
+            case 11:
+                $pagado = DB::table('stand')->select(DB::raw('COUNT(id) as pagado'))->where('zona', 'P1')->where('status', 'PAGADO')->get();
+                foreach ($pagado as $pagado2) {
+
+                    if (property_exists($pagado2, 'pagado')) {
+
+                        $total = $pagado2->pagado;
+                        return $total;
+                    } else {
+                        $total = 0;
+                        return $total;
+                    }
+                }
+                break;
+            case 12:
+                $pagado = DB::table('stand')->select(DB::raw('COUNT(id) as pagado'))->where('zona', 'P2')->where('status', 'PAGADO')->get();
+                foreach ($pagado as $pagado2) {
+
+                    if (property_exists($pagado2, 'pagado')) {
+
+                        $total = $pagado2->pagado;
+                        return $total;
+                    } else {
+                        $total = 0;
+                        return $total;
+                    }
+                }
+                break;
+            case 13:
+                $pagado = DB::table('stand')->select(DB::raw('COUNT(id) as pagado'))->where('zona', 'P3')->where('status', 'PAGADO')->get();
+                foreach ($pagado as $pagado2) {
+
+                    if (property_exists($pagado2, 'pagado')) {
+
+                        $total = $pagado2->pagado;
+                        return $total;
+                    } else {
+                        $total = 0;
+                        return $total;
+                    }
+                }
+                break;
+            case 14:
+                $pagado = DB::table('stand')->select(DB::raw('COUNT(id) as pagado'))->where('zona', 'P4')->where('status', 'PAGADO')->get();
+                foreach ($pagado as $pagado2) {
+
+                    if (property_exists($pagado2, 'pagado')) {
+
+                        $total = $pagado2->pagado;
+                        return $total;
+                    } else {
+                        $total = 0;
+                        return $total;
+                    }
+                }
+                break;
 
         }
     }
@@ -1024,6 +1176,20 @@ class Stand extends Model
 
 
         switch ($valornumero) {
+            case 0:
+                $pagado = DB::table('stand')->select(DB::raw('COUNT(id) as pagado'))->where('zona', 'ARCO0')->where('status', 'PAGADO')->get();
+                foreach ($pagado as $pagado2) {
+
+                    if (property_exists($pagado2, 'pagado')) {
+
+                        $total = $pagado2->pagado;
+                        return $total;
+                    } else {
+                        $total = 0;
+                        return $total;
+                    }
+                }
+                break;
             case 1:
                 $pagado = DB::table('stand')->select(DB::raw('COUNT(id) as pagado'))->where('zona', 'ARCO1')->where('status', 'PAGADO')->get();
                 foreach ($pagado as $pagado2) {
@@ -1232,6 +1398,62 @@ class Stand extends Model
                     }
                 }
                 break;
+            case 11:
+                $pagado = DB::table('stand')->select(DB::raw('COUNT(id) as disponible'))->where('zona', 'P1')->where('status', 'DISPONIBLE')->get();
+                foreach ($pagado as $pagado2) {
+
+                    if (property_exists($pagado2, 'disponible')) {
+
+                        $total = $pagado2->disponible;
+                        return $total;
+                    } else {
+                        $total = 0;
+                        return $total;
+                    }
+                }
+                break;
+            case 12:
+                $pagado = DB::table('stand')->select(DB::raw('COUNT(id) as disponible'))->where('zona', 'P2')->where('status', 'DISPONIBLE')->get();
+                foreach ($pagado as $pagado2) {
+
+                    if (property_exists($pagado2, 'disponible')) {
+
+                        $total = $pagado2->disponible;
+                        return $total;
+                    } else {
+                        $total = 0;
+                        return $total;
+                    }
+                }
+                break;
+            case 13:
+                $pagado = DB::table('stand')->select(DB::raw('COUNT(id) as disponible'))->where('zona', 'P3')->where('status', 'DISPONIBLE')->get();
+                foreach ($pagado as $pagado2) {
+
+                    if (property_exists($pagado2, 'disponible')) {
+
+                        $total = $pagado2->disponible;
+                        return $total;
+                    } else {
+                        $total = 0;
+                        return $total;
+                    }
+                }
+                break;
+            case 14:
+                $pagado = DB::table('stand')->select(DB::raw('COUNT(id) as disponible'))->where('zona', 'P4')->where('status', 'DISPONIBLE')->get();
+                foreach ($pagado as $pagado2) {
+
+                    if (property_exists($pagado2, 'disponible')) {
+
+                        $total = $pagado2->disponible;
+                        return $total;
+                    } else {
+                        $total = 0;
+                        return $total;
+                    }
+                }
+                break;
 
         }
     }
@@ -1240,8 +1462,22 @@ class Stand extends Model
 
 
         switch ($valornumero) {
+            case 0:
+                $pagado = DB::table('stand')->select(DB::raw('COUNT(id) as disponible'))->where('zona', 'ARCO0')->where('status', 'DISPONIBLE')->get();
+                foreach ($pagado as $pagado2) {
+
+                    if (property_exists($pagado2, 'disponible')) {
+
+                        $total = $pagado2->disponible;
+                        return $total;
+                    } else {
+                        $total = 0;
+                        return $total;
+                    }
+                }
+                break;
             case 1:
-                $pagado = DB::table('stand')->select(DB::raw('COUNT(id) as disponible'))->where('zona', 'T1')->where('status', 'DISPONIBLE')->get();
+                $pagado = DB::table('stand')->select(DB::raw('COUNT(id) as disponible'))->where('zona', 'ARCO1')->where('status', 'DISPONIBLE')->get();
                 foreach ($pagado as $pagado2) {
 
                     if (property_exists($pagado2, 'disponible')) {
@@ -1255,7 +1491,7 @@ class Stand extends Model
                 }
                 break;
             case 2:
-                $pagado = DB::table('stand')->select(DB::raw('COUNT(id) as disponible'))->where('zona', 'T2')->where('status', 'DISPONIBLE')->get();
+                $pagado = DB::table('stand')->select(DB::raw('COUNT(id) as disponible'))->where('zona', 'ARCO2')->where('status', 'DISPONIBLE')->get();
                 foreach ($pagado as $pagado2) {
 
                     if (property_exists($pagado2, 'disponible')) {
@@ -1269,7 +1505,7 @@ class Stand extends Model
                 }
                 break;
             case 3:
-                $pagado = DB::table('stand')->select(DB::raw('COUNT(id) as disponible'))->where('zona', 'T3')->where('status', 'DISPONIBLE')->get();
+                $pagado = DB::table('stand')->select(DB::raw('COUNT(id) as disponible'))->where('zona', 'ARCO3')->where('status', 'DISPONIBLE')->get();
                 foreach ($pagado as $pagado2) {
 
                     if (property_exists($pagado2, 'disponible')) {

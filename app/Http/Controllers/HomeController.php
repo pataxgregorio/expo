@@ -157,7 +157,7 @@ class HomeController extends Controller
     'total_roles','array_color'));
 
 }  public function dashboard6(Request $request){        
-     
+    
     $valornumero = $request['numero'];
     $count_notification = (new User)->count_noficaciones_user();
     $user_total_activos = (new User)->userTotalActivo();
