@@ -181,9 +181,12 @@ if ($raiz == 0) {
          <div> <h3 class="text-center">Arco {{$valornumero}}</h3></div>
          <div style="margin-right: 230px; margin-left: 92px;" >
          @endif
-               @foreach($total_stand as $total_stand2)  
+         <div style="">
+            <h2 style="text-align:center">Lados Frontales</h2>
+         </div>
+         <?php $count = 1; ?>
+               @foreach($total_stand as $total_stand2) 
                   <?php 
-                  
                   //  var_dump($total_stand);
                      if ($total_stand2->status=='DISPONIBLE'){
                      $color ='bg-green';
@@ -196,22 +199,21 @@ if ($raiz == 0) {
                      }
                      
                   ?> 
-                  @if($valornumero == 0)
-                     <div class="col-lg-6 col-md-6 col-xs-6 text-center" >
-
-                        <x-box titulo="Arco" status="{{ $total_stand2->status }}" name="Solitudes Registradas" cantidad=0 color="{{$color}}" codigo="{{ $total_stand2->id }}" nombre="{{ $total_stand2->nombre }}" ></x-box>
-      
-                        </div>
-                     @endif
-                     @if($valornumero != 0)
-                     <div class="col-lg-4 col-md-4 col-xs-4 text-center" >
-
-                        <x-box titulo="Arco" status="{{ $total_stand2->status }}" name="Solitudes Registradas" cantidad=0 color="{{$color}}" codigo="{{ $total_stand2->id }}" nombre="{{ $total_stand2->nombre }}" ></x-box>
-      
-                        </div>
-                     @endif
                   
-
+                     @if($count == 5)
+                        <div style="">
+                           <h2 class="text-center">Lados Laterales</h2>
+                        </div>
+                     @endif
+                     @if($count == 9 )
+                     <div style="">
+                        <h2 class="text-center">Lados Traseros</h2>
+                     </div>
+                     @endif
+                        <div class="col-lg-6 col-md-6 col-xs-6 text-center">
+                           <x-box titulo="Arco" status="{{ $total_stand2->status }}" name="Solitudes Registradas" cantidad=0 color="{{$color}}" codigo="{{ $total_stand2->id }}" nombre="{{ $total_stand2->nombre }}" ></x-box>
+                        </div>
+                     <?php $count++; ?> 
             @endforeach
          </div>
          @endif

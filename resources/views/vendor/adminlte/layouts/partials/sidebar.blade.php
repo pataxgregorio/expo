@@ -65,7 +65,6 @@
             <li class="treeview">
                 <a href="#"><i class='fa fa-link'></i> <span>Arco</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
-                <li><a href="{{ route('dashboard.dashboard6', ['numero' => 0]) }}"><i class='fa fa-link'></i> <span>Arco Principal</span></a></li> 
                 <li><a href="{{ route('dashboard.dashboard6', ['numero' => 1]) }}"><i class='fa fa-link'></i> <span>Arco 1</span></a></li> 
                 <li><a href="{{ route('dashboard.dashboard6', ['numero' => 2]) }}"><i class='fa fa-link'></i> <span>Arco 2</span></a></li> 
                 <li><a href="{{ route('dashboard.dashboard6', ['numero' => 3]) }}"><i class='fa fa-link'></i> <span>Arco 3</span></a></li> 
