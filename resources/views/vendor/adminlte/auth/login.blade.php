@@ -12,10 +12,10 @@
                 <a href="{{ url('/dashboard') }}"><b>Sistema Expoferia 2024</a>
             </div><!-- /.login-logo -->
             <div>
-                <div style="border-radius: 120px; display:flex; justify-content: center;">    
+                <div style="border-radius: 120px; display:flex; justify-content: center;">
                     <div style="border-radius: 120px; display:flex; justify-content: center;">
                     <div>
-                        <img src="/images/icons/avatar.png" alt="logo" srcset="" style="max-width: 240px">
+                        <img src="/images/logo.png" alt="logo" srcset="" style="max-width: 240px">
                     </div>
                 </div>
             </div>

@@ -8,7 +8,7 @@ class Box extends Component
 {
     public string $titulo;
 
-    public int $cantidad;
+    public int $raiz;
 
     public string $name;
     public int $codigo;
@@ -20,11 +20,11 @@ class Box extends Component
      *
      * @return void
      */
-    public function __construct(string $titulo,string $status,string $nombre,int $cantidad = 0,
+    public function __construct(string $titulo,string $status,string $nombre,int $raiz = 0,
                                 string $name,string $color = 'bg-blue',int $codigo = 0)
     {
         $this->titulo = $titulo;
-        $this->cantidad = $cantidad;
+        $this->raiz = $raiz;
         $this->name = $name;
         $this->color = $color;
         $this->codigo = $codigo;

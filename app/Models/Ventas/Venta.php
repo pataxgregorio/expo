@@ -13,12 +13,13 @@ class Venta extends Model
     protected $table = 'venta';
     protected $fillable = [
         'participante_id',
-        'stand_id',  
-        'user_id',      
+        'stand_id',
+        'user_id',
         'montocancelado',
         'observacion',
         'negociacion',
         'fecha',
+        'state',
     ];
     public function total_Venta(){
         try {
@@ -28,13 +29,13 @@ class Venta extends Model
             $solicitud = [];
             return $venta;
         }
-    
+
     }
     public function obtenerVenta($status){
-       
+
         if($status=='DISPONIBLE'){
             $resultado = DB::table('stand')->where('status', $status)->get();
-        }else{           
+        }else{
             $resultado = DB::table('venta') ->join('stand', 'venta.stand_id', '=', 'stand.id')
             ->join('participante', 'venta.participante_id', '=', 'participante.id')
             ->join('users', 'venta.user_id', '=', 'users.id')
@@ -46,10 +47,10 @@ class Venta extends Model
     public function obtenerparticipante($stand_id){
     $resultados = DB::table('venta')->where('stand_id', $stand_id)
                 ->get();
-           
+
             return $resultados;
         }
     }
-   
+
 
 

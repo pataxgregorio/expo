@@ -1,8 +1,8 @@
 <section id="intro" class="clearfix">
-<div class="container" >    
+<div class="container" >
     <div style="border-radius: 120px; display:flex; justify-content: center;">
       <div>
-            <img src="/images/icons/avatar.png" alt="logo" srcset="" style="max-width: 420px">
+            <img src="/images/logo.png" alt="logo" srcset="" style="max-width: 420px">
       </div>
   </div>
     <div style="text-align:center;">
@@ -10,16 +10,16 @@
       <h3>Proyecto contemplado en el Plan de Gobierno del Alcalde Rafael Torrealba. <br> En Periodo 2021-2025
         La Transformación Digital del Municipio
       </h3>
-    </div>        
+    </div>
     <div class="intro-img" style="text-align:center;">
       <img src="{{ url('/images/icons/footer.png') }}" alt="" class="img-fluid" style="width: 100%; max-width:1720px;">
     </div>
     <div style="text-align:center;">
-      
+
     </div>
-    
+
   </div>
-  <!-- <div style="text-align:center">                                                
+  <!-- <div style="text-align:center">
       <img style="width: 20%; height: 20%;" src="{ url('/storage/img/49_99.png') }" class="img-fluid" alt="price"/>
     </div>  -->
 </section><!-- #intro -->
@@ -27,6 +27,6 @@
 </div>
     @include('sweetalert::alert')
     <script src="{{ url ('/js_datatable/jquery-3.5.1.js') }}" type="text/javascript"></script>
-    <script src="{{ url ('/js_bootstrap/bootstrap.min.js') }}" type="text/javascript"></script>       
+    <script src="{{ url ('/js_bootstrap/bootstrap.min.js') }}" type="text/javascript"></script>
 </body>
 </html>

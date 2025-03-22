@@ -1,6 +1,6 @@
 <?php
 
-return [    
+return [
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -51,10 +51,9 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost:8000'),
+    'url' => env('APP_URL', 'http://localhost:7000'),
 
     'asset_url' => env('ASSET_URL', null),
-
     /*
     |--------------------------------------------------------------------------
     | Application Timezone
@@ -230,12 +229,12 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        // Nuevos Instalados  
+        // Nuevos Instalados
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
         'Form' => Collective\Html\FormFacade::class,
-        'Html' => Collective\Html\HtmlFacade::class,      
+        'Html' => Collective\Html\HtmlFacade::class,
     ],
 
 ];

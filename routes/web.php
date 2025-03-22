@@ -22,7 +22,7 @@ Auth::routes();
 Route::get('idioma/{lang}', 'Lenguaje\LenguajeController@cambioLenguaje')
             ->name('idioma.cambioLenguaje');
 
-Route::get('/deny', function () {    
+Route::get('/deny', function () {
     return view('deny');
 });
 
@@ -35,10 +35,10 @@ Route::get('/', function () {
 });
 
 /**
- * Se creó un middleware('permiso:user,view') el cual verifica antes de 
+ * Se creó un middleware('permiso:user,view') el cual verifica antes de
  * acceder al recurso solicitado si el usuario tiene permiso de ver dicho recurso.
  * Este middleware es parte de la seguridad de la aplicación en conjunto cn los permisos
- * asignados a cada rol. 
+ * asignados a cada rol.
  * */
  // *********************************************************************************************************
     /*
@@ -65,6 +65,7 @@ Route::group(['middleware' => 'auth'], function () {
     * Rutas de Usuarios, para todas las operaciones, con el Middleware (permiso) Integrado, para cada caso.
     */
     Route::get('/users', 'User\UserController@index')->name('users.index')->middleware('permiso:user,view');
+    Route::get('/usersApi', 'User\UserController@getUsers2')->name('usersApi');
     Route::get('/users/create', 'User\UserController@create')->name('users.create')->middleware('permiso:user,add');
     Route::post('/users', 'User\UserController@store')->name('users.store')->middleware('permiso:user,add');
     Route::get('/users/{user}/view', 'User\UserController@view')->name('users.view')->middleware('permiso:user,view');
@@ -118,12 +119,12 @@ Route::group(['middleware' => 'auth'], function () {
     ->name('permisos.destroy')->middleware('permiso:permiso,delete');
 
     Route::get('/permisos/print', 'Permiso\PermisoController@permisoPrint')
-    ->name('permisos.permisoPrint')->middleware('permiso:permiso,print');    
+    ->name('permisos.permisoPrint')->middleware('permiso:permiso,print');
     /*
     * Fin de las Rutas de Permiso, para todas las operaciones
     */
     // *********************************************************************************************************
-    // *********************************************************************************************************    
+    // *********************************************************************************************************
     /*
     * Rutas de Roles, para todas las operaciones, con el Middleware (permiso) Integrado, para cada caso.
     */
@@ -135,7 +136,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/rols/{rol}', 'Rol\RolController@update')->name('rols.update')->middleware('permiso:rol,update');
     Route::get('/rols/{rol}/delete', 'Rol\RolController@destroy')->name('rols.destroy')->middleware('permiso:rol,delete');
     Route::get('/rols/list', 'Rol\RolController@getRols')->name('rols.list')->middleware('permiso:rol,view');
-    Route::get('/rols/print', 'Rol\RolController@rolsPrint')->name('rols.rolsPrint')->middleware('permiso:rol,print');        
+    Route::get('/rols/print', 'Rol\RolController@rolsPrint')->name('rols.rolsPrint')->middleware('permiso:rol,print');
     /*
     * Fin de las Rutas de Usuarios, para todas las operaciones
     */
@@ -152,7 +153,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/modulos/{modulo}', 'Modulo\ModuloController@update')->name('modulos.update')->middleware('permiso:modulo,update');
     Route::get('/modulos/{modulo}/delete', 'Modulo\ModuloController@destroy')->name('modulos.destroy')->middleware('permiso:modulo,delete');
     Route::get('/modulos/list', 'Modulo\ModuloController@getModulos')->name('modulos.list')->middleware('permiso:modulo,view');
-    Route::get('/modulos/print', 'Modulo\ModuloController@modulosPrint')->name('modulos.modulosPrint')->middleware('permiso:modulo,print');               
+    Route::get('/modulos/print', 'Modulo\ModuloController@modulosPrint')->name('modulos.modulosPrint')->middleware('permiso:modulo,print');
     /*
     * Fin de las Rutas de Usuarios, para todas las operaciones
     */
@@ -167,7 +168,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard5', 'HomeController@dashboard5')->name('dashboard.dashboard5');
     Route::get('/dashboard6', 'HomeController@dashboard6')->name('dashboard.dashboard6');
     Route::get('/dashboard7', 'HomeController@dashboard7')->name('dashboard.dashboard7');
-    
+    Route::get('/dashboard8', 'HomeController@dashboard8')->name('dashboard.dashboard8');
+    Route::get('/dashboard9', 'HomeController@dashboard9')->name('dashboard.dashboard9');
+
 });
 // *********************************************************************************************************
     /*
@@ -200,6 +203,7 @@ Route::get('/participante/solicitudTotalTipo', 'Participante\ParticipanteControl
 Route::get('/venta/pago', 'Venta\VentaController@pago')->name('pago');
 Route::get('/venta/abonado', 'Venta\VentaController@abonado')->name('abonado');
 Route::get('/venta/abonado2', 'Venta\VentaController@abonado2')->name('abonado2');
+Route::get('/eliminar', 'Venta\VentaController@eliminar')->name('venta.eliminar');
 Route::get('/venta', 'Venta\VentaController@index')->name('venta.index');
 Route::post('/venta', 'Venta\VentaController@store')->name('venta.store');
 Route::post('/venta2', 'Venta\VentaController@store2')->name('venta.store2');
@@ -207,6 +211,9 @@ Route::get('/ventaslist', 'Venta\VentaController@getVentas')->name('ventas.list'
 Route::get('/standlist', 'Venta\VentaController@getStand')->name('stand.list');
 Route::get('/ver', 'Venta\VentaController@getVenta')->name('ver');
 Route::post('/imprimir', 'Venta\VentaController@imprimir')->name('venta.imprimir');
+
 // Route::get('/descargarmapa', 'HomeController@descargarmapa' )->name('descargarmapa');
 //Route::get('/factura', 'Venta\VentaController@imprimir')->name('factura');
 //Route::get('/venta/pago', 'Venta\VentaController@edit')->name('venta.edit');
+
+

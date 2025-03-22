@@ -27,7 +27,7 @@ class UserController extends Controller
      * @author Tarsicio Carrizales telecom.com.ve@gmail.com
      * @return \Illuminate\Http\Response
      */
-    public function index(){        
+    public function index(){
         $count_notification = (new User)->count_noficaciones_user();
        
         $tipo_alert = "";
@@ -89,6 +89,11 @@ class UserController extends Controller
         }catch(Throwable $e){
             echo "Captured Throwable: " . $e->getMessage(), "\n";
         }        
+    }
+    public function getUsers2(Request $request){
+        $datos = (new User)->getUsersList_DataTable();
+        json_encode($datos);
+        return $datos;
     }
 
     public function profile(){
