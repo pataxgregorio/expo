@@ -9,9 +9,9 @@
 @endsection
 
 @section('contentheader_title')
-<!-- Componente Button Para todas las Ventanas de los Módulos, no Borrar.--> 
+<!-- Componente Button Para todas las Ventanas de los Módulos, no Borrar.-->
 
-    
+
 @endsection
 
 @section('link_css_datatable')
@@ -21,25 +21,25 @@
     <link href="{{ url ('/css_datatable/buttons.dataTables.min.css') }}" rel="stylesheet">
 @endsection
 
-    
+
 @section('main-content')
 
 
 <div class="container-fluid">
     <div class="card">
-        <div class="card-body">      
-            
-        <?php    
-       
+        <div class="card-body">
+
+        <?php
+
           foreach ($resultado as $row2);
-         
+
          // $participante = isset($row->participante) ? $row->id :"";
         ?>
         <div style="text-align:center">
-            <img src="{{ url('/images/icons/cintillo.png') }}" alt="" class="img-fluid" style="width: 100%; max-height:140px; :max-width:1000px;">
-        </div> 
+            <img src="{{ url('/images/logo.png') }}" alt="" class="img-fluid" style="with: 100%; max-height:270px;max-width:270px;">
+        </div>
         <div style="text-align:center;"><h3>REPORTE TOTAL DE {{$row2->status}}</h3></div>
-    <div class="table-responsive">   
+    <div class="table-responsive">
 
    <table  class="table table-bordered solicitud_all2">
 
@@ -63,7 +63,7 @@
     <tbody>
     </tbody>
 </table>
-</div> 
+</div>
         </div>
     </div>
 </div>
@@ -85,30 +85,30 @@
 $(document).ready(function(){
         var valueFromPHP = jsValue;
 $(function () {
-    
+
     if(valueFromPHP === "DISPONIBLE"){
         var table = $('.solicitud_all2').DataTable({
         processing: true,
         serverSide: true,
         responsive: true,
-        autoWidth : false,        
+        autoWidth : false,
             ajax: ({
             url:"{{ route('stand.list') }}",
             type:"GET",
             dataType: 'json',
             data:{status:valueFromPHP}
             }),
-        
-        columns: [          
+
+        columns: [
             {
                 data: 'id', name: 'id',
                 "render": function ( data, type, row ) {
                     return '<div style="text-align:center;"><b>'+data+'</b></div>';
                 }
             },
-            {data: 'nombre', name: 'stand'}, 
-            {data: 'zona', name: 'zona'}, 
-            
+            {data: 'nombre', name: 'stand'},
+            {data: 'zona', name: 'zona'},
+
         ],
         "language": {
             "lengthMenu": "Mostrar _MENU_ registros por página",
@@ -120,22 +120,22 @@ $(function () {
             "paginate": {
                 "next": "Siguiente",
                 "previous": "Anterior",
-            }        
+            }
         }
-    }); 
+    });
     }
     else{
         var table = $('.solicitud_all2').DataTable({
         processing: true,
         serverSide: true,
         responsive: true,
-        autoWidth : false,        
+        autoWidth : false,
         ajax: ({
             url:"{{ route('ventas.list') }}",
             type:"GET",
             data:{status:valueFromPHP},
             }),
-        columns: [          
+        columns: [
             {
                 data: 'id', name: 'id',
                 "render": function ( data, type, row ) {
@@ -144,9 +144,9 @@ $(function () {
             },
             {data: 'participante', name: 'participante'},
             {data: 'fecha', name: 'fecha'},
-            {data: 'stand', name: 'nombretipo'}, 
+            {data: 'stand', name: 'nombretipo'},
             {data: 'zona', name: 'zona'},
-            {data: 'vendedor', name: 'vendedor'},        
+            {data: 'vendedor', name: 'vendedor'},
         ],
         "language": {
             "lengthMenu": "Mostrar _MENU_ registros por página",
@@ -158,11 +158,11 @@ $(function () {
             "paginate": {
                 "next": "Siguiente",
                 "previous": "Anterior",
-            }        
+            }
         }
-    }); 
+    });
     };
   });
 });
 </script>
-@endsection  
+@endsection

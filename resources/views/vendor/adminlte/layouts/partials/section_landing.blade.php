@@ -2,14 +2,12 @@
 <div class="container" >
     <div style="border-radius: 120px; display:flex; justify-content: center;">
       <div>
-            <img src="/images/logo.png" alt="logo" srcset="" style="max-width: 420px">
+            <img src="/images/logo2.png" alt="logo" srcset="" style="max-width: 420px">
       </div>
   </div>
     <div style="text-align:center;">
-    <h2>Sistema Expoferia 2024 de la Alcadia de Paez</h2>
-      <h3>Proyecto contemplado en el Plan de Gobierno del Alcalde Rafael Torrealba. <br> En Periodo 2021-2025
-        La Transformación Digital del Municipio
-      </h3>
+    <h2 ><strong>Sistema Expoferia 2025 de la Alcadia de Paez</strong></h2>
+
     </div>
     <div class="intro-img" style="text-align:center;">
       <img src="{{ url('/images/icons/footer.png') }}" alt="" class="img-fluid" style="width: 100%; max-width:1720px;">

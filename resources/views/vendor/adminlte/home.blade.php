@@ -23,7 +23,7 @@
     @if ($raiz == 1)
 
         <div style="text-align:center">
-        <img src="{{ url('/images/logo.png') }}" alt="" class="img-fluid" style="width: 100%; max-width:300px;">
+        <img src="{{ url('/images/logo2.png') }}" alt="" class="img-fluid" style="width: 100%; max-width:300px;">
         </div>
 
     @endif
@@ -307,16 +307,13 @@
 @section('script_Chart')
 
 <script>
-        $(document).ready(function() {
-        $('#btnDescargar').click(function() {
-            var urlArchivo = 'images/mapa.pdf'; // Ruta hacia el archivo que deseas descargar
-            var nombreArchivo = 'mapa.pdf'; // Nombre que se mostrará al descargar el archivo
-            $('<a>', {
-            href: urlArchivo,
-            download: nombreArchivo
-            })[0].click();
-        });
-        });
+    $(document).ready(function() {
+    $('#btnDescargar').click(function() {
+        var urlArchivo = 'images/mapa.png'; // Ruta hacia el archivo que deseas descargar
+        window.open(urlArchivo, '_blank'); // Abre el archivo en una nueva pestaña
+    });
+});
+
     </script>
 
 @endsection

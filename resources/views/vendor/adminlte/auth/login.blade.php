@@ -15,7 +15,7 @@
                 <div style="border-radius: 120px; display:flex; justify-content: center;">
                     <div style="border-radius: 120px; display:flex; justify-content: center;">
                     <div>
-                        <img src="/images/logo.png" alt="logo" srcset="" style="max-width: 240px">
+                        <img src="/images/logo2.png" alt="logo" srcset="" style="max-width: 240px">
                     </div>
                 </div>
             </div>
