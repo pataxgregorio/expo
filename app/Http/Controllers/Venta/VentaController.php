@@ -50,6 +50,7 @@ class VentaController extends Controller
         $array_color = (new Colores)->getColores();
         return view('Participante.participante',compact('count_notification','tipo_alert','array_color'));
     }
+
     public function eliminar(Request $request)
     {
 
@@ -112,7 +113,30 @@ class VentaController extends Controller
             return response()->json(['error' => 'Captured Throwable: ' . $e->getMessage()]);
         }
     }
+    public function getStand2(Request $request){
+        try {
+            if ($request->ajax()) {
+                $data = (new Venta)->obtenerVenta3();
+                return datatables()->of($data)
+                ->addColumn('edit', function ($data) {
+                    $user = Auth::user();
+                    if(($user->id != 1)){
+                        $edit ='<a href="'.route('participante.edit', $data->id).'" id="edit_'.$data->id.'" class="btn btn-xs btn-primary disabled" style="background-color: #2962ff;"><b><i class="fa fa-pencil"></i>&nbsp;' .trans('message.botones.edit').'</b></a>';
+                    }else{
+                        $edit ='<a href="'.route('participante.edit', $data->id).'" id="edit_'.$data->id.'" class="btn btn-xs btn-primary" style="background-color: #2962ff;"><b><i class="fa fa-pencil"></i>&nbsp;' .trans('message.botones.edit').'</b></a>';
+                    }
+                    return $edit;
+                })
+                ->addColumn('view', function ($data) {
+                    return '<a style="background-color: #5333ed;" href="'.route('participante.view', $data->id).'" id="view_'.$data->id.'" class="btn btn-xs btn-primary"><b><i class="fa fa-eye"></i>&nbsp;' .trans('message.botones.view').'</b></a>';
+                })
 
+                ->rawColumns(['edit','view','del'])->toJson();
+            }
+        } catch (Throwable $e) {
+            return response()->json(['error' => 'Captured Throwable: ' . $e->getMessage()]);
+        }
+    }
     public function getVenta(Request $request){
             $usuario_id=auth()->user()->id;
             $resultado = (new Venta)->obtenerVenta($request['status']);
@@ -124,6 +148,22 @@ class VentaController extends Controller
             return view('Venta.venta_report', compact('resultado', 'count_notification','tipo_alert','array_color','user_total_activos','total_roles'));
         }
 
+        public function getVenta2(Request $request)
+        {
+            $usuario_id = auth()->user()->id;
+            $resultado = (new Venta)->obtenerVenta2();
+            $count_notification = (new User)->count_noficaciones_user();
+            $tipo_alert = "Create";
+            $array_color = (new Colores)->getColores();
+            $user_total_activos = (new User)->userTotalActivo();
+            $total_roles = (new User)->totalRoles();
+            $stands = (new Venta)->obtenerVenta4(); // Cambiado $stand a $stands para claridad
+
+            // Transformar la colección a un array asociativo
+            $standArray = $stands->pluck('zona', 'id')->toArray();
+
+            return view('Venta.venta_report2', compact('resultado', 'standArray', 'count_notification', 'tipo_alert', 'array_color', 'user_total_activos', 'total_roles'));
+        }
     public function profile(){
         $count_notification = (new User)->count_noficaciones_user();
         $user = Auth::user();

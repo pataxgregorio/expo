@@ -209,8 +209,10 @@ Route::post('/venta', 'Venta\VentaController@store')->name('venta.store');
 Route::post('/venta2', 'Venta\VentaController@store2')->name('venta.store2');
 Route::get('/ventaslist', 'Venta\VentaController@getVentas')->name('ventas.list');
 Route::get('/standlist', 'Venta\VentaController@getStand')->name('stand.list');
+Route::get('/standlist2', 'Venta\VentaController@getStand2')->name('stand2.list');
 Route::get('/ver', 'Venta\VentaController@getVenta')->name('ver');
 Route::post('/imprimir', 'Venta\VentaController@imprimir')->name('venta.imprimir');
+Route::get('/ver2', 'Venta\VentaController@getVenta2')->name('ver2');
 
 // Route::get('/descargarmapa', 'HomeController@descargarmapa' )->name('descargarmapa');
 //Route::get('/factura', 'Venta\VentaController@imprimir')->name('factura');

@@ -72,6 +72,12 @@
                 <li><a href="{{ route('dashboard.dashboard6', ['numero' => 3]) }}"><i class='fa fa-link'></i> <span>Arco 3</span></a></li>
                 </ul>
             </li> --}}
+            <li class="treeview">
+                <a href="#"><i class='fa fa-link'></i> <span>Reporte</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                <li><a href="{{ url('/ver2') }}"><i class='fa fa-link'></i> <span>Ventas</span></a></li>
+                </ul>
+            </li>
             <li><a href="{{ route('dashboard.dashboard7', ['numero' => 1]) }}"><i class='fa fa-link'></i> <span>Stands de Comida</span></a></li>
 
             <li><a href="{{ url('/participante') }}"><i class='fa fa-link'></i> <span>Participante</span></a></li>
