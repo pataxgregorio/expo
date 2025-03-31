@@ -54,19 +54,34 @@ class Venta extends Model
     public function obtenerVenta4(){
 
 
-        $resultado = DB::table('stand')->select('id', 'zona')->get();
+        $resultado = DB::table('stand')->select( 'zona')->distinct()
+        ->get();
 
     return $resultado;
 }
-    public function obtenerVenta3(){
-
+    public function obtenerVenta3($fechadesde,$fechahasta,$zona){
+     $fechadesde = isset($fechadesde) ? $fechadesde :"";
+     $fechahasta = isset($fechahasta) ? $fechahasta :"";
+     $zona = isset($zona) ? $zona :"";
 
         $resultado = DB::table('venta') ->join('stand', 'venta.stand_id', '=', 'stand.id')
             ->join('participante', 'venta.participante_id', '=', 'participante.id')
             ->join('users', 'venta.user_id', '=', 'users.id')
             ->select( 'venta.id AS id', 'stand.nombre AS stand', 'stand.zona AS zona','participante.nombre AS participante', 'stand.status AS status','users.name AS vendedor','venta.fecha AS fecha')
-            ->get();
+            ->where(function ($query) use ($fechadesde, $fechahasta, $zona) {
+                if (!empty($fechaDesde)) {
+                    $query->where('venta.fecha', '>=', $fechaDesde);
+                }
+                if (!empty($fechahasta)) {
+                    $query->where('venta.fecha', '<=', $fechahasta);
+                }
+                if (!empty($zona)) {
+                    $query->where('stand.zona', '=', $zona);
+                }
 
+            })
+            ->distinct()
+            ->get();
     return $resultado;
 }
 

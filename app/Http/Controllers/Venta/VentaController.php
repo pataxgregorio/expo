@@ -116,7 +116,10 @@ class VentaController extends Controller
     public function getStand2(Request $request){
         try {
             if ($request->ajax()) {
-                $data = (new Venta)->obtenerVenta3();
+                $fechadesde = $request["fecha_desde"];
+                $fechahasta = $request["fecha_hasta"];
+                $zona = $request["zona"];
+                $data = (new Venta)->obtenerVenta3($fechadesde,$fechahasta,$zona);
                 return datatables()->of($data)
                 ->addColumn('edit', function ($data) {
                     $user = Auth::user();
@@ -157,13 +160,17 @@ class VentaController extends Controller
             $array_color = (new Colores)->getColores();
             $user_total_activos = (new User)->userTotalActivo();
             $total_roles = (new User)->totalRoles();
-            $stands = (new Venta)->obtenerVenta4(); // Cambiado $stand a $stands para claridad
+            $stands = (new Venta)->obtenerVenta4();
 
-            // Transformar la colección a un array asociativo
-            $standArray = $stands->pluck('zona', 'id')->toArray();
+            // Transformar la colección a un array asociativo usando 'zona' como clave y valor
+            $standArray = $stands->pluck('zona', 'zona')->toArray();
+
+            // Agregar una opción predeterminada
+            $standArray = ['' => 'Seleccionar'] + $standArray;
 
             return view('Venta.venta_report2', compact('resultado', 'standArray', 'count_notification', 'tipo_alert', 'array_color', 'user_total_activos', 'total_roles'));
         }
+
     public function profile(){
         $count_notification = (new User)->count_noficaciones_user();
         $user = Auth::user();

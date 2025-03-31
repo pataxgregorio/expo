@@ -48,8 +48,11 @@
                 <input type="date" class="form-control" id="fecha_hasta">
             </div>
             <div class="col-md-2">
-                <label for="direcciones">Zona:</label>
-                {!! Form::select('direcciones', [NULL => 'Seleccionar'] + $standArray, NULL, ['class' => 'form-control', 'id' => 'zona_id']) !!}
+            <label for="zona">Zona:</label>
+            {!! Form::select('zona_id', $standArray, null, ['class' => 'form-control', 'id' => 'zona_id']) !!}
+        </div>
+            <div class="col-md-2">
+                <button class="btn btn-primary" id="btn_filtrar" style="margin-top: 25px;">Filtrar</button>
             </div>
 
         </div>
@@ -89,48 +92,70 @@
 <script src="{{ url ('/js_delete/sweetalert.min.js') }}" type="text/javascript"></script>
 <script src="{{ url ('/js_delete/delete_confirm.min.js') }}"></script>
 <script type="text/javascript">
-$(document).ready(function() {
-    var table = $('.solicitud_all2').DataTable({
-        processing: true,
-        serverSide: true,
-        responsive: true,
-        autoWidth: false,
-        ajax: {
-            url: "{{ route('stand2.list') }}",
-            type: "GET",
-            dataType: 'json',
-            data: function(d) {
-                d.status = window.valueFromPHP; // Asegúrate de que valueFromPHP esté definido globalmente o correctamente
+    $(document).ready(function() {
+
+        // Inicializa la variable table en el ámbito global
+        var table;
+        $('#zona_id').change(function() {
+
+        })
+        $('#btn_filtrar').click(function() {
+
+            var fechaDesde = $('#fecha_desde').val();
+            var fechaHasta = $('#fecha_hasta').val();
+
+            if (!$.fn.DataTable.isDataTable('.solicitud_all2')) {
+                // Inicializar la tabla solo si no está inicializada
+                table = $('.solicitud_all2').DataTable({
+                    processing: true,
+                    serverSide: true,
+                    responsive: true,
+                    autoWidth: false,
+                    ajax: {
+                        url: "{{ route('stand2.list') }}",
+                        type: "GET",
+                        dataType: 'json',
+                        data: function(d) {
+                            d.zona = $('#zona_id').val();
+                            d.fecha_desde = $('#fecha_desde').val();
+                            d.fecha_hasta = $('#fecha_hasta').val();
+                        }
+                    },
+                    columns: [
+                        {
+                            data: 'id',
+                            name: 'id',
+                            render: function(data, type, row) {
+                                return '<div style="text-align:center;"><b>' + data + '</b></div>';
+                            }
+                        },
+                        { data: 'stand', name: 'stand' },
+                        { data: 'zona', name: 'zona' },
+                        { data: 'participante', name: 'participante' },
+                        { data: 'fecha', name: 'fecha' },
+                        { data: 'status', name: 'status' },
+                        { data: 'vendedor', name: 'vendedor' },
+                    ],
+                    language: {
+                        "lengthMenu": "Mostrar _MENU_ registros por página",
+                        "zeroRecords": "Nada encontrado !!! - disculpe",
+                        "info": "Mostrando la página _PAGE_ de _PAGES_",
+                        "infoEmpty": "Registros no disponible",
+                        "infoFiltered": "(filtrado de _MAX_ registros totales)",
+                        "search": "Buscar:",
+                        "paginate": {
+                            "next": "Siguiente",
+                            "previous": "Anterior",
+                        }
+                    }
+                });
+            } else {
+                // Recarga la tabla si ya está inicializada.
+                table.ajax.reload();
             }
-        },
-        columns: [
-            {
-                data: 'id',
-                name: 'id',
-                render: function(data, type, row) {
-                    return '<div style="text-align:center;"><b>' + data + '</b></div>';
-                }
-            },
-            { data: 'stand', name: 'stand' },
-            { data: 'zona', name: 'zona' },
-            { data: 'participante', name: 'participante' },
-            { data: 'fecha', name: 'fecha' },
-            { data: 'status', name: 'status' },
-            { data: 'vendedor', name: 'vendedor' },
-        ],
-        language: {
-            "lengthMenu": "Mostrar _MENU_ registros por página",
-            "zeroRecords": "Nada encontrado !!! - disculpe",
-            "info": "Mostrando la página _PAGE_ de _PAGES_",
-            "infoEmpty": "Registros no disponible",
-            "infoFiltered": "(filtrado de _MAX_ registros totales)",
-            "search": "Buscar:",
-            "paginate": {
-                "next": "Siguiente",
-                "previous": "Anterior",
-            }
-        }
+        });
+
+
     });
-});
-</script>
+    </script>
 @endsection
