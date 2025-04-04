@@ -9,7 +9,7 @@
 @endsection
 
 @section('contentheader_title')
-<!-- Componente Button Para todas las Ventanas de los Módulos, no Borrar.--> 
+<!-- Componente Button Para todas las Ventanas de los Módulos, no Borrar.-->
 @component('components.button',['titulo_modulo' =>'Participante',
                                 'router_modulo_create' => route('participante.create'),
                                 'id_new_modulo' => 'new_solicitud',
@@ -21,8 +21,8 @@
                                 'color' => $array_color['group_button_color']])
 Componentes para los Módulos del Sistema, (New,Print,Download and Upload)
 @endcomponent
-  
-    
+
+
 @endsection
 
 @section('link_css_datatable')
@@ -32,14 +32,14 @@ Componentes para los Módulos del Sistema, (New,Print,Download and Upload)
     <link href="{{ url ('/css_datatable/buttons.dataTables.min.css') }}" rel="stylesheet">
 @endsection
 
-    
+
 @section('main-content')
 @component('components.alert_msg',['tipo_alert'=>$tipo_alert])
  Componentes para los mensajes de Alert, No Eliminar
 @endcomponent
 <div class="container-fluid">
     <div class="card">
-        <div class="card-body">            
+        <div class="card-body">
                 <table class="table table-bordered solicitud_all">
                         <thead>
                             <tr>
@@ -49,6 +49,7 @@ Componentes para los Módulos del Sistema, (New,Print,Download and Upload)
                                 <th style="text-align:center;">Telefono</th>
                                 <th style="text-align:center;">{{ trans('message.botones.edit') }}</th>
                                 <th style="text-align:center;">{{ trans('message.botones.view') }}</th>
+                                <th style="text-align:center;">Eliminar</th>
                             </tr>
                         </thead>
                     <tbody>
@@ -68,41 +69,47 @@ Componentes para los Módulos del Sistema, (New,Print,Download and Upload)
 <script src="{{ url ('/js_delete/sweetalert.min.js') }}" type="text/javascript"></script>
 <script type="text/javascript">
   $(function () {
-    
+
     var table = $('.solicitud_all').DataTable({
         processing: true,
         serverSide: true,
         responsive: true,
-        autoWidth : false,        
-        ajax: "{{ route('participante.list') }}",    
-        
-        columns: [          
+        autoWidth : false,
+        ajax: "{{ route('participante.list') }}",
+
+        columns: [
             {
                 data: 'id', name: 'id',
-                "render": function ( data, type, row ) { 
+                "render": function ( data, type, row ) {
 
                     return '<div style="text-align:center;"><b>'+data+'</b></div>';
                 }
             },
-            {data: 'nombre', name: 'nombre'}, 
-            {data: 'direccion', name: 'nombretipo'}, 
-            {data: 'telefono', name: 'telefono'}, 
-          
-          
-          
+            {data: 'nombre', name: 'nombre'},
+            {data: 'direccion', name: 'nombretipo'},
+            {data: 'telefono', name: 'telefono'},
+
+
+
             {
                 data: 'edit', name: 'edit', orderable: false, searchable: false,
-                "render": function ( data, type, row ) {                    
+                "render": function ( data, type, row ) {
                     return '<div style="text-align:center;">'+data+'</div>';
                 }
             },
             {
-                data: 'view', name: 'view', orderable: false, searchable: false,                
-                "render": function ( data, type, row ) {                    
+                data: 'del', name: 'del', orderable: false, searchable: false,
+                "render": function ( data, type, row ) {
                     return '<div style="text-align:center;">'+data+'</div>';
                 }
             },
-            
+            {
+                data: 'view', name: 'view', orderable: false, searchable: false,
+                "render": function ( data, type, row ) {
+                    return '<div style="text-align:center;">'+data+'</div>';
+                }
+            },
+
         ],
         "language": {
             "lengthMenu": "Mostrar _MENU_ registros por página",
@@ -114,10 +121,10 @@ Componentes para los Módulos del Sistema, (New,Print,Download and Upload)
             "paginate": {
                 "next": "Siguiente",
                 "previous": "Anterior",
-            }            
-        }       
-    });    
+            }
+        }
+    });
   });
 </script>
 <script src="{{ url ('/js_delete/delete_confirm.min.js') }}"></script>
-@endsection  
+@endsection

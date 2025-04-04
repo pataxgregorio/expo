@@ -66,7 +66,12 @@ class ParticipanteController extends Controller
                 ->addColumn('view', function ($data) {
                     return '<a style="background-color: #5333ed;" href="'.route('participante.view', $data->id).'" id="view_'.$data->id.'" class="btn btn-xs btn-primary"><b><i class="fa fa-eye"></i>&nbsp;' .trans('message.botones.view').'</b></a>';
                 })
+            ->addColumn('del', function ($data) {
 
+                    $del ='<a href="javascript:void(0)" action="'.route('participante.destroy', $data->id).'" onclick="deleteData(this)"><button type="submit" class="btn btn-danger btn-xs" data-toggle="tooltip" data-title="Eliminar" data-container="body" style="background-color: #900C3F;"><b><i class="fa fa-trash"></i>&nbsp;' .trans('message.botones.delete').'</b>';
+
+                return $del;
+            })
                 ->rawColumns(['edit','view','del'])->toJson();
             }
         }catch(Throwable $e){
@@ -206,6 +211,7 @@ class ParticipanteController extends Controller
             'sector'=>$input['sector'],
             'email'=>$input['email'],
             'user_id' => $input['users_id'],
+            'status' => 'ACTIVO',
         ]);
         $solicitud->save();
         $count_notification = (new User)->count_noficaciones_user();
@@ -251,11 +257,6 @@ class ParticipanteController extends Controller
 
         $participante_edit = Participante::find($id);
         $valores = $participante_edit->all();
-
-
-
-
-
 
         $titulo_modulo = trans('message.users_action.edit_user');
         $count_notification = (new User)->count_noficaciones_user();
@@ -303,8 +304,9 @@ public function getCoodinacion(Request $request){
       $input = $request->all();
     //  var_dump($input);
    //   exit();
-
+    $input['status'] = 'ACTIVO';
     $solicitud_Update = Participante::find( $id);
+
     $solicitud_Update->update($input);
 
         return redirect('/participante');
@@ -333,15 +335,10 @@ public function getCoodinacion(Request $request){
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request,$id){
-        $user_delete = User::find($id);
-        $nombre = $user_delete->name;
-        User::destroy($id);
-        $esta = file_exists(public_path('/storage/avatars/'.$user_delete->avatar));
-        if($user_delete->avatar != 'default.jpg' && $esta){
-            unlink(public_path('/storage/avatars/'.$user_delete->avatar));
-        }
-        session(['delete' => true]);
-        return redirect('/users');
+        $user_delete = Participante::find($id);
+        $user_delete->status = 'ELIMINADO';
+        $user_delete->save();
+        return redirect('/participante');
     }
 
     public function usuarioRol(Request $request){

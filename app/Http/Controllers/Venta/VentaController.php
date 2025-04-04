@@ -22,6 +22,7 @@ use App\Models\Coordinacion\Coordinacion;
 use App\Models\Tipo_Solicitud\Tipo_Solicitud;
 use Auth;
 use Dompdf\Dompdf;
+use Dompdf\Options;
 use App\Notifications\WelcomeUser;
 use App\Notifications\RegisterConfirm;
 use App\Notifications\NotificarEventos;
@@ -171,6 +172,7 @@ class VentaController extends Controller
             return view('Venta.venta_report2', compact('resultado', 'standArray', 'count_notification', 'tipo_alert', 'array_color', 'user_total_activos', 'total_roles'));
         }
 
+
     public function profile(){
         $count_notification = (new User)->count_noficaciones_user();
         $user = Auth::user();
@@ -178,6 +180,92 @@ class VentaController extends Controller
         return view('User.profile',compact('count_notification','user','array_color'));
     }
 
+    public function imprimirventas(Request $request){
+        $fechadesde = $request["fecha_desde"];
+        $fechahasta = $request["fecha_hasta"];
+        $zona = $request["zona"];
+        $data = (new Venta)->obtenerVenta3($fechadesde, $fechahasta, $zona);
+
+        $participantes = $data;
+        $filasParticipantes = ""; // Inicializamos la variable para las filas de datos
+
+        foreach ($participantes as $participante) {
+            $filasParticipantes .= <<<HTML
+                <tr>
+                    <td>$participante->id</td>
+                    <td>$participante->stand</td>
+                    <td>$participante->zona</td>
+                    <td>$participante->participante</td>
+                    <td>$participante->status</td>
+                    <td>$participante->vendedor</td>
+                </tr>
+            HTML;
+        }
+
+        $html = <<<HTML
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <title>Invoice</title>
+                <style>
+                    body {
+                        font-family: sans-serif;
+                    }
+
+                    table {
+                        width: 100%;
+                        border-collapse: collapse;
+                    }
+
+                    th, td {
+                        border: 1px solid #ddd;
+                        padding: 8px;
+                        text-align: center;
+                    }
+
+                    th {
+                        text-align: center;
+                        text-align: left;
+                        background-color: #f0f0f0;
+                    }
+                </style>
+            </head>
+            <body>
+            <div>
+                <img src="https://alcaldiapaez.gob.ve/wp-content/uploads/2025/03/logo.png" alt="Logo Alcadia" width="100" height="100" style="padding-left: 300px; width: 150px; height: 50px">
+            </div>
+            <h3 style="text-align: center;">Reporte de Ventas</h3>
+
+
+            <div>
+                <table>
+                    <tr>
+                        <th>ID</th>
+                        <th>Stand</th>
+                        <th>Zona</th>
+                        <th>Participante</th>
+                        <th>Status</th>
+                        <th>Vendedor</th>
+                    </tr>
+                    $filasParticipantes
+                </table>
+            </div>
+
+            </body>
+            </html>
+        HTML;
+        $options = new Options;
+        $options->set('isRemoteEnabled', true);
+        $dompdf = new Dompdf($options);
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('latter', 'portrait');
+        $dompdf->render();
+        $dompdf->stream("PLANILLA.pdf", array("Attachment"=>1));
+
+
+        return redirect()->back();
+    }
     public function usersPrint($participante,$venta,$stand){
 
 

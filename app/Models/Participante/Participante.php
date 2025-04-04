@@ -11,24 +11,25 @@ class Participante extends Model
     protected $table = 'participante';
     protected $fillable = [
         'nombre',
-        'letra',        
+        'letra',
         'rif',
         'direccion',
         'telefono',
         'telefono2',
         'email',
         'sector',
-        'user_id'
+        'user_id',
+        'status',
     ];
     public function total_participante(){
         try {
-            $participante = DB::table('participante')->get();
+            $participante = DB::table('participante')->where('status', 'ACTIVO')->get();
             return $participante;
         }catch(Throwable $e){
             $solicitud = [];
             return $participante;
         }
-        
+
     }
     public function total_participante2(){
         try {
@@ -38,10 +39,10 @@ class Participante extends Model
             $participante = [];
             return  $participante;
         }
-        
+
     }
-        
+
     }
-   
+
 
 

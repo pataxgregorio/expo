@@ -67,12 +67,15 @@
                 <th style="text-align:center;">Zona</th>
                 <th style="text-align:center;">Participante</th>
                 <th style="text-align:center;">Fecha</th>
+                <th style="text-align:center;">Status</th>
                 <th style="text-align:center;">Vendedor</th>
         </tr>
     </thead>
     <tbody>
     </tbody>
 </table>
+<a href="#" id="btn_listado"> <button class="btn btn-primary" style="padding:5px;" id="btn_imprimir"><i class="fa fa-file-pdf-o" aria-hidden="true" style="color: red; background-color: white;"></i> Imprimir</button> </a>
+
 </div>
         </div>
     </div>
@@ -96,9 +99,18 @@
 
         // Inicializa la variable table en el ámbito global
         var table;
-        $('#zona_id').change(function() {
+        $('#btn_listado').click(function() {
+            var fechaDesde = $('#fecha_desde').val();
+            var fechaHasta = $('#fecha_hasta').val();
+            var zona = $('#zona_id').val();
 
-        })
+            // Validación básica de fechas (puedes agregar validaciones más robustas)
+
+
+            var url = "{{ route('imprimirventas') }}" + "?fecha_desde=" + fechaDesde + "&fecha_hasta=" + fechaHasta + "&zona=" + zona;
+            window.location.href = url;
+        });
+
         $('#btn_filtrar').click(function() {
 
             var fechaDesde = $('#fecha_desde').val();
