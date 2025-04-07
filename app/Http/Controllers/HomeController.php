@@ -63,6 +63,8 @@ class HomeController extends Controller
         $cantidad_pagado = intval((new Stand)->total_pagado5());
         $cantidad_reservado = intval((new Stand)->total_reservado5());
         $cantidad_disponible = intval((new Stand)->total_disponible5());
+        $cantidad_full = (new Stand)->totalesfull();
+
         $raiz =1;
         return view('adminlte::home',compact('count_notification','user_total_activos','total_stand',
                                               'total_roles','cantidad_pagado','cantidad_reservado','raiz','cantidad_disponible','array_color'));

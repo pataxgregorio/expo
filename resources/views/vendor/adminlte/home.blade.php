@@ -163,7 +163,7 @@
       <div class="">
                 @if ($raiz==3)
                     <div> <h2 class="text-center"><strong>Torre {{$valornumero}}</strong></h2></div>
-                        <div style="margin-right: 233px; margin-left: 78px;">
+                        <div style="align-items-center; display: flex" style="margin-left: 180px">
                                 @foreach($total_stand as $total_stand2)
                                         <?php
 

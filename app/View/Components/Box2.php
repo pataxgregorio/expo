@@ -11,6 +11,10 @@ class Box2 extends Component
     public string $cantidad;
     public string $status;
     public int $raiz;
+    public int $pagado;
+    public int $reservado;
+
+
 
     /**
      * Create a new component instance.
@@ -18,7 +22,7 @@ class Box2 extends Component
      * @return void
      */
 
-    public function __construct(string $titulo2,string $color2 = 'bg-blue',int $cantidad = 0, string $status,int $raiz = 0)
+    public function __construct(string $titulo2,string $color2 = 'bg-blue',int $cantidad = 0, string $status,int $raiz = 0,$pagado =0, $reservado=0)
     {
         // var_dump($raiz);
         // var_dump($status);
@@ -29,6 +33,9 @@ class Box2 extends Component
         $this->cantidad = $cantidad;
         $this->status = $status;
         $this->raiz = $raiz;
+        $this->pagado = $pagado;
+        $this->reservado = $reservado;
+
     }
     /**
      * Get the view / contents that represent the component.

@@ -234,6 +234,36 @@ class Stand extends Model
         }
 
     }
+    public function totalesfull() {
+        $resultados = DB::table('stand')
+            ->select(
+                DB::raw('SUM(CASE WHEN status IN ("PAGADO", "RESERVADO") THEN 1 ELSE 0 END) AS TOTAL_STAND'),
+                DB::raw('SUM(CASE WHEN status = "PAGADO" THEN 1 ELSE 0 END) AS TOTAL_PAGADAS'),
+                DB::raw('SUM(CASE WHEN status = "RESERVADO" THEN 1 ELSE 0 END) AS TOTAL_RESERVADAS'),
+
+                DB::raw('SUM(CASE WHEN status = "PAGADO" AND zona = "COLEADORES" THEN 1 ELSE 0 END) AS PAGADAS_COLEADORES'),
+                DB::raw('SUM(CASE WHEN status = "RESERVADO" AND zona = "COLEADORES" THEN 1 ELSE 0 END) AS RESERVADAS_COLEADORES'),
+
+                DB::raw('SUM(CASE WHEN status = "PAGADO" AND zona = "GENERAL" THEN 1 ELSE 0 END) AS PAGADAS_GENERAL'),
+                DB::raw('SUM(CASE WHEN status = "RESERVADO" AND zona = "GENERAL" THEN 1 ELSE 0 END) AS RESERVADAS_GENERAL'),
+
+                DB::raw('SUM(CASE WHEN status = "PAGADO" AND zona = "CATIRE PAEZ" THEN 1 ELSE 0 END) AS PAGADAS_CATIRE_PAEZ'),
+                DB::raw('SUM(CASE WHEN status = "RESERVADO" AND zona = "CATIRE PAEZ" THEN 1 ELSE 0 END) AS RESERVADAS_CATIRE_PAEZ'),
+
+                DB::raw('SUM(CASE WHEN status = "PAGADO" AND zona = "LANCEROS" THEN 1 ELSE 0 END) AS PAGADAS_LANCEROS'),
+                DB::raw('SUM(CASE WHEN status = "RESERVADO" AND zona = "LANCEROS" THEN 1 ELSE 0 END) AS RESERVADAS_LANCEROS'),
+
+                DB::raw('SUM(CASE WHEN status = "PAGADO" AND zona = "ESPIGA" THEN 1 ELSE 0 END) AS PAGADAS_ESPIGA'),
+                DB::raw('SUM(CASE WHEN status = "RESERVADO" AND zona = "ESPIGA" THEN 1 ELSE 0 END) AS RESERVADAS_ESPIGA'),
+
+                DB::raw('SUM(CASE WHEN status = "PAGADO" AND zona = "CENTAURO" THEN 1 ELSE 0 END) AS PAGADAS_CENTAURO'),
+                DB::raw('SUM(CASE WHEN status = "RESERVADO" AND zona = "CENTAURO" THEN 1 ELSE 0 END) AS RESERVADAS_CENTAURO')
+            )
+            ->first();
+
+        return $resultados;
+    }
+
     public function total_reservado5()
     {
 
