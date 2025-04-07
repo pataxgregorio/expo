@@ -23,10 +23,28 @@
     @if ($raiz == 1)
 
         <div style="text-align:center">
-        <img src="{{ url('/images/logo2.png') }}" alt="" class="img-fluid" style="width: 100%; max-width:300px;">
+        <img src="{{ url('/images/logo2.png') }}" alt="" class="img-fluid" style="width: 150px;">
         </div>
-
+        <h2 style="text-align: center;"><strong>PABELLONES</strong></h2>
     @endif
+    <div class="col-lg-4 col-md-4 col-xs-4">
+        <x-box2 titulo2="LANCEROS"  color2="{{$color}}" status="PAGADO" cantidad="{{$cantidad_pagado}}" raiz=20></x-box2>
+        </div>
+        <div class="col-lg-4 col-md-4 col-xs-4">
+            <x-box2 titulo2="CENTAURO" color2="{{$color2}}" status="RESERVADO" cantidad="{{$cantidad_reservado}}" raiz=20></x-box2>
+        </div>
+        <div class="col-lg-4 col-md-4 col-xs-4">
+            <x-box2 titulo2="COLEADORES" color2="{{$color2}}" status="DISPONIBLE" cantidad="{{$cantidad_disponible}}" raiz=20></x-box2>
+        </div>
+        <div class="col-lg-4 col-md-4 col-xs-4">
+            <x-box2 titulo2="GENERAL"  color2="{{$color}}" status="PAGADO" cantidad="{{$cantidad_pagado}}" raiz=20></x-box2>
+            </div>
+            <div class="col-lg-4 col-md-4 col-xs-4">
+                <x-box2 titulo2="ESPIGA" color2="{{$color2}}" status="RESERVADO" cantidad="{{$cantidad_reservado}}" raiz=20></x-box2>
+            </div>
+            <div class="col-lg-4 col-md-4 col-xs-4">
+                <x-box2 titulo2="CATIRE PAEZ" color2="{{$color2}}" status="DISPONIBLE" cantidad="{{$cantidad_disponible}}" raiz=20></x-box2>
+            </div>
     <div class="col-lg-4 col-md-4 col-xs-4">
         <x-box2 titulo2="Total pagado"  color2="{{$color}}" status="PAGADO" cantidad="{{$cantidad_pagado}}" raiz="{{$raiz}}"></x-box2>
         </div>
@@ -97,7 +115,7 @@
 
                             <div  style="margin: 0 auto 0 auto">
 
-                                <x-box titulo="Stand" status="{{ $total_stand2->status }}" name="Solitudes Registradas"  raiz="{{$raiz}}" color="{{$color}}" codigo="{{ $total_stand2->id }}" nombre="{{ $total_stand2->nombre }}" ></x-box>
+                                <x-box titulo="Stand" status="{{ $total_stand2->status }}" name="Solitudes Registradas"  raiz=0 color="{{$color}}" codigo="{{ $total_stand2->id }}" nombre="{{ $total_stand2->nombre }}" ></x-box>
                             </div>
 
 
@@ -164,7 +182,7 @@
 
                                 <div class="col-lg-3 col-md-3 col-xs-3 text-center">
 
-                                    <x-box titulo="Torre" status="{{ $total_stand2->status }}" name="Solitudes Registradas" raiz="{{$raiz}}" color="{{$color}}" codigo="{{ $total_stand2->id }}" nombre="{{ $total_stand2->nombre }}" ></x-box>
+                                    <x-box titulo="Torre" status="{{ $total_stand2->status }}" name="Solitudes Registradas" raiz=3 color="{{$color}}" codigo="{{ $total_stand2->id }}" nombre="{{ $total_stand2->nombre }}" ></x-box>
                                 </div>
                                 @endforeach
                         </div>
@@ -273,7 +291,7 @@
             </div>
         </div>
 
-           <div class="container d-flex align-items-center" style="margin-bottom: 50px;" >
+           <div class="container d-flex align-items-center" style="margin-bottom: 0px;" >
                <div class="" style="margin-left: 30px;">
                      @if ($raiz == 5)
                            @foreach($arreglo2 as $total_stand2)

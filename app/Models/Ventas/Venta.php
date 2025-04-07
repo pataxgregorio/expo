@@ -40,7 +40,7 @@ class Venta extends Model
             ->join('participante', 'venta.participante_id', '=', 'participante.id')
             ->join('users', 'venta.user_id', '=', 'users.id')
             ->select( 'venta.id AS id', 'participante.nombre AS participante', 'stand.nombre AS stand', 'stand.zona AS zona','stand.status AS status','users.name AS vendedor','venta.fecha AS fecha')
-            ->where('status', $status)->get();
+            ->where('stand.status', $status)->get();
         }
         return $resultado;
     }
