@@ -1,6 +1,6 @@
 <div class="card">
     @if ($raiz == 3)
-    <div class="small-box {{$color}} card-body" style="width: 80px; height: 80px; border-radius: 50%; overflow: hidden; padding: 0; display: flex; align-items: center; justify-content: center; margin-left: 30px">
+    <div class="small-box {{$color}} card-body" style="width: 80px; height: 80px; border-radius: 50%; overflow: hidden; padding: 0; display: flex; align-items: center; justify-content: center;">
     @endif
     @if ($raiz !== 3)
     <div class="small-box {{$color}} card-body" style="width: 80px; height: 80px; border-radius: 50%; overflow: hidden; padding: 0; display: flex; align-items: center; justify-content: center;">
@@ -36,7 +36,7 @@
     <div class="inner" style="margin-left: 30px">
     @endif
     @if ($raiz == 3)
-    <div class="inner" style="margin-left: 60px">
+    <div class="inner" style="margin-left: 40px">
     @endif
     @if ($raiz == 5)
     <div class="inner" style="margin-left: 16px">

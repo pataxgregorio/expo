@@ -410,6 +410,7 @@ class VentaController extends Controller
         $cantidad_pagado = (new Stand)->total_pagado5();
         $cantidad_reservado = (new Stand)->total_reservado5();
         $cantidad_disponible = (new Stand)->total_disponible5();
+        $cantidad_full = (new Stand)->totalesfull();
 
         if ($input['montocancelado']<=$input['costo']){
                 // se actualiza el status de la solicitud
@@ -448,7 +449,7 @@ class VentaController extends Controller
                     $stand_Update->save();
 
                 // $this->usersPrint();
-                    return view('adminlte::home',compact('count_notification','user_total_activos','total_stand',
+                    return view('adminlte::home',compact('count_notification','user_total_activos','total_stand','cantidad_full',
                     'total_roles','cantidad_pagado','cantidad_reservado','raiz','cantidad_disponible','array_color'));
             }
 
@@ -491,11 +492,11 @@ class VentaController extends Controller
                     $cantidad_pagado = (new Stand)->total_pagado5();
                     $cantidad_reservado = (new Stand)->total_reservado5();
                     $cantidad_disponible = (new Stand)->total_disponible5();
-                    return view('adminlte::home',compact('count_notification','user_total_activos','total_stand',
+                    return view('adminlte::home',compact('count_notification','user_total_activos','total_stand','cantidad_full',
                     'total_roles','cantidad_pagado','cantidad_reservado','raiz','cantidad_disponible','array_color'));
             }
             if ($negociacion=='off'){
-                return view('adminlte::home',compact('count_notification','user_total_activos','total_stand',
+                return view('adminlte::home',compact('count_notification','user_total_activos','total_stand','cantidad_full',
                     'total_roles','cantidad_pagado','cantidad_reservado','raiz','cantidad_disponible','array_color'));
             }
          }
@@ -518,6 +519,7 @@ class VentaController extends Controller
   $user_total_activos = (new User)->userTotalActivo();
   $total_roles = (new User)->totalRoles();
   $raiz =1;
+  $cantidad_full = (new Stand)->totalesfull();
 
   if ($input['montocancelado']<$input['costo']){
     unset($input['costo']);
@@ -531,7 +533,9 @@ class VentaController extends Controller
     $cantidad_pagado = (new Stand)->total_pagado5();
     $cantidad_reservado = (new Stand)->total_reservado5();
     $cantidad_disponible = (new Stand)->total_disponible5();
-    return view('adminlte::home',compact('count_notification','user_total_activos','total_stand',
+    $cantidad_full = (new Stand)->totalesfull();
+
+    return view('adminlte::home',compact('count_notification','user_total_activos','total_stand','cantidad_full',
     'total_roles','cantidad_pagado','cantidad_reservado','raiz','cantidad_disponible','array_color'));
  }
  if ($input['montocancelado']==$input['costo']){
@@ -549,7 +553,9 @@ class VentaController extends Controller
     $cantidad_pagado = (new Stand)->total_pagado5();
     $cantidad_reservado = (new Stand)->total_reservado5();
     $cantidad_disponible = (new Stand)->total_disponible5();
-    return view('adminlte::home',compact('count_notification','user_total_activos','total_stand',
+  $cantidad_full = (new Stand)->totalesfull();
+
+    return view('adminlte::home',compact('count_notification','user_total_activos','total_stand','cantidad_full',
     'total_roles','cantidad_pagado','cantidad_reservado','raiz','cantidad_disponible','array_color'));
  }
  if ($input['montocancelado']>$input['costo']){
@@ -566,7 +572,9 @@ class VentaController extends Controller
             $cantidad_pagado = (new Stand)->total_pagado5();
             $cantidad_reservado = (new Stand)->total_reservado5();
             $cantidad_disponible = (new Stand)->total_disponible5();
-            return view('adminlte::home',compact('count_notification','user_total_activos','total_stand',
+  $cantidad_full = (new Stand)->totalesfull();
+
+            return view('adminlte::home',compact('count_notification','user_total_activos','total_stand','cantidad_full',
             'total_roles','cantidad_pagado','cantidad_reservado','raiz','cantidad_disponible','array_color'));
      }
      if ($negociacion=='off'){

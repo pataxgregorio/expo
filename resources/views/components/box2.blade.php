@@ -34,12 +34,12 @@
                 @if ($raiz==20 )
                 <p >
                     <strong style="font-size:10px;">
-                        Rersevado : {{$cantidad}}
+                        Rersevado : {{$reservado}}
                     </strong>
                 </p>
                 <p >
                     <strong style="font-size:10px;">
-                        Comprado : {{$cantidad}}
+                        Comprado : {{$pagado}}
                     </strong>
                 </p>
                 @endif

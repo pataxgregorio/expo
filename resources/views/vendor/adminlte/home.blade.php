@@ -28,23 +28,23 @@
         <h2 style="text-align: center;"><strong>PABELLONES</strong></h2>
     @endif
     <div class="col-lg-4 col-md-4 col-xs-4">
-        <x-box2 titulo2="LANCEROS"  color2="{{$color}}" status="PAGADO" cantidad="{{$cantidad_pagado}}" raiz=20></x-box2>
+        <x-box2 titulo2="LANCEROS"  color2="{{$color}}" status="PAGADO" pagado="{{$cantidad_full->PAGADAS_LANCEROS}}" reservado="{{$cantidad_full->RESERVADAS_LANCEROS}}" cantidad="{{$cantidad_pagado}}" raiz=20></x-box2>
         </div>
         <div class="col-lg-4 col-md-4 col-xs-4">
-            <x-box2 titulo2="CENTAURO" color2="{{$color2}}" status="RESERVADO" cantidad="{{$cantidad_reservado}}" raiz=20></x-box2>
+        <x-box2 titulo2="CENTAURO"  color2="{{$color}}" status="PAGADO" pagado="{{$cantidad_full->PAGADAS_CENTAURO}}" reservado="{{$cantidad_full->RESERVADAS_CENTAURO}}" cantidad="{{$cantidad_pagado}}" raiz=20></x-box2>
         </div>
         <div class="col-lg-4 col-md-4 col-xs-4">
-            <x-box2 titulo2="COLEADORES" color2="{{$color2}}" status="DISPONIBLE" cantidad="{{$cantidad_disponible}}" raiz=20></x-box2>
+        <x-box2 titulo2="COLEADORES"  color2="{{$color}}" status="PAGADO" pagado="{{$cantidad_full->PAGADAS_COLEADORES}}" reservado="{{$cantidad_full->RESERVADAS_COLEADORES}}" cantidad="{{$cantidad_pagado}}" raiz=20></x-box2>
         </div>
         <div class="col-lg-4 col-md-4 col-xs-4">
-            <x-box2 titulo2="GENERAL"  color2="{{$color}}" status="PAGADO" cantidad="{{$cantidad_pagado}}" raiz=20></x-box2>
-            </div>
-            <div class="col-lg-4 col-md-4 col-xs-4">
-                <x-box2 titulo2="ESPIGA" color2="{{$color2}}" status="RESERVADO" cantidad="{{$cantidad_reservado}}" raiz=20></x-box2>
-            </div>
-            <div class="col-lg-4 col-md-4 col-xs-4">
-                <x-box2 titulo2="CATIRE PAEZ" color2="{{$color2}}" status="DISPONIBLE" cantidad="{{$cantidad_disponible}}" raiz=20></x-box2>
-            </div>
+        <x-box2 titulo2="ESPIGA"  color2="{{$color}}" status="PAGADO" pagado="{{$cantidad_full->PAGADAS_ESPIGA}}" reservado="{{$cantidad_full->RESERVADAS_ESPIGA}}" cantidad="{{$cantidad_pagado}}" raiz=20></x-box2>
+        </div>
+        <div class="col-lg-4 col-md-4 col-xs-4">
+        <x-box2 titulo2="GENERAL"  color2="{{$color}}" status="PAGADO" pagado="{{$cantidad_full->PAGADAS_GENERAL}}" reservado="{{$cantidad_full->RESERVADAS_GENERAL}}" cantidad="{{$cantidad_pagado}}" raiz=20></x-box2>
+        </div>
+        <div class="col-lg-4 col-md-4 col-xs-4">
+        <x-box2 titulo2="CATIRE PAEZ"  color2="{{$color}}" status="PAGADO" pagado="{{$cantidad_full->PAGADAS_CATIRE_PAEZ}}" reservado="{{$cantidad_full->RESERVADAS_CATIRE_PAEZ}}" cantidad="{{$cantidad_pagado}}" raiz=20></x-box2>
+        </div>
     <div class="col-lg-4 col-md-4 col-xs-4">
         <x-box2 titulo2="Total pagado"  color2="{{$color}}" status="PAGADO" cantidad="{{$cantidad_pagado}}" raiz="{{$raiz}}"></x-box2>
         </div>
@@ -159,11 +159,14 @@
              </div>
         </div>
    </div>
-   <div class="row">
-      <div class="">
+   @if ($raiz ==3)
+     <div class="container" style="display:flex; justify-content:center;align-items:center; margin-top: -50px;">
+         <div > <h2 class="text-center"><strong>Torre {{$valornumero}}</strong></h2></div>
+     </div>
+   @endif
+      <div class="container" style="display:flex; justify-content:center;align-items:center;">
                 @if ($raiz==3)
-                    <div> <h2 class="text-center"><strong>Torre {{$valornumero}}</strong></h2></div>
-                        <div style="align-items-center; display: flex" style="margin-left: 180px">
+                        <div>
                                 @foreach($total_stand as $total_stand2)
                                         <?php
 
@@ -180,7 +183,7 @@
 
                                         ?>
 
-                                <div class="col-lg-3 col-md-3 col-xs-3 text-center">
+                                    <div  style="margin: 0 auto 0 auto">
 
                                     <x-box titulo="Torre" status="{{ $total_stand2->status }}" name="Solitudes Registradas" raiz=3 color="{{$color}}" codigo="{{ $total_stand2->id }}" nombre="{{ $total_stand2->nombre }}" ></x-box>
                                 </div>
@@ -188,7 +191,6 @@
                         </div>
                 @endif
        </div>
-  </div>
 
   <div class="row">
           <div class="container">

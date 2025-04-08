@@ -22,7 +22,7 @@ class Box2 extends Component
      * @return void
      */
 
-    public function __construct(string $titulo2,string $color2 = 'bg-blue',int $cantidad = 0, string $status,int $raiz = 0,$pagado =0, $reservado=0)
+    public function __construct(string $titulo2,string $color2 = 'bg-blue',int $cantidad = 0, string $status,int $raiz = 0,int $pagado =0, int $reservado=0)
     {
         // var_dump($raiz);
         // var_dump($status);

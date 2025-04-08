@@ -66,7 +66,7 @@ class HomeController extends Controller
         $cantidad_full = (new Stand)->totalesfull();
 
         $raiz =1;
-        return view('adminlte::home',compact('count_notification','user_total_activos','total_stand',
+        return view('adminlte::home',compact('count_notification','user_total_activos','cantidad_full','total_stand',
                                               'total_roles','cantidad_pagado','cantidad_reservado','raiz','cantidad_disponible','array_color'));
 
 }
@@ -85,7 +85,9 @@ class HomeController extends Controller
             $fila2 ="B";
             $raiz =0;
             $nombre = 'LANCERO';
-            return view('adminlte::home',compact('count_notification','user_total_activos','total_stand',
+        $cantidad_full = (new Stand)->totalesfull();
+
+            return view('adminlte::home',compact('count_notification','user_total_activos','total_stand','cantidad_full',
                                                   'total_roles','cantidad_pagado','raiz','cantidad_reservado','cantidad_disponible','fila1','fila2','array_color','nombre'));
 
     }
@@ -104,7 +106,9 @@ class HomeController extends Controller
         $fila1 ="C";
         $fila2 ="D";
         $nombre = 'CENTAURO';
-        return view('adminlte::home',compact('count_notification','cantidad_pagado','raiz','cantidad_reservado','fila1','fila2','cantidad_disponible','user_total_activos','total_stand',
+        $cantidad_full = (new Stand)->totalesfull();
+
+        return view('adminlte::home',compact('count_notification','cantidad_pagado','raiz','cantidad_reservado','fila1','fila2','cantidad_full','cantidad_disponible','user_total_activos','total_stand',
         'total_roles','array_color','nombre'));
 
 
@@ -124,7 +128,9 @@ class HomeController extends Controller
         $fila1 ="E";
         $fila2 ="F";
         $nombre = 'COLEADORES';
-        return view('adminlte::home',compact('count_notification','cantidad_pagado','fila1','fila2','raiz','cantidad_reservado','cantidad_disponible','user_total_activos','total_stand',
+        $cantidad_full = (new Stand)->totalesfull();
+
+        return view('adminlte::home',compact('count_notification','cantidad_pagado','fila1','fila2','raiz','cantidad_reservado','cantidad_full','cantidad_disponible','user_total_activos','total_stand',
         'total_roles','array_color','nombre'));
 
 } public function dashboard4(){
@@ -142,7 +148,9 @@ class HomeController extends Controller
     $fila1 ="G";
     $fila2 ="H";
     $nombre = 'GENERAL EN JEFE';
-    return view('adminlte::home',compact('count_notification','cantidad_pagado','fila1','fila2','raiz','cantidad_reservado','cantidad_disponible','user_total_activos','total_stand',
+    $cantidad_full = (new Stand)->totalesfull();
+
+    return view('adminlte::home',compact('count_notification','cantidad_pagado','fila1','fila2','raiz','cantidad_reservado','cantidad_disponible','cantidad_full','user_total_activos','total_stand',
     'total_roles','array_color','nombre'));
 
 }
@@ -161,7 +169,9 @@ public function dashboard8(){
     $fila1 ="I";
     $fila2 ="J";
     $nombre = 'ESPIGA';
-    return view('adminlte::home',compact('count_notification','cantidad_pagado','fila1','fila2','raiz','cantidad_reservado','cantidad_disponible','user_total_activos','total_stand',
+    $cantidad_full = (new Stand)->totalesfull();
+
+    return view('adminlte::home',compact('count_notification','cantidad_pagado','fila1','fila2','raiz','cantidad_reservado','cantidad_full','cantidad_disponible','user_total_activos','total_stand',
     'total_roles','array_color','nombre'));
 
 }
@@ -180,7 +190,9 @@ public function dashboard9(){
     $fila1 ="K";
     $fila2 ="L";
     $nombre = 'CATIRE PAEZ';
-    return view('adminlte::home',compact('count_notification','cantidad_pagado','fila1','fila2','raiz','cantidad_reservado','cantidad_disponible','user_total_activos','total_stand',
+    $cantidad_full = (new Stand)->totalesfull();
+
+    return view('adminlte::home',compact('count_notification','cantidad_pagado','fila1','fila2','raiz','cantidad_reservado','cantidad_full','cantidad_disponible','user_total_activos','total_stand',
     'total_roles','array_color','nombre'));
 
 }
@@ -198,8 +210,9 @@ public function dashboard5(Request $request){
     $cantidad_reservado = (new Stand)->total_reservado6($valornumero);
     $cantidad_disponible = (new Stand)->total_disponible6($valornumero);
     $raiz =3;
+    $cantidad_full = (new Stand)->totalesfull();
 
-    return view('adminlte::home',compact('count_notification','cantidad_pagado','valornumero','raiz','cantidad_reservado','cantidad_disponible','user_total_activos','total_stand',
+    return view('adminlte::home',compact('count_notification','cantidad_pagado','valornumero','raiz','cantidad_reservado','cantidad_full','cantidad_disponible','user_total_activos','total_stand',
     'total_roles','array_color'));
 
 }  public function dashboard6(Request $request){
@@ -231,7 +244,9 @@ public function dashboard5(Request $request){
             $cantidad_reservado = (new Stand)->total_reservado9();
             $cantidad_disponible = (new Stand)->total_disponible8();
             $raiz =5;
-            return view('adminlte::home',compact('count_notification','user_total_activos','total_stand',
+            $cantidad_full = (new Stand)->totalesfull();
+
+            return view('adminlte::home',compact('count_notification','user_total_activos','cantidad_full','total_stand',
                                                   'total_roles','cantidad_pagado','raiz','cantidad_reservado','cantidad_disponible', 'array_color'));
 
 
