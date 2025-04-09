@@ -113,10 +113,10 @@
 
                         ?>
 
-                            <div  style="margin: 0 auto 0 auto">
+                <div  style="margin: 0 auto 0 auto">
 
-                                <x-box titulo="Stand" status="{{ $total_stand2->status }}" name="Solitudes Registradas"  raiz=0 color="{{$color}}" codigo="{{ $total_stand2->id }}" nombre="{{ $total_stand2->nombre }}" ></x-box>
-                            </div>
+                    <x-box titulo="Stand" status="DISPONIBLE" name="Solitudes Registradas"  raiz=0 color="{{$color}}" codigo="{{ $total_stand2->id }}" nombre="{{ $total_stand2->nombre }}" ></x-box>
+                </div>
 
 
                         @endforeach

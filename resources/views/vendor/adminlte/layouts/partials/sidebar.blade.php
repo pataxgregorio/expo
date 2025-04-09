@@ -76,6 +76,7 @@
                 <a href="#"><i class='fa fa-link'></i> <span>Reporte</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                 <li><a href="{{ url('/ver2') }}"><i class='fa fa-link'></i> <span>Ventas</span></a></li>
+                <li><a href="{{ url('/ver1') }}"><i class='fa fa-link'></i> <span>Stand Vendido</span></a></li>
                 </ul>
             </li>
             <li><a href="{{ route('dashboard.dashboard7', ['numero' => 1]) }}"><i class='fa fa-link'></i> <span>Stands de Comida</span></a></li>

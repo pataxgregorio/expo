@@ -171,6 +171,25 @@ class VentaController extends Controller
 
             return view('Venta.venta_report2', compact('resultado', 'standArray', 'count_notification', 'tipo_alert', 'array_color', 'user_total_activos', 'total_roles'));
         }
+        public function getVenta1(Request $request)
+        {
+            $usuario_id = auth()->user()->id;
+            $resultado = (new Venta)->obtenerVenta2();
+            $count_notification = (new User)->count_noficaciones_user();
+            $tipo_alert = "Create";
+            $array_color = (new Colores)->getColores();
+            $user_total_activos = (new User)->userTotalActivo();
+            $total_roles = (new User)->totalRoles();
+            $stands = (new Venta)->obtenerVenta4();
+
+            // Transformar la colección a un array asociativo usando 'zona' como clave y valor
+            $standArray = $stands->pluck('zona', 'zona')->toArray();
+
+            // Agregar una opción predeterminada
+            $standArray = ['' => 'Seleccionar'] + $standArray;
+
+            return view('Venta.venta_report1', compact('resultado', 'standArray', 'count_notification', 'tipo_alert', 'array_color', 'user_total_activos', 'total_roles'));
+        }
 
 
     public function profile(){
@@ -180,6 +199,83 @@ class VentaController extends Controller
         return view('User.profile',compact('count_notification','user','array_color'));
     }
 
+    public function imprimirventas2(Request $request){
+        // $fechadesde = $request["fecha_desde"];
+        // $fechahasta = $request["fecha_hasta"];
+        // $zona = $request["zona"];
+        // $data = (new Venta)->obtenerVenta3($fechadesde, $fechahasta, $zona);
+
+        // $participantes = $data;
+        $filasParticipantes = ""; // Inicializamos la variable para las filas de datos
+
+        // foreach ($participantes as $participante) {
+        //     $filasParticipantes .= <<<HTML
+        //         <tr>
+        //             <td>$participante->id</td>
+        //             <td>$participante->stand</td>
+        //             <td>$participante->zona</td>
+        //             <td>$participante->participante</td>
+        //             <td>$participante->status</td>
+        //             <td>$participante->vendedor</td>
+        //         </tr>
+        //     HTML;
+        // }
+
+        $html = <<<HTML
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <title>Invoice</title>
+                <style>
+                    body {
+                        font-family: sans-serif;
+                    }
+
+                    table {
+                        width: 100%;
+                        border-collapse: collapse;
+                    }
+
+                    th, td {
+                        border: 1px solid #ddd;
+                        padding: 8px;
+                        text-align: center;
+                    }
+
+                    th {
+                        text-align: center;
+                        text-align: left;
+                        background-color: #f0f0f0;
+                    }
+                </style>
+            </head>
+            <body>
+                <div>
+                    <img src="https://alcaldiapaez.gob.ve/wp-content/uploads/2025/03/logo.png" alt="Logo Alcadia" width="100" height="100" style="padding-left: 300px; width: 150px; height: 50px">
+                </div>
+                <h3 style="text-align: center;">Reporte de Ventas</h3>
+
+
+                <div>
+                    <div>
+                        <x-box  titulo="Stand" status="DISPONIBLE" name="Solitudes Registradas"  raiz=0 color="" codigo=1 nombre="COLEADOR" ></x-box>
+                    </div>
+                </div>
+            </body>
+            </html>
+        HTML;
+        $options = new Options;
+        $options->set('isRemoteEnabled', true);
+        $dompdf = new Dompdf($options);
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('latter', 'portrait');
+        $dompdf->render();
+        $dompdf->stream("PLANILLA.pdf", array("Attachment"=>1));
+
+
+        return redirect()->back();
+    }
     public function imprimirventas(Request $request){
         $fechadesde = $request["fecha_desde"];
         $fechahasta = $request["fecha_hasta"];
@@ -266,6 +362,8 @@ class VentaController extends Controller
 
         return redirect()->back();
     }
+
+
     public function usersPrint($participante,$venta,$stand){
 
 
