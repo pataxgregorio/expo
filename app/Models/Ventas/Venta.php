@@ -44,6 +44,27 @@ class Venta extends Model
         }
         return $resultado;
     }
+    public function obtenerVenta20(){
+
+
+        $resultado = DB::table('venta')
+        ->join('stand', 'venta.stand_id', '=', 'stand.id')
+        ->join('participante', 'venta.participante_id', '=', 'participante.id')
+        ->select(
+            'venta.id AS id',
+            'participante.nombre AS participante',
+            'stand.nombre AS stand',
+            'stand.zona AS zona',
+            'stand.status AS status',
+            'venta.fecha AS fecha'
+        )
+        ->where('stand.status', '!=', 'ELIMINADO')
+        ->orderBy('stand.zona')   // Luego ordena por la zona del stand dentro de cada stand
+        ->get();
+var_dump($resultado);
+exit();
+        return $resultado;
+    }
     public function obtenerVenta2(){
 
 

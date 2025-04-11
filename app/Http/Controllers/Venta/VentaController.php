@@ -17,6 +17,7 @@ use App\Models\Parroquia\Parroquia;
 use App\Models\Comuna\Comuna;
 use App\Models\Comunidad\Comunidad;
 use App\Models\Direccion\Direccion;
+use Illuminate\Support\Facades\View;
 use App\Models\Enter\Enter;
 use App\Models\Coordinacion\Coordinacion;
 use App\Models\Tipo_Solicitud\Tipo_Solicitud;
@@ -200,26 +201,39 @@ class VentaController extends Controller
     }
 
     public function imprimirventas2(Request $request){
-        // $fechadesde = $request["fecha_desde"];
-        // $fechahasta = $request["fecha_hasta"];
-        // $zona = $request["zona"];
-        // $data = (new Venta)->obtenerVenta3($fechadesde, $fechahasta, $zona);
 
-        // $participantes = $data;
+
         $filasParticipantes = ""; // Inicializamos la variable para las filas de datos
+        $datos =(new Venta)->obtenerVenta20();
+        if (($datos->zona == 'COLEADOR') || ($datos->zona == 'LANCEROS')|| ($datos->zona == 'CATIRE PAEZ')|| ($datos->zona == 'ESPIGA')||($datos->zona == 'GENERAL')||($datos->zona == 'CENTAURO') ) {
+            $raiz = 0;
+        } else if ($datos->zona == 'COMIDA'){
+            $raiz = 5;
+        }else{
+            $raiz=3;
+        }
 
-        // foreach ($participantes as $participante) {
-        //     $filasParticipantes .= <<<HTML
-        //         <tr>
-        //             <td>$participante->id</td>
-        //             <td>$participante->stand</td>
-        //             <td>$participante->zona</td>
-        //             <td>$participante->participante</td>
-        //             <td>$participante->status</td>
-        //             <td>$participante->vendedor</td>
-        //         </tr>
-        //     HTML;
-        // }
+
+
+        $imagenHtml = '';
+        if (($raiz == 0) || ($raiz == 5)) {
+            if ($datos->status == 'DISPONIBLE') {
+                $imagenHtml = '<div class="img-container" style=""><img src="https://alcaldiapaez.gob.ve/wp-content/uploads/2025/04/tv.png" alt="" class="img-fluid" style="width: 100%;height: 100%;object-fit: cover;"></div>';
+            } elseif ($datos->status == 'RESERVADO') {
+                $imagenHtml = '<div class="img-container" style=""><img src="https://alcaldiapaez.gob.ve/wp-content/uploads/2025/04/ta.png" alt="" class="img-fluid" style="width: 100%;height: 100%;object-fit: cover;"></div>';
+            } elseif ($datos->status == 'PAGADO') {
+                $imagenHtml = '<div class="img-container" style=""><img src="https://alcaldiapaez.gob.ve/wp-content/uploads/2025/04/tr.png" alt="" class="img-fluid" style="width: 100%;height: 100%;object-fit: cover;"></div>';
+            }
+        }
+        if ($raiz == 3) {
+            if ($datos->status == 'DISPONIBLE') {
+                $imagenHtml = '<div class="img-container" style=""><img src="https://alcaldiapaez.gob.ve/wp-content/uploads/2025/04/torreverde.png" alt="" class="img-fluid" style="width: 100%;height: 100%;object-fit: cover;"></div>';
+            } elseif ($datos->status == 'RESERVADO') {
+                $imagenHtml = '<div class="img-container" style=""><img src="https://alcaldiapaez.gob.ve/wp-content/uploads/2025/04/torreamailla.png" alt="" class="img-fluid" style="width: 100%;height: 100%;object-fit: cover;"></div>';
+            } elseif ($datos->status == 'PAGADO') {
+                $imagenHtml = '<div class="img-container" style=""><img src="https://alcaldiapaez.gob.ve/wp-content/uploads/2025/04/torreroja.png" alt="" class="img-fluid" style="width: 100%;height: 100%;object-fit: cover;"></div>';
+            }
+        }
 
         $html = <<<HTML
             <!DOCTYPE html>
@@ -248,6 +262,23 @@ class VentaController extends Controller
                         text-align: left;
                         background-color: #f0f0f0;
                     }
+                    .img-container {
+                        width: 80px; /* Ajusta el ancho según necesites */
+                        height: 80px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        border-radius: 50%;
+                        overflow: hidden;
+                    }
+                    .img-container img {
+                        width: 140%;
+                        height: 140%;
+                        object-fit: cover;
+                    }
+                    .info-container {
+                        margin-left: 30px;
+                    }
                 </style>
             </head>
             <body>
@@ -255,23 +286,29 @@ class VentaController extends Controller
                     <img src="https://alcaldiapaez.gob.ve/wp-content/uploads/2025/03/logo.png" alt="Logo Alcadia" width="100" height="100" style="padding-left: 300px; width: 150px; height: 50px">
                 </div>
                 <h3 style="text-align: center;">Reporte de Ventas</h3>
-
-
                 <div>
-                    <div>
-                        <x-box  titulo="Stand" status="DISPONIBLE" name="Solitudes Registradas"  raiz=0 color="" codigo=1 nombre="COLEADOR" ></x-box>
-                    </div>
+                    <div class="card">
+
+                      <div class="small-box {{$color}} card-body" style="width: 80px; height: 80px; border-radius: 50%; overflow: hidden; padding: 0; display: flex; align-items: center; justify-content: flex-start;">
+                            $imagenHtml
+                     </div>
+                            <div class="info-container">
+                                <h5 style ="font-size:14px;">$nombre</h5>
+                            </div>
+                 </div>
+
+            </div>
                 </div>
             </body>
             </html>
         HTML;
-        $options = new Options;
+        $options = new \Dompdf\Options();
         $options->set('isRemoteEnabled', true);
-        $dompdf = new Dompdf($options);
+        $dompdf = new \Dompdf\Dompdf($options);
         $dompdf->loadHtml($html);
-        $dompdf->setPaper('latter', 'portrait');
+        $dompdf->setPaper('letter', 'portrait');
         $dompdf->render();
-        $dompdf->stream("PLANILLA.pdf", array("Attachment"=>1));
+        $dompdf->stream("PLANILLA.pdf", ["Attachment" => 1]);
 
 
         return redirect()->back();
