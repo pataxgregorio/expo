@@ -9,9 +9,6 @@
 @endsection
 
 @section('contentheader_title')
-<!-- Componente Button Para todas las Ventanas de los Módulos, no Borrar.-->
-
-
 @endsection
 
 @section('link_css_datatable')
@@ -21,36 +18,69 @@
     <link href="{{ url ('/css_datatable/buttons.dataTables.min.css') }}" rel="stylesheet">
 @endsection
 
-
 @section('main-content')
-
-
 <div class="container-fluid">
-    <div class="card">
-        <div class="card-body">
-
-        <?php
-
-
-         // $participante = isset($row->participante) ? $row->id :"";
-        ?>
-        <div style="text-align:center" >
-          <a href="{{ url('/standvendidos') }}"><img src="{{ url('/images/mapa.png') }}" alt="" class="img-fluid" style="with: 100%; max-height:250px;max-width:300px; margin-top: 50px;"></a>
-        <div style="text-align:center;"><h3>REPORTE STAND VENDIDOS</h3></div>
-
-        </div>
-
-        </div>
-
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <?php
+                        $pabellones_disposicion = [
+                            [
+                                'nombre' => 'PABELLON CENTAURO',
+                                'color' => '#4169E1',
+                                'stands' => range(1, 20),
+                            ],
+                            [
+                                'nombre' => 'PABELLON GENERAL EN JEFE',
+                                'color' => '#008000',
+                                'stands' => range(1, 22),
+                            ],
+                            [
+                                'nombre' => 'PABELLON COLEADORES',
+                                'color' => '#808080',
+                                'stands' => range(1, 20),
+                            ],
+                            [
+                                'nombre' => 'PABELLON LANCEROS',
+                                'color' => '#FFD700',
+                                'stands' => range(1, 20),
+                            ],
+                            [
+                                'nombre' => 'PABELLON ESPIGA',
+                                'color' => '#800080',
+                                'stands' => range(1, 20),
+                            ],
+                            [
+                                'nombre' => 'PABELLON CATIRE PAEZ',
+                                'color' => '#FFA500',
+                                'stands' => range(1, 20),
+                            ],
+                        ];
+                        ?>
+                        @foreach ($pabellones_disposicion as $pabellon)
+                            <div class="col-sm-12 col-md-4 pabellon-container mb-3 d-flex flex-column align-items-center">
+                                <h6 class="font-weight-bold text-center" style="color: {{ $pabellon['color'] }};">{{ $pabellon['nombre'] }}</h6>
+                                <div class="stands-grid d-flex">
+                                    @foreach (array_chunk($pabellon['stands'], 10) as $columna_stands)
+                                        <div class="stand-col d-flex flex-column align-items-center">
+                                            @foreach ($columna_stands as $stand)
+                                                <button class="btn btn-sm stand-button" style="background-color: {{ $pabellon['color'] }}; color: white;">{{ sprintf('%02d', $stand) }}</button>
+                                            @endforeach
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-<?php
-  //  $phpValue = $row2->status;
-   // echo "<script> var jsValue = '" . $phpValue . "'; </script>";
-
-?>
 @endsection
+
 @section('script_datatable')
 <script src="{{ url ('/js_datatable/jquery.dataTables.min.js') }}" type="text/javascript"></script>
 <script src="{{ url ('/js_datatable/dataTables.bootstrap.min.js') }}" type="text/javascript"></script>
@@ -61,78 +91,65 @@
 <script src="{{ url ('/js_delete/delete_confirm.min.js') }}"></script>
 <script type="text/javascript">
     $(document).ready(function() {
-
-        // Inicializa la variable table en el ámbito global
-        var table;
         $('#btn_listado').click(function() {
             var fechaDesde = $('#fecha_desde').val();
             var fechaHasta = $('#fecha_hasta').val();
             var zona = $('#zona_id').val();
-
-            // Validación básica de fechas (puedes agregar validaciones más robustas)
-
-
             var url = "{{ route('imprimirventas') }}" + "?fecha_desde=" + fechaDesde + "&fecha_hasta=" + fechaHasta + "&zona=" + zona;
             window.location.href = url;
         });
 
         $('#btn_filtrar').click(function() {
-
-            var fechaDesde = $('#fecha_desde').val();
-            var fechaHasta = $('#fecha_hasta').val();
-
-            if (!$.fn.DataTable.isDataTable('.solicitud_all2')) {
-                // Inicializar la tabla solo si no está inicializada
-                table = $('.solicitud_all2').DataTable({
-                    processing: true,
-                    serverSide: true,
-                    responsive: true,
-                    autoWidth: false,
-                    ajax: {
-                        url: "{{ route('stand2.list') }}",
-                        type: "GET",
-                        dataType: 'json',
-                        data: function(d) {
-                            d.zona = $('#zona_id').val();
-                            d.fecha_desde = $('#fecha_desde').val();
-                            d.fecha_hasta = $('#fecha_hasta').val();
-                        }
-                    },
-                    columns: [
-                        {
-                            data: 'id',
-                            name: 'id',
-                            render: function(data, type, row) {
-                                return '<div style="text-align:center;"><b>' + data + '</b></div>';
-                            }
-                        },
-                        { data: 'stand', name: 'stand' },
-                        { data: 'zona', name: 'zona' },
-                        { data: 'participante', name: 'participante' },
-                        { data: 'fecha', name: 'fecha' },
-                        { data: 'status', name: 'status' },
-                        { data: 'vendedor', name: 'vendedor' },
-                    ],
-                    language: {
-                        "lengthMenu": "Mostrar _MENU_ registros por página",
-                        "zeroRecords": "Nada encontrado !!! - disculpe",
-                        "info": "Mostrando la página _PAGE_ de _PAGES_",
-                        "infoEmpty": "Registros no disponible",
-                        "infoFiltered": "(filtrado de _MAX_ registros totales)",
-                        "search": "Buscar:",
-                        "paginate": {
-                            "next": "Siguiente",
-                            "previous": "Anterior",
-                        }
-                    }
-                });
-            } else {
-                // Recarga la tabla si ya está inicializada.
-                table.ajax.reload();
-            }
+            // Aquí podrías agregar lógica para filtrar los pabellones visualizados
+            // según la fecha y la zona seleccionada, si es necesario.
+            // Por ahora, este botón no tiene una funcionalidad específica para
+            // los botones de los stands.
+            console.log('Filtrar botón clickeado (sin funcionalidad implementada para los botones)');
         });
-
-
     });
-    </script>
+</script>
+<style>
+    section.content {
+        background-image: url("{{ url('/images/icons/feria2.png') }}");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-attachment: fixed;
+    }
+
+    .pabellon-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: 1px solid #ccc; /* Opcional */
+        padding: 10px; /* Opcional */
+    }
+
+    .stands-grid {
+        display: flex;
+    }
+
+    .stand-col {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* Eliminamos el margin-right para quitar la separación */
+    }
+
+    .stand-button {
+        transform: rotate(90deg);
+        margin-bottom: 5px;
+        text-align: center;
+        padding: 5px;
+        font-size: 0.8em;
+        transform-origin: center center;
+        width: auto; /* Ajustamos el ancho */
+        height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 20px; /* Asegura un ancho mínimo */
+        min-height: 20px; /* Asegura una altura mínima */
+    }
+</style>
 @endsection
