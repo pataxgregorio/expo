@@ -61,8 +61,8 @@ class Venta extends Model
         ->where('stand.status', '!=', 'ELIMINADO')
         ->orderBy('stand.zona')   // Luego ordena por la zona del stand dentro de cada stand
         ->get();
-var_dump($resultado);
-exit();
+// var_dump($resultado);
+//  exit();
         return $resultado;
     }
     public function obtenerVenta2(){

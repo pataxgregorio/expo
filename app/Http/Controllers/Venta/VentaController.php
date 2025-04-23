@@ -289,12 +289,12 @@ class VentaController extends Controller
                 <div>
                     <div class="card">
 
-                      <div class="small-box {{$color}} card-body" style="width: 80px; height: 80px; border-radius: 50%; overflow: hidden; padding: 0; display: flex; align-items: center; justify-content: flex-start;">
+                      <!-- <div class="small-box {} card-body" style="width: 80px; height: 80px; border-radius: 50%; overflow: hidden; padding: 0; display: flex; align-items: center; justify-content: flex-start;">
                             $imagenHtml
                      </div>
                             <div class="info-container">
-                                <h5 style ="font-size:14px;">$nombre</h5>
-                            </div>
+                                <h5 style ="font-size:14px;"></h5>
+                            </div> -->
                  </div>
 
             </div>
